@@ -9,7 +9,7 @@ import {
 	PRICE,
 	STRONG,
 	portableText,
-} from 'test/schema/primitives/portable-text';
+} from 'test/schema/primitives/portable-text.test';
 
 export const service = () =>
 	fragmentType({
@@ -48,6 +48,8 @@ const description = () =>
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
 			customTypes: [CALL_TO_ACTION],
+			lists: [],
+			styles: [],
 		}),
 		name: 'description',
 		title: 'Beskrivelse',
@@ -80,6 +82,8 @@ const packageDescription = () =>
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
 			lists: [BULLET, NUMBERED],
+			customTypes: [],
+			styles: [],
 		}),
 		name: 'description',
 		title: 'Beskrivelse',
@@ -89,6 +93,10 @@ const packagePrice = () =>
 	fragmentField({
 		...portableText({
 			decorators: [PRICE, STRONG, EMPHASIS],
+			customTypes: [],
+			lists: [],
+			styles: [],
+			annotations: [],
 		}),
 		name: 'price',
 		title: 'Pris',
@@ -112,6 +120,9 @@ const individualPricesDescription = () =>
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
+			customTypes: [],
+			lists: [],
+			styles: [],
 		}),
 		name: 'description',
 		title: 'Beskrivelse',
@@ -122,6 +133,10 @@ const individualPricesPrice = () =>
 	fragmentField({
 		...portableText({
 			decorators: [PRICE, STRONG, EMPHASIS],
+			customTypes: [],
+			lists: [],
+			styles: [],
+			annotations: [],
 		}),
 		name: 'price',
 		title: 'Pris',
@@ -144,6 +159,9 @@ const addonDescription = () =>
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
+			customTypes: [],
+			lists: [],
+			styles: [],
 		}),
 		name: 'description',
 		title: 'Beskrivelse',
@@ -154,6 +172,10 @@ const addonPrice = () =>
 	fragmentField({
 		...portableText({
 			decorators: [PRICE, STRONG, EMPHASIS],
+			customTypes: [],
+			lists: [],
+			styles: [],
+			annotations: [],
 		}),
 		name: 'price',
 		title: 'Pris',
@@ -165,6 +187,8 @@ const extraInformation = () =>
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
 			styles: [FOOTNOTE],
+			customTypes: [],
+			lists: [],
 		}),
 		name: 'extraInformation',
 		title: 'Ekstra informasjon',

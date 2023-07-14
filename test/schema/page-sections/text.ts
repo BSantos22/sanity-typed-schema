@@ -1,5 +1,5 @@
 import {fragmentField} from 'src/schema';
-import {textBlock} from 'test/schema/primitives/text-block';
+import {textBlock} from 'test/schema/primitives/text-block.test';
 import {
 	BIG_TEXT,
 	BULLET,
@@ -14,7 +14,7 @@ import {
 	LINK,
 	NUMBERED,
 	STRONG,
-} from 'test/schema/primitives/portable-text';
+} from 'test/schema/primitives/portable-text.test';
 import {theme} from 'test/schema/primitives/theme.test';
 
 export const text = () =>

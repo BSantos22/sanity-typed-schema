@@ -7,7 +7,7 @@ import {
 	NUMBERED,
 	STRONG,
 	portableText,
-} from 'test/schema/primitives/portable-text';
+} from 'test/schema/primitives/portable-text.test';
 import {theme} from 'test/schema/primitives/theme.test';
 
 export const infoGrid = () =>
@@ -82,6 +82,8 @@ const itemContent = () =>
 			annotations: [LINK],
 			lists: [BULLET, NUMBERED],
 			decorators: [STRONG, EMPHASIS],
+			styles: [],
+			customTypes: [],
 		}),
 		name: 'content',
 		title: 'Info Grid Content',

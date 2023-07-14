@@ -1,5 +1,5 @@
 import {fragmentField} from 'src/schema';
-import {EMPHASIS, LINK, STRONG, portableText} from 'test/schema/primitives/portable-text';
+import {EMPHASIS, LINK, STRONG, portableText} from 'test/schema/primitives/portable-text.test';
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test';
 
 export const tyreSelect = () =>
@@ -100,6 +100,9 @@ const descriptionUnselected = () =>
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
+			customTypes: [],
+			lists: [],
+			styles: [],
 		}),
 		name: 'unselected',
 		title: 'Beskrivelse (ikke valgt)',
@@ -110,6 +113,9 @@ const descriptionSelected = () =>
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
+			customTypes: [],
+			lists: [],
+			styles: [],
 		}),
 		name: 'selected',
 		title: 'Beskrivelse (valgt)',

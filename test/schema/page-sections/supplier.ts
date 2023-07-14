@@ -7,7 +7,7 @@ import {
 	NUMBERED,
 	STRONG,
 	portableText,
-} from 'test/schema/primitives/portable-text';
+} from 'test/schema/primitives/portable-text.test';
 import {theme} from 'test/schema/primitives/theme.test';
 
 export const supplierSection = () =>
@@ -43,6 +43,7 @@ const content = () =>
 			lists: [BULLET, NUMBERED],
 			decorators: [STRONG, EMPHASIS],
 			customTypes: [CALL_TO_ACTION],
+			styles: [],
 		}),
 		name: 'content',
 		title: 'Innhold',

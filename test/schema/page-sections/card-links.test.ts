@@ -1,7 +1,12 @@
 import {fragmentField} from 'src/schema';
 import {link} from 'test/schema/primitives/link.test';
-import {EMPHASIS, STRONG, portableText} from 'test/schema/primitives/portable-text';
+import {EMPHASIS, STRONG, portableText} from 'test/schema/primitives/portable-text.test';
 import {icon} from 'test/schema/primitives/icon.test';
+import {describe, expectTypeOf, it} from 'vitest';
+import type {OutputType} from 'src/types-output';
+import type {PortableTextBlock, Reference} from '@sanity/types';
+import type {SetOptional, Simplify} from 'type-fest';
+import type {FragmentDefinition} from 'src/types-schema';
 
 export const cardLinks = () =>
 	fragmentField({
@@ -61,6 +66,10 @@ const content = () =>
 	fragmentField({
 		...portableText({
 			decorators: [EMPHASIS, STRONG],
+			styles: [],
+			annotations: [],
+			lists: [],
+			customTypes: [],
 		}),
 		name: 'content',
 		title: 'Innhold',
@@ -73,3 +82,32 @@ const supplier = () =>
 		type: 'reference',
 		to: [{type: 'supplier'}],
 	});
+
+describe('card-links', () => {
+	it('schema', async () => {
+		type Test = {
+			_type: 'cardLinks';
+			links: {
+				_type: 'link';
+				type: 'internal' | 'external';
+				reference: Reference;
+				query: string;
+				href: string;
+				targetBlank: boolean;
+				icon: 'car-glass' | 'tyres' | 'services' | 'road' | 'e-car' | 'crack';
+				title: string;
+				content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+				supplier: Reference;
+			}[];
+		};
+
+		const sanitySchema = cardLinks();
+		const value = output(sanitySchema);
+		//type Output = OutputType<typeof sanitySchema>;
+		//expectTypeOf<Output>().toEqualTypeOf<Test>();
+	});
+});
+
+const output = <T extends FragmentDefinition>(value: T): Simplify<OutputType<T>> => {
+	return value as any;
+};

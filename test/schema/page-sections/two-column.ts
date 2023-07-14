@@ -1,5 +1,5 @@
 import {fragmentField} from 'src/schema';
-import {IMAGE, portableText} from 'test/schema/primitives/portable-text';
+import {IMAGE, portableText} from 'test/schema/primitives/portable-text.test';
 import {
 	BIG_TEXT,
 	BULLET,
@@ -13,7 +13,7 @@ import {
 	LINK,
 	NUMBERED,
 	STRONG,
-} from 'test/schema/primitives/portable-text';
+} from 'test/schema/primitives/portable-text.test';
 import {theme} from 'test/schema/primitives/theme.test';
 
 export const twoColumn = () =>

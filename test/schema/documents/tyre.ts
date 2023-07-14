@@ -1,7 +1,7 @@
 import {fragmentField, fragmentType} from 'src/schema';
-import {BULLET, LINK, STRONG, portableText} from 'test/schema/primitives/portable-text';
-import {NUMBERED} from 'test/schema/primitives/portable-text';
-import {EMPHASIS} from 'test/schema/primitives/portable-text';
+import {BULLET, LINK, STRONG, portableText} from 'test/schema/primitives/portable-text.test';
+import {NUMBERED} from 'test/schema/primitives/portable-text.test';
+import {EMPHASIS} from 'test/schema/primitives/portable-text.test';
 
 export const tyre = () =>
 	fragmentType({
@@ -53,6 +53,8 @@ const description = () =>
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
 			lists: [BULLET, NUMBERED],
+			styles: [],
+			customTypes: [],
 		}),
 		name: 'description',
 		title: 'Beskrivelse',

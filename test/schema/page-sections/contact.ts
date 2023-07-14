@@ -6,8 +6,8 @@ import {
 	NUMBERED,
 	STRONG,
 	portableText,
-} from 'test/schema/primitives/portable-text';
-import {textBlock} from 'test/schema/primitives/text-block';
+} from 'test/schema/primitives/portable-text.test';
+import {textBlock} from 'test/schema/primitives/text-block.test';
 
 export const contact = () =>
 	fragmentField({
@@ -28,6 +28,8 @@ const location = () =>
 			annotations: [LINK],
 			lists: [BULLET, NUMBERED],
 			decorators: [STRONG, EMPHASIS],
+			customTypes: [],
+			styles: [],
 		}),
 		name: 'location',
 		title: 'Adresse',
@@ -82,6 +84,8 @@ const text = () =>
 			annotations: [LINK],
 			lists: [BULLET, NUMBERED],
 			decorators: [STRONG, EMPHASIS],
+			customTypes: [],
+			styles: [],
 		}),
 		name: 'text',
 		title: 'Tekst',
@@ -142,6 +146,9 @@ const info = () =>
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
+			lists: [],
+			customTypes: [],
+			styles: [],
 		}),
 		name: 'info',
 		title: 'Info',

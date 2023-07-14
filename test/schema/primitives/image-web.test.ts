@@ -3,24 +3,14 @@ import {fragmentField} from 'src/schema';
 import type {OutputType} from 'src/types-output';
 import {describe, expectTypeOf, it} from 'vitest';
 
-export const ALT_TEXT = Symbol('altText');
-export const CAPTION = Symbol('caption');
-export const CREDIT = Symbol('credit');
-export const WIDTH = Symbol('width');
+export const ALT_TEXT = {name: 'altText', title: 'Alternativ tekst', type: 'string'} as const;
+export const CAPTION = {name: 'caption', title: 'Bildetekst', type: 'string'} as const;
+export const CREDIT = {name: 'credit', title: 'Bildekreditt', type: 'string'} as const;
+export const WIDTH = {name: 'width', title: 'Bredde', type: 'number'} as const;
 
-const fieldDefinitions = {
-	[ALT_TEXT]: {name: 'altText', title: 'Alternativ tekst', type: 'string'},
-	[CAPTION]: {name: 'caption', title: 'Bildetekst', type: 'string'},
-	[CREDIT]: {name: 'credit', title: 'Bildekreditt', type: 'string'},
-	[WIDTH]: {name: 'width', title: 'Bredde', type: 'number'},
-} as const;
+type Field = typeof ALT_TEXT | typeof CAPTION | typeof CREDIT | typeof WIDTH;
 
-type Field = keyof typeof fieldDefinitions;
-
-export const imageWeb = <const T extends readonly Field[]>(args: {fields: T}) => {
-	const fields = args.fields.map((field) => fieldDefinitions[field]) as unknown as {
-		[K in keyof T]: (typeof fieldDefinitions)[T[K]];
-	};
+export const imageWeb = <const F extends readonly Field[]>(args: {fields: F}) => {
 	return fragmentField({
 		name: 'image',
 		title: 'Bilde',
@@ -28,7 +18,7 @@ export const imageWeb = <const T extends readonly Field[]>(args: {fields: T}) =>
 		options: {
 			hotspot: true,
 		},
-		fields,
+		fields: args.fields,
 		preview: {
 			select: {
 				media: 'asset',

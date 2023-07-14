@@ -14,7 +14,7 @@ import {
 	STRONG,
 	VIDEO_EMBED,
 	portableText,
-} from 'test/schema/primitives/portable-text';
+} from 'test/schema/primitives/portable-text.test';
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test';
 
 export const article = () =>

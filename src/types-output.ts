@@ -59,7 +59,11 @@ export type OutputType<T extends FragmentDefinition> = T['options'] extends {
 	? OutputEmail
 	: never;
 
-type OutputArray<T extends ArrayDef> = OutputType<T['of'][number]>[];
+type OutputArray<T extends ArrayDef> = OutputArrayElements<T['of']>;
+
+type OutputArrayElements<T extends readonly FragmentDefinition[]> = {
+	[Key in keyof T]: OutputType<T[Key]>;
+}[number][];
 
 type OutputBlock = {_type: 'block'} & SetOptional<PortableTextBlock, 'children'>;
 

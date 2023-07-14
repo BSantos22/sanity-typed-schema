@@ -7,7 +7,7 @@ import {
 	LINK,
 	portableText,
 	STRONG,
-} from 'test/schema/primitives/portable-text';
+} from 'test/schema/primitives/portable-text.test';
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test';
 
 export const heading = () =>
@@ -107,6 +107,7 @@ const heroContent = () =>
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
 			customTypes: [CALL_TO_ACTION],
+			lists: [],
 		}),
 		name: 'content',
 		title: 'Innhold',

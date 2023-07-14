@@ -1,5 +1,5 @@
 import {fragmentField} from 'src/schema';
-import {textBlock} from 'test/schema/primitives/text-block';
+import {textBlock} from 'test/schema/primitives/text-block.test';
 import {imageWeb, ALT_TEXT} from 'test/schema/primitives/image-web.test';
 import {
 	BIG_TEXT,
@@ -15,7 +15,7 @@ import {
 	LINK,
 	NUMBERED,
 	STRONG,
-} from 'test/schema/primitives/portable-text';
+} from 'test/schema/primitives/portable-text.test';
 import {theme} from 'test/schema/primitives/theme.test';
 import {icon} from 'test/schema/primitives/icon.test';
 

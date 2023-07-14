@@ -2,6 +2,15 @@
  * These functions take a Sanity schema definition and
  * return a Zod schema definition inferred from it.
  */
+
+import type {Simplify} from 'type-fest';
+import type {FragmentDefinition} from './types-schema';
+import type {OutputType} from './types-output';
+
+export const toOutput = <T extends FragmentDefinition>(value: T): Simplify<OutputType<T>> => {
+	return value as any;
+};
+
 /*
 import type {ArrayDef, DocumentDef, FragmentDefinition, ObjectDef} from './types-schema';
 import type {OutputType} from './types-output';
