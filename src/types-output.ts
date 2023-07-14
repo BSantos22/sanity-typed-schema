@@ -70,10 +70,43 @@ export type OutputType<T extends FragmentDefinition> = T['type'] extends 'array'
 	? OutputUrl
 	: never;
 
-type OutputArray<T extends ArrayDef> = OutputArrayElements<T['of']>;
+// Typing the options here is actually kinda sketchy in some situations.
+// If the user specifies options.list and the of property is a primitive,
+// like string, number, etc., then we can limit the the output type
+// On the other hand, if there's only types that don't support the options.list,
+// the Sanity Studio actually displays an error and the input is disabled
+// (so the type should just be never).
+// But having an "of" like: [{type: 'url'}, {type: 'string'}] would be valid,
+// and the values would be limited to the options.list.
+// This is ok behaviour, though, because the value is always going to be [],
+// which fulfills the type requirements of U[]
+// So I don't know...
+type OutputArray<T extends ArrayDef> = T['options'] extends {
+	list: readonly {value: infer U}[];
+}
+	? U[]
+	: T['options'] extends {
+			list: Readonly<Array<infer U>>;
+	  }
+	? U[]
+	: OutputArrayElements<T['of']>;
 
+// When the value of array items is a primitive, the output type is just the primitive,
+// otherwise it's an object with the _type and _key properties
 type OutputArrayElements<T extends readonly FragmentDefinition[]> = {
-	[Key in keyof T]: Simplify<{_type: T[Key]['name']; _key: string} & OutputType<T[Key]>>;
+	[Key in keyof T]: T[Key]['type'] extends
+		| 'block'
+		| 'document'
+		| 'file'
+		| 'geopoint'
+		| 'image'
+		| 'object'
+		| 'reference'
+		| 'slug'
+		? T[Key]['name'] extends string
+			? Simplify<{_type: T[Key]['name']; _key: string} & Omit<OutputType<T[Key]>, '_type'>>
+			: Simplify<{_key: string} & OutputType<T[Key]>>
+		: OutputType<T[Key]>;
 }[number][];
 
 // Ideally this would output a PortableTextBlock that is fully typed.
@@ -105,6 +138,7 @@ type OutputDocument<T extends DocumentDef> = {
 type OutputEmail = string;
 
 type OutputFile<T extends FileDef> = {
+	_type: 'file';
 	asset?: OutputReference;
 } & OutputFileFields<T>;
 
@@ -120,6 +154,7 @@ type OutputGeopoint = {
 };
 
 type OutputImage<T extends ImageDef> = {
+	_type: 'image';
 	asset?: OutputReference;
 } & OutputImageOptions<T['options']> &
 	OutputImageFields<T>;

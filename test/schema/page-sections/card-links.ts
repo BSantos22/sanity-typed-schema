@@ -3,7 +3,6 @@ import type {PortableTextTest} from '../primitives/portable-text';
 import type {Reference} from '../primitives/reference';
 
 export type CardLinksTest = {
-	//_type: 'cardLinks';
 	links?: {
 		_type: 'link';
 		_key: string;

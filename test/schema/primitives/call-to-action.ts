@@ -1,7 +1,6 @@
 import type {Reference} from './reference';
 
 export type CallToActionTest = {
-	//_type: 'callToAction';
 	text?: string;
 	type?: 'internal' | 'external';
 	reference?: Reference;

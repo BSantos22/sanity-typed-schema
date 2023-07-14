@@ -11,12 +11,14 @@ describe('file', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			_type: 'file';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
 			};
 		}>();
 		expectType<typeof output>().toStrictEqual<{
+			_type: 'file';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -41,6 +43,7 @@ describe('file', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			_type: 'file';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -49,6 +52,7 @@ describe('file', () => {
 			description?: string;
 		}>();
 		expectType<typeof output>().toStrictEqual<{
+			_type: 'file';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -61,7 +65,7 @@ describe('file', () => {
 	it('file with complex fields', async () => {
 		const sanitySchema = fragmentField({
 			name: 'photo',
-			type: 'image',
+			type: 'file',
 			fields: [
 				{
 					name: 'lastEdited',
@@ -112,6 +116,7 @@ describe('file', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			_type: 'file';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -130,6 +135,7 @@ describe('file', () => {
 					};
 				};
 				thumbnail?: {
+					_type: 'image';
 					asset?: {
 						_type: 'reference';
 						_ref: string;
@@ -153,6 +159,7 @@ describe('file', () => {
 			};
 		}>();
 		expectType<typeof output>().toStrictEqual<{
+			_type: 'file';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -171,6 +178,7 @@ describe('file', () => {
 					};
 				};
 				thumbnail?: {
+					_type: 'image';
 					asset?: {
 						_type: 'reference';
 						_ref: string;

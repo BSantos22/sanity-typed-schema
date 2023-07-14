@@ -1,14 +1,12 @@
 import type {PortableTextTest} from '../primitives/portable-text';
 
 export type ContactTest = {
-	//_type: 'contact';
 	forms?: {
 		_type: 'form';
 		_key: string;
 		type?: string;
 		id?: string;
 		text?: {
-			//_type: 'text';
 			annotation?: string;
 			title?: string;
 			content?: PortableTextTest;

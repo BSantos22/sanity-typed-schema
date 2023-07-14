@@ -1,7 +1,7 @@
 import type {Reference} from './reference';
 
 export type ImageWebTestBase = {
-	//_type: 'image';
+	_type: 'image';
 	asset?: Reference;
 	hotspot?: {
 		_type: 'sanity.imageHotspot';
@@ -20,7 +20,7 @@ export type ImageWebTestBase = {
 };
 
 export type ImageWebTestAltText = {
-	//_type: 'image';
+	_type: 'image';
 	asset?: Reference;
 	hotspot?: {
 		_type: 'sanity.imageHotspot';
@@ -40,7 +40,7 @@ export type ImageWebTestAltText = {
 };
 
 export type ImageWebTestAltTextCaption = {
-	//_type: 'image';
+	_type: 'image';
 	asset?: Reference;
 	hotspot?: {
 		_type: 'sanity.imageHotspot';
@@ -61,7 +61,7 @@ export type ImageWebTestAltTextCaption = {
 };
 
 export type ImageWebTestAll = {
-	//_type: 'image';
+	_type: 'image';
 	asset?: Reference;
 	hotspot?: {
 		_type: 'sanity.imageHotspot';

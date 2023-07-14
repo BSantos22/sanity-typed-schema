@@ -11,12 +11,14 @@ describe('image', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			_type: 'image';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
 			};
 		}>();
 		expectType<typeof output>().toStrictEqual<{
+			_type: 'image';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -34,6 +36,7 @@ describe('image', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			_type: 'image';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -54,6 +57,7 @@ describe('image', () => {
 			};
 		}>();
 		expectType<typeof output>().toStrictEqual<{
+			_type: 'image';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -92,6 +96,7 @@ describe('image', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			_type: 'image';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -100,6 +105,7 @@ describe('image', () => {
 			caption?: string;
 		}>();
 		expectType<typeof output>().toStrictEqual<{
+			_type: 'image';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -129,6 +135,7 @@ describe('image', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			_type: 'image';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -151,6 +158,7 @@ describe('image', () => {
 			numberOfViews?: number;
 		}>();
 		expectType<typeof output>().toStrictEqual<{
+			_type: 'image';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -239,63 +247,7 @@ describe('image', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
-			asset?: {
-				_type: 'reference';
-				_ref: string;
-			};
-			hotspot?: {
-				_type: 'sanity.imageHotspot';
-				x?: number;
-				y?: number;
-				height?: number;
-				width?: number;
-			};
-			crop?: {
-				_type: 'sanity.imageCrop';
-				top?: number;
-				bottom?: number;
-				left?: number;
-				right?: number;
-			};
-			timeTaken?: string;
-			numberOfViews?: number;
-			alt?: string;
-			caption?: string;
-			extraInformation?: {
-				extraField?: string;
-				city?: {
-					name?: string;
-					location?: {
-						_type: 'sanity.geopoint';
-						lat?: number;
-						lng?: number;
-						alt?: number;
-					};
-				};
-				alternativeImage?: {
-					asset?: {
-						_type: 'reference';
-						_ref: string;
-					};
-					hotspot?: {
-						_type: 'sanity.imageHotspot';
-						x?: number;
-						y?: number;
-						height?: number;
-						width?: number;
-					};
-					crop?: {
-						_type: 'sanity.imageCrop';
-						top?: number;
-						bottom?: number;
-						left?: number;
-						right?: number;
-					};
-					alt?: string;
-				};
-			};
-		}>();
-		expectType<typeof output>().toStrictEqual<{
+			_type: 'image';
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -330,6 +282,66 @@ describe('image', () => {
 					};
 				};
 				alternativeImage?: {
+					_type: 'image';
+					asset?: {
+						_type: 'reference';
+						_ref: string;
+					};
+					hotspot?: {
+						_type: 'sanity.imageHotspot';
+						x?: number;
+						y?: number;
+						height?: number;
+						width?: number;
+					};
+					crop?: {
+						_type: 'sanity.imageCrop';
+						top?: number;
+						bottom?: number;
+						left?: number;
+						right?: number;
+					};
+					alt?: string;
+				};
+			};
+		}>();
+		expectType<typeof output>().toStrictEqual<{
+			_type: 'image';
+			asset?: {
+				_type: 'reference';
+				_ref: string;
+			};
+			hotspot?: {
+				_type: 'sanity.imageHotspot';
+				x?: number;
+				y?: number;
+				height?: number;
+				width?: number;
+			};
+			crop?: {
+				_type: 'sanity.imageCrop';
+				top?: number;
+				bottom?: number;
+				left?: number;
+				right?: number;
+			};
+			timeTaken?: string;
+			numberOfViews?: number;
+			alt?: string;
+			caption?: string;
+			extraInformation?: {
+				extraField?: string;
+				city?: {
+					name?: string;
+					location?: {
+						_type: 'geopoint';
+						lat?: number;
+						lng?: number;
+						alt?: number;
+					};
+				};
+				alternativeImage?: {
+					_type: 'image';
 					asset?: {
 						_type: 'reference';
 						_ref: string;
