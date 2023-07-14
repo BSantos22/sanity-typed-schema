@@ -14,7 +14,7 @@ import {
 	NUMBERED,
 	STRONG,
 } from 'test/schema/primitives/portable-text';
-import {theme} from 'test/schema/primitives/theme';
+import {theme} from 'test/schema/primitives/theme.test';
 
 export const twoColumn = () =>
 	fragmentField({

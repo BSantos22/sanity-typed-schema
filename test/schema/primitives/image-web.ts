@@ -1,4 +1,7 @@
+import type {Reference} from '@sanity/types';
 import {fragmentField} from 'src/schema';
+import type {OutputType} from 'src/types-output';
+import {describe, expectTypeOf, it} from 'vitest';
 
 export const ALT_TEXT = Symbol('altText');
 export const CAPTION = Symbol('caption');
@@ -14,7 +17,7 @@ const fieldDefinitions = {
 
 type Field = keyof typeof fieldDefinitions;
 
-export const imageWeb = (args?: {fields?: Field[]}) => {
+export const imageWeb = <const T extends Field[]>(args?: {fields?: T}) => {
 	const fields = args?.fields?.map((field) => fieldDefinitions[field]) ?? [];
 	return fragmentField({
 		name: 'image',
@@ -36,3 +39,23 @@ export const imageWeb = (args?: {fields?: Field[]}) => {
 		},
 	});
 };
+
+describe('image-web', () => {
+	it('schema', async () => {
+		type Test = {
+			_type: 'image';
+			asset: Reference;
+			hotspot: {
+				_type?: 'sanity.imageHotspot';
+				width: number;
+				height: number;
+				x: number;
+				y: number;
+			};
+		};
+
+		const sanitySchema = imageWeb();
+		type Output = OutputType<typeof sanitySchema>;
+		expectTypeOf<Output>().toEqualTypeOf<Test>();
+	});
+});

@@ -16,8 +16,8 @@ import {
 	NUMBERED,
 	STRONG,
 } from 'test/schema/primitives/portable-text';
-import {theme} from 'test/schema/primitives/theme';
-import {icon} from 'test/schema/primitives/icon';
+import {theme} from 'test/schema/primitives/theme.test';
+import {icon} from 'test/schema/primitives/icon.test';
 
 export const textWithImage = () =>
 	fragmentField({

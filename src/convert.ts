@@ -2,8 +2,7 @@
  * These functions take a Sanity schema definition and
  * return a Zod schema definition inferred from it.
  */
-
-import {z} from 'zod';
+/*
 import type {ArrayDef, DocumentDef, FragmentDefinition, ObjectDef} from './types-schema';
 import type {OutputType} from './types-output';
 import type {Simplify} from 'type-fest';
@@ -50,11 +49,8 @@ export const sanityToZod = <T extends FragmentDefinition>(fragment: T): Simplify
 };
 
 const fragmentArray = <T extends ArrayDef>(fragment: T) => {
-	const first = fragment.of.at(0);
-	const firstOutput = sanityToZod(first as FragmentDefinition);
-
 	const arrayItems = fragment.of.map((item) => {
-		return sanityToZod(item as FragmentDefinition);
+		return sanityToZod(item);
 	});
 
 	return z.array(z.union(arrayItems));
@@ -150,13 +146,22 @@ const fragmentObject = <T extends ObjectDef>(fragment: T) => {
 			return acc;
 		}
 
+		console.log(field.name, field);
+
 		return {
 			...acc,
 			[field.name]: sanityToZod(field),
 		};
 	}, {});
 
+	if (!fragment.name) {
+		return z.object({
+			...fields,
+		});
+	}
+
 	return z.object({
+		_type: z.literal(fragment.name),
 		...fields,
 	});
 };
@@ -190,3 +195,4 @@ const fragmentUrl = () => {
 const fragmentEmail = () => {
 	return z.string();
 };
+*/

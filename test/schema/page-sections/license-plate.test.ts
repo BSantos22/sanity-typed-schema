@@ -1,4 +1,6 @@
 import {fragmentField} from 'src/schema';
+import type {OutputType} from 'src/types-output';
+import {describe, expectTypeOf, it} from 'vitest';
 
 export const licensePlate = () =>
 	fragmentField({
@@ -32,3 +34,17 @@ const label = () =>
 		type: 'string',
 		validation: (Rule) => Rule.required(),
 	});
+
+describe('license-plate', () => {
+	it('schema', async () => {
+		type Test = {
+			_type: 'licensePlate';
+			title: string;
+			label: string;
+		};
+
+		const sanitySchema = licensePlate();
+		type Output = OutputType<typeof sanitySchema>;
+		expectTypeOf<Output>().toEqualTypeOf<Test>();
+	});
+});

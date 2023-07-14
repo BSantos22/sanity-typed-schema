@@ -1,7 +1,22 @@
-import type {z} from 'zod';
-import type {ArrayDef, DocumentDef, FragmentDefinition, ObjectDef} from './types-schema';
+import type {ArrayDef, DocumentDef, FragmentDefinition, ImageDef, ObjectDef} from './types-schema';
+import type {
+	FileValue,
+	GeopointValue,
+	ImageHotspot,
+	ImageOptions,
+	ImageValue,
+	PortableTextBlock,
+	Reference,
+	SlugValue,
+} from '@sanity/types';
+import type {SetOptional} from 'type-fest';
+import type {ReadonlyObjectDeep} from 'type-fest/source/readonly-deep';
 
-export type OutputType<T extends FragmentDefinition> = T['type'] extends 'array'
+export type OutputType<T extends FragmentDefinition> = T['options'] extends {
+	list: readonly {value: infer U}[];
+}
+	? U
+	: T['type'] extends 'array'
 	? T extends ArrayDef
 		? OutputArray<T>
 		: never
@@ -22,7 +37,9 @@ export type OutputType<T extends FragmentDefinition> = T['type'] extends 'array'
 	: T['type'] extends 'geopoint'
 	? OutputGeopoint
 	: T['type'] extends 'image'
-	? OutputImage
+	? T extends ImageDef
+		? OutputImage<T>
+		: never
 	: T['type'] extends 'number'
 	? OutputNumber
 	: T['type'] extends 'object'
@@ -43,82 +60,73 @@ export type OutputType<T extends FragmentDefinition> = T['type'] extends 'array'
 	? OutputEmail
 	: never;
 
-type OutputArray<T extends ArrayDef> = z.ZodArray<z.ZodUnion<OutputType<T['of'][number]>>>;
+type OutputArray<T extends ArrayDef> = OutputType<T['of'][number]>[];
 
-type OutputBlock = z.ZodObject<{
-	_type: z.ZodLiteral<'block'>;
-	// TODO
-}>;
+type OutputBlock = {_type: 'block'} & SetOptional<PortableTextBlock, 'children'>;
 
-type OutputBoolean = z.ZodBoolean;
+type OutputBoolean = boolean;
 
-type OutputDate = z.ZodString;
+type OutputDate = string;
 
-type OutputDatetime = z.ZodString;
+type OutputDatetime = string;
 
-type OutputDocument<T extends DocumentDef> = z.ZodObject<
-	{
-		_type: z.ZodLiteral<T['name']>;
-	} & (T['fields'] extends readonly FragmentDefinition[]
+type OutputDocument<T extends DocumentDef> = {
+	_type: T['name'];
+} & (T['fields'] extends readonly FragmentDefinition[] ? OutputDocumentFields<T['fields']> : never);
+
+type OutputDocumentFields<T extends readonly FragmentDefinition[]> = {
+	[Key in NonNullable<T[number]['name']>]: OutputType<Extract<T[number], {name: Key}>>;
+};
+
+type OutputFile = FileValue;
+
+type OutputGeopoint = GeopointValue;
+
+type OutputImage<T extends ImageDef> = {
+	_type: 'image';
+	asset: Reference;
+} & OutputImageOptions<T['options']>;
+//& OutputImageFields<T['fields']>;
+
+type OutputImageOptions<T extends ReadonlyObjectDeep<ImageOptions> | undefined> =
+	T extends ReadonlyObjectDeep<ImageOptions>
+		? T['hotspot'] extends true
+			? {hotspot: ImageHotspot}
+			: // eslint-disable-next-line @typescript-eslint/ban-types
+			  {}
+		: // eslint-disable-next-line @typescript-eslint/ban-types
+		  {};
+
+type OutputImageFields<T extends readonly FragmentDefinition[] | undefined> =
+	T extends readonly FragmentDefinition[]
 		? {
-				[key in NonNullable<T['fields'][number]['name']>]: OutputType<
-					Extract<T['fields'][number], {name: key}>
+				[Key in NonNullable<T[number]['name']>]: OutputType<
+					Extract<T[number], {name: Key}>
 				>;
 		  }
-		: never)
->;
+		: // eslint-disable-next-line @typescript-eslint/ban-types
+		  {};
 
-type OutputFile = z.ZodObject<{
-	_type: z.ZodLiteral<'file'>;
-	asset: z.ZodObject<{
-		_ref: z.ZodString;
-		_type: z.ZodLiteral<'reference'>;
-	}>;
-}>;
+type OutputNumber = number;
 
-type OutputGeopoint = z.ZodObject<{
-	_type: z.ZodLiteral<'geopoint'>;
-	lat: z.ZodNumber;
-	lng: z.ZodNumber;
-	alt: z.ZodNumber;
-}>;
+type OutputObject<T extends ObjectDef> = {
+	_type: T['name'];
+} & (T['fields'] extends readonly FragmentDefinition[]
+	? {
+			[Key in NonNullable<T['fields'][number]['name']>]: OutputType<
+				Extract<T['fields'][number], {name: Key}>
+			>;
+	  }
+	: never);
 
-type OutputImage = z.ZodObject<{
-	_type: z.ZodLiteral<'image'>;
-	asset: z.ZodObject<{
-		_ref: z.ZodString;
-		_type: z.ZodLiteral<'reference'>;
-	}>;
-}>;
+type OutputReference = Reference;
 
-type OutputNumber = z.ZodNumber;
+type OutputSlug = SlugValue;
 
-type OutputObject<T extends ObjectDef> = z.ZodObject<
-	{
-		_type: z.ZodLiteral<T['name']>;
-	} & (T['fields'] extends readonly FragmentDefinition[]
-		? {
-				[key in NonNullable<T['fields'][number]['name']>]: OutputType<
-					Extract<T['fields'][number], {name: key}>
-				>;
-		  }
-		: never)
->;
+type OutputString = string;
 
-type OutputReference = z.ZodObject<{
-	_type: z.ZodLiteral<'reference'>;
-	_ref: z.ZodString;
-}>;
+type OutputText = string;
 
-type OutputSlug = z.ZodObject<{
-	_type: z.ZodLiteral<'slug'>;
-	current: z.ZodString;
-}>;
+type OutputUrl = string;
 
-type OutputString = z.ZodString;
-
-type OutputText = z.ZodString;
-
-type OutputUrl = z.ZodString;
-
-type OutputEmail = z.ZodString;
+type OutputEmail = string;

@@ -16,8 +16,9 @@ import type {
 	TextDefinition,
 	UrlDefinition,
 	EmailDefinition,
+	CrossDatasetReferenceDefinition,
 } from '@sanity/types';
-import type {SetOptional} from 'type-fest';
+import type {ReadonlyDeep, SetOptional} from 'type-fest';
 
 // The format of the validation function required by defineField doesn't match
 // the format of the schema definitions in Sanity, for some reason.
@@ -27,7 +28,7 @@ type OmitValidation<T> = Omit<T, 'validation'>;
 // Fields inside of arrays don't have to a required "name" property.
 type OptionalName<T extends {name: string}> = SetOptional<T, 'name'>;
 
-type Def<T extends {name: string}> = OptionalName<OmitValidation<T>>;
+type Def<T extends {name: string}> = ReadonlyDeep<OptionalName<OmitValidation<T>>>;
 
 export type ArrayDef = Omit<Def<ArrayDefinition>, 'of'> & {
 	of: readonly FragmentDefinition[];
@@ -52,6 +53,7 @@ export type StringDef = Def<StringDefinition>;
 export type TextDef = Def<TextDefinition>;
 export type UrlDef = Def<UrlDefinition>;
 export type EmailDef = Def<EmailDefinition>;
+export type CrossDatasetReferenceDef = Def<CrossDatasetReferenceDefinition>;
 
 export type FragmentDefinition =
 	| ArrayDef
@@ -70,4 +72,5 @@ export type FragmentDefinition =
 	| StringDef
 	| TextDef
 	| UrlDef
-	| EmailDef;
+	| EmailDef
+	| CrossDatasetReferenceDef;

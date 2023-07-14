@@ -1,4 +1,6 @@
 import {fragmentField} from 'src/schema';
+import type {OutputType} from 'src/types-output';
+import {describe, expectTypeOf, it} from 'vitest';
 
 export const icon = () =>
 	fragmentField({
@@ -16,3 +18,13 @@ export const icon = () =>
 			],
 		},
 	});
+
+describe('icon', () => {
+	it('schema', async () => {
+		type Test = 'car-glass' | 'tyres' | 'services' | 'road' | 'e-car' | 'crack';
+
+		const sanitySchema = icon();
+		type Output = OutputType<typeof sanitySchema>;
+		expectTypeOf<Output>().toEqualTypeOf<Test>();
+	});
+});

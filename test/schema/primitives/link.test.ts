@@ -1,4 +1,7 @@
+import type {Reference} from '@sanity/types';
 import {fragmentField} from 'src/schema';
+import type {OutputType} from 'src/types-output';
+import {describe, expectTypeOf, it} from 'vitest';
 
 export const link = () => {
 	return fragmentField({
@@ -73,3 +76,20 @@ const targetBlank = () =>
 		description: 'Åpne lenken i et nytt nettleservindu',
 		validation: (Rule) => Rule.required(),
 	});
+
+describe('link', () => {
+	it('schema', async () => {
+		type Test = {
+			_type: 'link';
+			type: 'internal' | 'external';
+			reference: Reference;
+			query: string;
+			href: string;
+			targetBlank: boolean;
+		};
+
+		const sanitySchema = link();
+		type Output = OutputType<typeof sanitySchema>;
+		expectTypeOf<Output>().toEqualTypeOf<Test>();
+	});
+});

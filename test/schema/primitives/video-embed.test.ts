@@ -1,4 +1,6 @@
 import {fragmentField} from 'src/schema';
+import type {OutputType} from 'src/types-output';
+import {describe, expectTypeOf, it} from 'vitest';
 
 export const videoEmbed = () =>
 	fragmentField({
@@ -24,3 +26,16 @@ const url = () =>
 		title: 'Video URL',
 		validation: (Rule) => Rule.required(),
 	});
+
+describe('video-embed', () => {
+	it('schema', async () => {
+		type Test = {
+			_type: 'video';
+			url: string;
+		};
+
+		const sanitySchema = videoEmbed();
+		type Output = OutputType<typeof sanitySchema>;
+		expectTypeOf<Output>().toEqualTypeOf<Test>();
+	});
+});

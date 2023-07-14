@@ -1,7 +1,7 @@
 import {fragmentField} from 'src/schema';
-import {link} from 'test/schema/primitives/link';
+import {link} from 'test/schema/primitives/link.test';
 import {EMPHASIS, STRONG, portableText} from 'test/schema/primitives/portable-text';
-import {icon} from 'test/schema/primitives/icon';
+import {icon} from 'test/schema/primitives/icon.test';
 
 export const cardLinks = () =>
 	fragmentField({
