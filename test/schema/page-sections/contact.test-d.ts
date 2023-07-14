@@ -9,7 +9,7 @@ import {
 	portableText,
 } from 'test/schema/primitives/portable-text.test-d';
 import {textBlock} from 'test/schema/primitives/text-block.test-d';
-import type {ContactTest} from 'test/types/page-sections/contact';
+import type {ContactTest} from 'test/schema/page-sections/contact';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const contact = () =>

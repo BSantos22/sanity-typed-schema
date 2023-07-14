@@ -15,7 +15,7 @@ import {
 } from 'test/schema/primitives/portable-text.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
-import type {ServicesTest} from 'test/types/page-sections/services';
+import type {ServicesTest} from 'test/schema/page-sections/services';
 
 export const services = () =>
 	fragmentField({

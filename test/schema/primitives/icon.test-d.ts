@@ -1,6 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import type {IconTest} from 'test/types/primitives/icon';
+import type {IconTest} from 'test/schema/primitives/icon';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const icon = () =>

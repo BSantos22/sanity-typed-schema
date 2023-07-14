@@ -13,7 +13,7 @@ import {services} from 'test/schema/page-sections/services.test-d';
 import {contact} from 'test/schema/page-sections/contact.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
-import type {PageTest} from 'test/types/documents/page';
+import type {PageTest} from 'test/schema/documents/page';
 
 export const page = () =>
 	fragmentType({

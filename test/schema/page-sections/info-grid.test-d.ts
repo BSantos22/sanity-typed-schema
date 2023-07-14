@@ -10,7 +10,7 @@ import {
 	portableText,
 } from 'test/schema/primitives/portable-text.test-d';
 import {theme} from 'test/schema/primitives/theme.test-d';
-import type {InfoGridTest} from 'test/types/page-sections/info-grid';
+import type {InfoGridTest} from 'test/schema/page-sections/info-grid';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const infoGrid = () =>

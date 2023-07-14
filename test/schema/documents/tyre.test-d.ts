@@ -3,7 +3,7 @@ import {fragmentField, fragmentType} from 'src/schema';
 import {BULLET, LINK, STRONG, portableText} from 'test/schema/primitives/portable-text.test-d';
 import {NUMBERED} from 'test/schema/primitives/portable-text.test-d';
 import {EMPHASIS} from 'test/schema/primitives/portable-text.test-d';
-import type {TyreTest} from 'test/types/documents/tyre';
+import type {TyreTest} from 'test/schema/documents/tyre';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const tyre = () =>

@@ -10,7 +10,7 @@ import {
 	portableText,
 } from 'test/schema/primitives/portable-text.test-d';
 import {theme} from 'test/schema/primitives/theme.test-d';
-import type {SupplierSectionTest} from 'test/types/page-sections/supplier';
+import type {SupplierSectionTest} from 'test/schema/page-sections/supplier';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const supplierSection = () =>

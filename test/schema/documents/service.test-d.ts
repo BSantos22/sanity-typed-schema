@@ -11,7 +11,7 @@ import {
 	STRONG,
 	portableText,
 } from 'test/schema/primitives/portable-text.test-d';
-import type {ServiceTest} from 'test/types/documents/service';
+import type {ServiceTest} from 'test/schema/documents/service';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const service = () =>

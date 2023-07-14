@@ -6,7 +6,7 @@ import {callToAction} from 'test/schema/primitives/call-to-action.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {BlockDef} from 'src/types-schema';
-import type {PortableTextTest} from 'test/types/primitives/portable-text';
+import type {PortableTextTest} from 'test/schema/primitives/portable-text';
 
 // Styles
 export const H1 = {title: 'H1', value: 'h1'} as const;

@@ -20,7 +20,7 @@ import {theme} from 'test/schema/primitives/theme.test-d';
 import {icon} from 'test/schema/primitives/icon.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
-import type {TextWithImageTest} from 'test/types/page-sections/text-with-image';
+import type {TextWithImageTest} from 'test/schema/page-sections/text-with-image';
 
 export const textWithImage = () =>
 	fragmentField({

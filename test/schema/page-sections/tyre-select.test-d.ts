@@ -3,7 +3,7 @@ import {EMPHASIS, LINK, STRONG, portableText} from 'test/schema/primitives/porta
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
-import type {TyreSelectTest} from 'test/types/page-sections/tyre-select';
+import type {TyreSelectTest} from 'test/schema/page-sections/tyre-select';
 
 export const tyreSelect = () =>
 	fragmentField({

@@ -18,7 +18,7 @@ import {
 import {theme} from 'test/schema/primitives/theme.test-d';
 import {toOutput} from 'src/convert';
 import {describe, expectTypeOf, it} from 'vitest';
-import type {TextTest} from 'test/types/page-sections/text';
+import type {TextTest} from 'test/schema/page-sections/text';
 
 export const text = () =>
 	fragmentField({

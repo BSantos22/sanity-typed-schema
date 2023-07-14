@@ -1,6 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import type {VideoEmbedTest} from 'test/types/primitives/video-embed';
+import type {VideoEmbedTest} from 'test/schema/primitives/video-embed';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const videoEmbed = () =>

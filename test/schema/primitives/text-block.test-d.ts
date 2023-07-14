@@ -8,7 +8,7 @@ import type {
 	Styles,
 } from 'test/schema/primitives/portable-text.test-d';
 import {CALL_TO_ACTION, portableText} from 'test/schema/primitives/portable-text.test-d';
-import type {TextBlockTest} from 'test/types/primitives/text-block';
+import type {TextBlockTest} from 'test/schema/primitives/text-block';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const textBlock = <

@@ -16,7 +16,7 @@ import {
 	STRONG,
 } from 'test/schema/primitives/portable-text.test-d';
 import {theme} from 'test/schema/primitives/theme.test-d';
-import type {TwoColumnTest} from 'test/types/page-sections/two-column';
+import type {TwoColumnTest} from 'test/schema/page-sections/two-column';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const twoColumn = () =>

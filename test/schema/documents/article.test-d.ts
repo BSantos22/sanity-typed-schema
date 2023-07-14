@@ -18,7 +18,7 @@ import {
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
-import type {ArticleTest} from 'test/types/documents/article';
+import type {ArticleTest} from 'test/schema/documents/article';
 
 export const article = () =>
 	fragmentType({

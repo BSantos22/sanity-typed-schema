@@ -1,6 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import type {ThemeTest} from 'test/types/primitives/theme';
+import type {ThemeTest} from 'test/schema/primitives/theme';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const theme = () =>

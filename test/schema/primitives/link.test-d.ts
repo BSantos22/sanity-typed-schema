@@ -1,6 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import type {LinkTest} from 'test/types/primitives/link';
+import type {LinkTest} from 'test/schema/primitives/link';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const link = () => {

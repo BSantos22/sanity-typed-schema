@@ -4,7 +4,7 @@ import type {
 	ImageWebTestAll,
 	ImageWebTestAltTextCaption,
 	ImageWebTestBase,
-} from 'test/types/primitives/image-web';
+} from 'test/schema/primitives/image-web';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const ALT_TEXT = {name: 'altText', title: 'Alternativ tekst', type: 'string'} as const;

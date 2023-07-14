@@ -1,6 +1,6 @@
 import {fragmentField} from 'src/schema';
 import type {OutputType} from 'src/types-output';
-import type {LicensePlateTest} from 'test/types/page-sections/license-plate';
+import type {LicensePlateTest} from 'test/schema/page-sections/license-plate';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const licensePlate = () =>

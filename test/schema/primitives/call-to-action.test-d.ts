@@ -1,7 +1,7 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import {link} from 'test/schema/primitives/link.test-d';
-import type {CallToActionTest} from 'test/types/primitives/call-to-action';
+import type {CallToActionTest} from 'test/schema/primitives/call-to-action';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const callToAction = () =>

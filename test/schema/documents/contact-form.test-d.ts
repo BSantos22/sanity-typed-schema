@@ -1,6 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField, fragmentType} from 'src/schema';
-import type {ContactFormTest} from 'test/types/documents/contact-form';
+import type {ContactFormTest} from 'test/schema/documents/contact-form';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const contactForm = () =>

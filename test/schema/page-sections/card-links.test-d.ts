@@ -4,7 +4,7 @@ import {EMPHASIS, STRONG, portableText} from 'test/schema/primitives/portable-te
 import {icon} from 'test/schema/primitives/icon.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
-import type {CardLinksTest} from 'test/types/page-sections/card-links';
+import type {CardLinksTest} from 'test/schema/page-sections/card-links';
 
 export const cardLinks = () =>
 	fragmentField({
