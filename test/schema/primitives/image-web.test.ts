@@ -1,7 +1,11 @@
-import type {Reference} from '@sanity/types';
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import type {OutputType} from 'src/types-output';
+import type {
+	ImageWebTestAll,
+	ImageWebTestAltTextCaption,
+	ImageWebTestBase,
+} from 'test/types/primitives/image-web';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const ALT_TEXT = {name: 'altText', title: 'Alternativ tekst', type: 'string'} as const;
@@ -35,62 +39,20 @@ export const imageWeb = <const F extends readonly Field[]>(args: {fields: F}) =>
 
 describe('image-web', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'image';
-			asset: Reference;
-			hotspot: {
-				_type?: 'sanity.imageHotspot';
-				width: number;
-				height: number;
-				x: number;
-				y: number;
-			};
-		};
-
 		const sanitySchema = imageWeb({fields: []});
 		type Output = OutputType<typeof sanitySchema>;
-		expectTypeOf<Output>().toEqualTypeOf<Test>();
+		expectTypeOf<Output>().toEqualTypeOf<ImageWebTestBase>();
 	});
 
 	it('schema with fields', async () => {
-		type Test = {
-			_type: 'image';
-			asset: Reference;
-			hotspot: {
-				_type?: 'sanity.imageHotspot';
-				width: number;
-				height: number;
-				x: number;
-				y: number;
-			};
-			altText: string;
-			caption: string;
-		};
-
 		const sanitySchema = imageWeb({fields: [ALT_TEXT, CAPTION]});
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<ImageWebTestAltTextCaption>();
 	});
 
 	it('schema with fields', async () => {
-		type Test = {
-			_type: 'image';
-			asset: Reference;
-			hotspot: {
-				_type?: 'sanity.imageHotspot';
-				width: number;
-				height: number;
-				x: number;
-				y: number;
-			};
-			altText: string;
-			caption: string;
-			credit: string;
-			width: number;
-		};
-
 		const sanitySchema = imageWeb({fields: [ALT_TEXT, CAPTION, CREDIT, WIDTH]});
 		type Output = OutputType<typeof sanitySchema>;
-		expectTypeOf<Output>().toEqualTypeOf<Test>();
+		expectTypeOf<Output>().toEqualTypeOf<ImageWebTestAll>();
 	});
 });

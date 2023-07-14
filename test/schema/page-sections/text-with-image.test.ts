@@ -20,9 +20,7 @@ import {theme} from 'test/schema/primitives/theme.test';
 import {icon} from 'test/schema/primitives/icon.test';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
-import type {SetOptional} from 'type-fest';
-import type {PortableTextBlock} from '@portabletext/types';
-import type {Reference} from '@sanity/types';
+import type {TextWithImageTest} from 'test/types/page-sections/text-with-image';
 
 export const textWithImage = () =>
 	fragmentField({
@@ -86,33 +84,8 @@ const imageSide = () =>
 
 describe('text-with-image', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'textWithImage';
-			content: {
-				_type: 'content';
-				annotation: string;
-				title: string;
-				content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-			};
-			backgroundIcon: 'car-glass' | 'tyres' | 'services' | 'road' | 'e-car' | 'crack';
-			imageSide: 'left' | 'right';
-			image: {
-				_type: 'image';
-				asset: Reference;
-				hotspot: {
-					_type?: 'sanity.imageHotspot';
-					width: number;
-					height: number;
-					x: number;
-					y: number;
-				};
-				altText: string;
-			};
-			theme: 'light' | 'dark';
-		};
-
 		const sanitySchema = textWithImage();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<TextWithImageTest>();
 	});
 });

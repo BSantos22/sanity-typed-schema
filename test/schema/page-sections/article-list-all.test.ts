@@ -1,6 +1,7 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import {theme} from 'test/schema/primitives/theme.test';
+import type {ArticleListAllTest} from 'test/types/page-sections/article-list-all';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const articleListAll = () =>
@@ -21,14 +22,8 @@ const title = () =>
 
 describe('article-list-all', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'articleListAll';
-			title: string;
-			theme: 'dark' | 'light';
-		};
-
 		const sanitySchema = articleListAll();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<ArticleListAllTest>();
 	});
 });

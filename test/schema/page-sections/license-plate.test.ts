@@ -1,5 +1,6 @@
 import {fragmentField} from 'src/schema';
 import type {OutputType} from 'src/types-output';
+import type {LicensePlateTest} from 'test/types/page-sections/license-plate';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const licensePlate = () =>
@@ -37,14 +38,8 @@ const label = () =>
 
 describe('license-plate', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'licensePlate';
-			title: string;
-			label: string;
-		};
-
 		const sanitySchema = licensePlate();
 		type Output = OutputType<typeof sanitySchema>;
-		expectTypeOf<Output>().toEqualTypeOf<Test>();
+		expectTypeOf<Output>().toEqualTypeOf<LicensePlateTest>();
 	});
 });

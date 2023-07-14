@@ -1,7 +1,7 @@
-import type {Reference} from '@sanity/types';
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import {link} from 'test/schema/primitives/link.test';
+import type {CallToActionTest} from 'test/types/primitives/call-to-action';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const callToAction = () =>
@@ -32,18 +32,8 @@ const text = () =>
 
 describe('call-to-action', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'callToAction';
-			text: string;
-			type: 'internal' | 'external';
-			reference: Reference;
-			query: string;
-			href: string;
-			targetBlank: boolean;
-		};
-
 		const sanitySchema = callToAction();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<CallToActionTest>();
 	});
 });

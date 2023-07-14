@@ -4,10 +4,9 @@ import {ALT_TEXT, CAPTION, CREDIT, WIDTH, imageWeb} from 'test/schema/primitives
 import {link} from 'test/schema/primitives/link.test';
 import {callToAction} from 'test/schema/primitives/call-to-action.test';
 import {describe, expectTypeOf, it} from 'vitest';
-import type {SetOptional} from 'type-fest';
-import type {PortableTextBlock} from '@portabletext/types';
 import {toOutput} from 'src/convert';
 import type {BlockDef} from 'src/types-schema';
+import type {PortableTextTest} from 'test/types/primitives/portable-text';
 
 // Styles
 export const H1 = {title: 'H1', value: 'h1'} as const;
@@ -115,8 +114,6 @@ export const portableText = <
 
 describe('portable-text', () => {
 	it('schema', async () => {
-		type Test = ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-
 		const sanitySchema = portableText({
 			styles: [],
 			annotations: [],
@@ -125,13 +122,10 @@ describe('portable-text', () => {
 			customTypes: [],
 		});
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<PortableTextTest>();
 	});
 
 	it('schema with fields', async () => {
-		type BlockTest = {_type: 'block'} & SetOptional<PortableTextBlock, 'children'>;
-		type Test = BlockTest[];
-
 		const sanitySchema = portableText({
 			styles: [BIG_TEXT, H2, H3],
 			annotations: [],
@@ -140,6 +134,6 @@ describe('portable-text', () => {
 			customTypes: [CALL_TO_ACTION],
 		});
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<PortableTextTest>();
 	});
 });

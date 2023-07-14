@@ -1,4 +1,3 @@
-import type {PortableTextBlock} from '@portabletext/types';
 import {toOutput} from 'src/convert';
 import {fragmentField, fragmentType} from 'src/schema';
 import {
@@ -12,7 +11,7 @@ import {
 	STRONG,
 	portableText,
 } from 'test/schema/primitives/portable-text.test';
-import type {SetOptional} from 'type-fest';
+import type {ServiceTest} from 'test/types/documents/service';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const service = () =>
@@ -203,31 +202,8 @@ const extraInformation = () =>
 
 describe('service', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'service';
-			name: string;
-			description: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-			packages: {
-				_type: 'package';
-				name: string;
-				description: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-				price: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-			}[];
-			individualPrices: {
-				_type: 'individualPrice';
-				description: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-				price: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-			}[];
-			addons: {
-				_type: 'addon';
-				description: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-				price: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-			}[];
-			extraInformation: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-		};
-
 		const sanitySchema = service();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<ServiceTest>();
 	});
 });

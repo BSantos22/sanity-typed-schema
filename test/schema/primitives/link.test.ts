@@ -1,6 +1,6 @@
-import type {Reference} from '@sanity/types';
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
+import type {LinkTest} from 'test/types/primitives/link';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const link = () => {
@@ -79,17 +79,8 @@ const targetBlank = () =>
 
 describe('link', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'link';
-			type: 'internal' | 'external';
-			reference: Reference;
-			query: string;
-			href: string;
-			targetBlank: boolean;
-		};
-
 		const sanitySchema = link();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<LinkTest>();
 	});
 });

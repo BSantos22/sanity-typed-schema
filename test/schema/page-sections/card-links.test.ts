@@ -3,10 +3,8 @@ import {link} from 'test/schema/primitives/link.test';
 import {EMPHASIS, STRONG, portableText} from 'test/schema/primitives/portable-text.test';
 import {icon} from 'test/schema/primitives/icon.test';
 import {describe, expectTypeOf, it} from 'vitest';
-import type {Reference} from '@sanity/types';
-import type {PortableTextBlock} from '@portabletext/types';
-import type {SetOptional} from 'type-fest';
 import {toOutput} from 'src/convert';
+import type {CardLinksTest} from 'test/types/page-sections/card-links';
 
 export const cardLinks = () =>
 	fragmentField({
@@ -85,24 +83,8 @@ const supplier = () =>
 
 describe('card-links', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'cardLinks';
-			links: {
-				_type: 'link';
-				type: 'internal' | 'external';
-				reference: Reference;
-				query: string;
-				href: string;
-				targetBlank: boolean;
-				icon: 'car-glass' | 'tyres' | 'services' | 'road' | 'e-car' | 'crack';
-				title: string;
-				content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-				supplier: Reference;
-			}[];
-		};
-
 		const sanitySchema = cardLinks();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<CardLinksTest>();
 	});
 });

@@ -1,7 +1,7 @@
-import type {Reference} from '@sanity/types';
 import {toOutput} from 'src/convert';
 import {fragmentField, fragmentType} from 'src/schema';
 import {imageWeb} from 'test/schema/primitives/image-web.test';
+import type {SupplierTest} from 'test/types/documents/supplier';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const supplier = () =>
@@ -46,25 +46,8 @@ const logo = () =>
 
 describe('supplier', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'supplier';
-			name: string;
-			id: string;
-			logo: {
-				_type: 'image';
-				asset: Reference;
-				hotspot: {
-					_type?: 'sanity.imageHotspot';
-					width: number;
-					height: number;
-					x: number;
-					y: number;
-				};
-			};
-		};
-
 		const sanitySchema = supplier();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<SupplierTest>();
 	});
 });

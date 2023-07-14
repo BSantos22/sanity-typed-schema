@@ -1,5 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField, fragmentType} from 'src/schema';
+import type {ContactFormTest} from 'test/types/documents/contact-form';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const contactForm = () =>
@@ -41,14 +42,8 @@ const data = () =>
 
 describe('contact-form', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'contactForm';
-			type: string;
-			data: string;
-		};
-
 		const sanitySchema = contactForm();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<ContactFormTest>();
 	});
 });

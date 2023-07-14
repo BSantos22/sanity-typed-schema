@@ -1,4 +1,3 @@
-import type {PortableTextBlock} from '@portabletext/types';
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import {IMAGE, portableText} from 'test/schema/primitives/portable-text.test';
@@ -17,7 +16,7 @@ import {
 	STRONG,
 } from 'test/schema/primitives/portable-text.test';
 import {theme} from 'test/schema/primitives/theme.test';
-import type {SetOptional} from 'type-fest';
+import type {TwoColumnTest} from 'test/types/page-sections/two-column';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const twoColumn = () =>
@@ -98,18 +97,8 @@ const align = () =>
 
 describe('two-column', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'twoColumn';
-			title: string;
-			titleInvisible: boolean;
-			left: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-			right: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-			align: 'left' | 'center';
-			theme: 'light' | 'dark';
-		};
-
 		const sanitySchema = twoColumn();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<TwoColumnTest>();
 	});
 });

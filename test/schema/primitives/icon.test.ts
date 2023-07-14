@@ -1,5 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
+import type {IconTest} from 'test/types/primitives/icon';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const icon = () =>
@@ -21,10 +22,8 @@ export const icon = () =>
 
 describe('icon', () => {
 	it('schema', async () => {
-		type Test = 'car-glass' | 'tyres' | 'services' | 'road' | 'e-car' | 'crack';
-
 		const sanitySchema = icon();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<IconTest>();
 	});
 });

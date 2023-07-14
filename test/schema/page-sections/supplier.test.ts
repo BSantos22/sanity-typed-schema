@@ -1,5 +1,3 @@
-import type {PortableTextBlock} from '@portabletext/types';
-import type {Reference} from '@sanity/types';
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import {
@@ -12,7 +10,7 @@ import {
 	portableText,
 } from 'test/schema/primitives/portable-text.test';
 import {theme} from 'test/schema/primitives/theme.test';
-import type {SetOptional} from 'type-fest';
+import type {SupplierSectionTest} from 'test/types/page-sections/supplier';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const supplierSection = () =>
@@ -56,15 +54,8 @@ const content = () =>
 
 describe('supplier-section', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'supplierSection';
-			supplier: Reference;
-			content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-			theme: 'light' | 'dark';
-		};
-
 		const sanitySchema = supplierSection();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<SupplierSectionTest>();
 	});
 });

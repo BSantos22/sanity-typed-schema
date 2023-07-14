@@ -15,8 +15,7 @@ import {
 } from 'test/schema/primitives/portable-text.test';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
-import type {SetOptional} from 'type-fest';
-import type {PortableTextBlock} from '@portabletext/types';
+import type {ServicesTest} from 'test/types/page-sections/services';
 
 export const services = () =>
 	fragmentField({
@@ -47,18 +46,8 @@ const text = () =>
 
 describe('services', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'services';
-			textBlock: {
-				_type: 'textBlock';
-				annotation: string;
-				title: string;
-				content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-			};
-		};
-
 		const sanitySchema = services();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<ServicesTest>();
 	});
 });

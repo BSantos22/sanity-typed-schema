@@ -18,8 +18,7 @@ import {
 import {theme} from 'test/schema/primitives/theme.test';
 import {toOutput} from 'src/convert';
 import {describe, expectTypeOf, it} from 'vitest';
-import type {SetOptional} from 'type-fest';
-import type {PortableTextBlock} from '@portabletext/types';
+import type {TextTest} from 'test/types/page-sections/text';
 
 export const text = () =>
 	fragmentField({
@@ -85,21 +84,8 @@ const content = () =>
 
 describe('text', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'textSection';
-			align: 'left' | 'center';
-			width: 'normal' | 'narrow';
-			content: {
-				_type: 'content';
-				annotation: string;
-				title: string;
-				content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-			};
-			theme: 'light' | 'dark';
-		};
-
 		const sanitySchema = text();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<TextTest>();
 	});
 });

@@ -1,5 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
+import type {ThemeTest} from 'test/types/primitives/theme';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const theme = () =>
@@ -19,10 +20,8 @@ export const theme = () =>
 
 describe('theme', () => {
 	it('schema', async () => {
-		type Test = 'dark' | 'light';
-
 		const sanitySchema = theme();
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<ThemeTest>();
 	});
 });

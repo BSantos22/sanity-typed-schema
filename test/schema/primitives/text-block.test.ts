@@ -1,4 +1,3 @@
-import type {PortableTextBlock} from '@portabletext/types';
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import type {
@@ -9,7 +8,7 @@ import type {
 	Styles,
 } from 'test/schema/primitives/portable-text.test';
 import {CALL_TO_ACTION, portableText} from 'test/schema/primitives/portable-text.test';
-import type {SetOptional} from 'type-fest';
+import type {TextBlockTest} from 'test/types/primitives/text-block';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const textBlock = <
@@ -77,13 +76,6 @@ const content = <
 
 describe('text-block', () => {
 	it('schema', async () => {
-		type Test = {
-			_type: 'textBlock';
-			annotation: string;
-			title: string;
-			content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-		};
-
 		const sanitySchema = textBlock({
 			styles: [],
 			annotations: [],
@@ -91,19 +83,11 @@ describe('text-block', () => {
 			decorators: [],
 			customTypes: [],
 		});
-
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<TextBlockTest>();
 	});
 
 	it('schema with fields', async () => {
-		type Test = {
-			_type: 'textBlock';
-			annotation: string;
-			title: string;
-			content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
-		};
-
 		const sanitySchema = textBlock({
 			styles: [],
 			annotations: [],
@@ -111,8 +95,7 @@ describe('text-block', () => {
 			decorators: [],
 			customTypes: [CALL_TO_ACTION],
 		});
-
 		const output = toOutput(sanitySchema);
-		expectTypeOf(output).toEqualTypeOf<Test>();
+		expectTypeOf(output).toEqualTypeOf<TextBlockTest>();
 	});
 });
