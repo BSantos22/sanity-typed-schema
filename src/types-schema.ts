@@ -51,7 +51,11 @@ export type ImageDef = Pick<ImageDefinition, 'name' | 'type'> & {
 } & {
 	fields?: readonly FragmentDefinition[];
 };
-export type NumberDef = Pick<NumberDefinition, 'name' | 'type' | 'options'>;
+export type NumberDef = Pick<NumberDefinition, 'name' | 'type'> & {
+	options?: {
+		list?: readonly {value: number}[] | readonly number[];
+	};
+};
 export type ObjectDef = Pick<ObjectDefinition, 'type' | 'name'> & {
 	fields?: readonly FragmentDefinition[];
 };
@@ -62,7 +66,7 @@ export type StringDef = Pick<StringDefinition, 'name' | 'type'> & {
 		list?: readonly {value: string}[] | readonly string[];
 	};
 };
-export type TextDef = Pick<TextDefinition, 'name' | 'type' | 'options'> & {
+export type TextDef = Pick<TextDefinition, 'name' | 'type'> & {
 	options?: {
 		list?: readonly {value: string}[] | readonly string[];
 	};
