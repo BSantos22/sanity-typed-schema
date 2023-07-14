@@ -9,12 +9,12 @@
     "build": "tsc",
     "lint": "eslint src test",
     "postversion": "git push && git push --tags",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm test:types && npm run lint",
-    "preversion": "npm run lint",
+    "prepare": "yarn build",
+    "prepublishOnly": "yarn test:types && yarn lint",
+    "preversion": "yarn lint",
     "test": "vitest",
     "test:types": "vitest typecheck",
-    "version": "npm run format && git add -A src"
+    "version": "git add -A src"
   },
   "repository": {
     "type": "git",
