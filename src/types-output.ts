@@ -156,6 +156,10 @@ type OutputNumber<T extends NumberDef> = T['options'] extends {
 	list: readonly {value: infer U}[];
 }
 	? U
+	: T['options'] extends {
+			list: Readonly<Array<infer U>>;
+	  }
+	? U
 	: number;
 
 type OutputObject<T extends ObjectDef> = T['fields'] extends readonly FragmentDefinition[]
@@ -176,11 +180,19 @@ type OutputString<T extends StringDef> = T['options'] extends {
 	list: readonly {value: infer U}[];
 }
 	? U
+	: T['options'] extends {
+			list: Readonly<Array<infer U>>;
+	  }
+	? U
 	: string;
 
 type OutputText<T extends TextDef> = T['options'] extends {
 	list: readonly {value: infer U}[];
 }
+	? U
+	: T['options'] extends {
+			list: Readonly<Array<infer U>>;
+	  }
 	? U
 	: string;
 
