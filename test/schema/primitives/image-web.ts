@@ -1,9 +1,8 @@
-import type {Reference} from '@sanity/types';
-import type {Simplify} from 'type-fest';
+import type {Reference} from './reference';
 
 export type ImageWebTestBase = {
 	//_type: 'image';
-	asset?: Simplify<Reference>;
+	asset?: Reference;
 	hotspot?: {
 		_type: 'sanity.imageHotspot';
 		width?: number;
@@ -22,7 +21,7 @@ export type ImageWebTestBase = {
 
 export type ImageWebTestAltText = {
 	//_type: 'image';
-	asset?: Simplify<Reference>;
+	asset?: Reference;
 	hotspot?: {
 		_type: 'sanity.imageHotspot';
 		width?: number;
@@ -42,7 +41,7 @@ export type ImageWebTestAltText = {
 
 export type ImageWebTestAltTextCaption = {
 	//_type: 'image';
-	asset?: Simplify<Reference>;
+	asset?: Reference;
 	hotspot?: {
 		_type: 'sanity.imageHotspot';
 		width?: number;
@@ -63,7 +62,7 @@ export type ImageWebTestAltTextCaption = {
 
 export type ImageWebTestAll = {
 	//_type: 'image';
-	asset?: Simplify<Reference>;
+	asset?: Reference;
 	hotspot?: {
 		_type: 'sanity.imageHotspot';
 		width?: number;

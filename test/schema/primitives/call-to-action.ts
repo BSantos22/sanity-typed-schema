@@ -1,4 +1,4 @@
-import type {Reference} from '@sanity/types';
+import type {Reference} from './reference';
 
 export type CallToActionTest = {
 	//_type: 'callToAction';

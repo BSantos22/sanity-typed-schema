@@ -1,29 +1,22 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import type {
 	ArrayDef,
 	BlockDef,
 	DocumentDef,
+	FileDef,
 	FragmentDefinition,
 	ImageDef,
+	NumberDef,
 	ObjectDef,
+	StringDef,
+	TextDef,
 } from './types-schema';
-import type {
-	FileValue,
-	GeopointValue,
-	ImageCrop,
-	ImageHotspot,
-	ImageOptions,
-	Reference,
-	SlugValue,
-} from '@sanity/types';
+import type {FileValue, ImageCrop, ImageHotspot, ImageOptions} from '@sanity/types';
 import type {PortableTextBlock} from '@portabletext/types';
 import type {SetOptional, SetRequired, Simplify} from 'type-fest';
 import type {ReadonlyObjectDeep} from 'type-fest/source/readonly-deep';
 
-export type OutputType<T extends FragmentDefinition> = T['options'] extends {
-	list: readonly {value: infer U}[];
-}
-	? U
-	: T['type'] extends 'array'
+export type OutputType<T extends FragmentDefinition> = T['type'] extends 'array'
 	? T extends ArrayDef
 		? Simplify<OutputArray<T>>
 		: never
@@ -41,8 +34,12 @@ export type OutputType<T extends FragmentDefinition> = T['options'] extends {
 	? T extends DocumentDef
 		? Simplify<OutputDocument<T>>
 		: never
+	: T['type'] extends 'email'
+	? OutputEmail
 	: T['type'] extends 'file'
-	? OutputFile
+	? T extends FileDef
+		? Simplify<OutputFile<T>>
+		: never
 	: T['type'] extends 'geopoint'
 	? OutputGeopoint
 	: T['type'] extends 'image'
@@ -50,7 +47,9 @@ export type OutputType<T extends FragmentDefinition> = T['options'] extends {
 		? Simplify<OutputImage<T>>
 		: never
 	: T['type'] extends 'number'
-	? OutputNumber
+	? T extends NumberDef
+		? Simplify<OutputNumber<T>>
+		: never
 	: T['type'] extends 'object'
 	? T extends ObjectDef
 		? Simplify<OutputObject<T>>
@@ -60,13 +59,15 @@ export type OutputType<T extends FragmentDefinition> = T['options'] extends {
 	: T['type'] extends 'slug'
 	? OutputSlug
 	: T['type'] extends 'string'
-	? OutputString
+	? T extends StringDef
+		? Simplify<OutputString<T>>
+		: never
 	: T['type'] extends 'text'
-	? OutputText
+	? T extends TextDef
+		? Simplify<OutputText<T>>
+		: never
 	: T['type'] extends 'url'
 	? OutputUrl
-	: T['type'] extends 'email'
-	? OutputEmail
 	: never;
 
 type OutputArray<T extends ArrayDef> = OutputArrayElements<T['of']>;
@@ -89,8 +90,7 @@ type OutputBlock<T extends BlockDef> = Simplify<
 
 type OutputBlockMarks<T extends BlockDef> = T['marks'] extends readonly FragmentDefinition[]
 	? OutputBlockMarksDef<T['marks']>
-	: // eslint-disable-next-line @typescript-eslint/ban-types
-	  {[key: string]: unknown};
+	: {[key: string]: unknown};
 
 type OutputBlockMarksDef<T extends readonly FragmentDefinition[] | undefined> =
 	T extends readonly FragmentDefinition[]
@@ -99,8 +99,7 @@ type OutputBlockMarksDef<T extends readonly FragmentDefinition[] | undefined> =
 					Extract<T[number], {name: Key}>
 				>;
 		  }
-		: // eslint-disable-next-line @typescript-eslint/ban-types
-		  never;
+		: never;
 
 type OutputBlockChildren<T extends readonly FragmentDefinition[]> = {
 	[Key in keyof T]: OutputType<T[Key]>;
@@ -114,69 +113,84 @@ type OutputDatetime = string;
 
 type OutputDocument<T extends DocumentDef> = {
 	_type: T['name'];
-} & (T['fields'] extends readonly FragmentDefinition[]
-	? {
-			[Key in NonNullable<T['fields'][number]['name']>]?: OutputType<
-				Extract<T['fields'][number], {name: Key}>
-			>;
-	  }
-	: never);
+} & (T['fields'] extends readonly FragmentDefinition[] ? OutputFieldsDef<T['fields']> : never);
 
-type OutputFile = FileValue;
+type OutputEmail = string;
 
-type OutputGeopoint = GeopointValue;
+type OutputFile<T extends FileDef> = {
+	asset?: OutputReference;
+} & OutputFileFields<T>;
+
+type OutputFileFields<T extends FileDef> = T['fields'] extends readonly FragmentDefinition[]
+	? OutputFieldsDef<T['fields']>
+	: {};
+
+type OutputGeopoint = {
+	_type: 'geopoint';
+	lat?: number;
+	lng?: number;
+	alt?: number;
+};
 
 type OutputImage<T extends ImageDef> = {
-	//_type: 'image';
-	asset?: Reference;
+	asset?: OutputReference;
 } & OutputImageOptions<T['options']> &
 	OutputImageFields<T>;
 
-type OutputImageOptions<T extends ReadonlyObjectDeep<ImageOptions> | undefined> =
-	T extends ReadonlyObjectDeep<ImageOptions>
-		? T['hotspot'] extends true
-			? {hotspot?: OutputImageHotspot; crop?: OutputImageCrop}
-			: // eslint-disable-next-line @typescript-eslint/ban-types
-			  {}
-		: // eslint-disable-next-line @typescript-eslint/ban-types
-		  {};
+type OutputImageOptions<T extends ReadonlyObjectDeep<ImageOptions> | undefined> = T extends {
+	hotspot?: boolean;
+}
+	? T['hotspot'] extends true
+		? {hotspot?: OutputImageHotspot; crop?: OutputImageCrop}
+		: {}
+	: {};
 
 type OutputImageHotspot = SetRequired<Partial<ImageHotspot>, '_type'>;
 type OutputImageCrop = SetRequired<Partial<ImageCrop>, '_type'>;
 
 type OutputImageFields<T extends ImageDef> = T['fields'] extends readonly FragmentDefinition[]
-	? OutputImageFieldsDef<T['fields']>
-	: // eslint-disable-next-line @typescript-eslint/ban-types
-	  {};
+	? OutputFieldsDef<T['fields']>
+	: {};
 
-type OutputImageFieldsDef<T extends readonly FragmentDefinition[] | undefined> =
+type OutputNumber<T extends NumberDef> = T['options'] extends {
+	list: readonly {value: infer U}[];
+}
+	? U
+	: number;
+
+type OutputObject<T extends ObjectDef> = T['fields'] extends readonly FragmentDefinition[]
+	? OutputFieldsDef<T['fields']>
+	: never;
+
+type OutputReference = {
+	_type: 'reference';
+	_ref: string;
+};
+
+type OutputSlug = {
+	_type: 'slug';
+	current?: string;
+};
+
+type OutputString<T extends StringDef> = T['options'] extends {
+	list: readonly {value: infer U}[];
+}
+	? U
+	: string;
+
+type OutputText<T extends TextDef> = T['options'] extends {
+	list: readonly {value: infer U}[];
+}
+	? U
+	: string;
+
+type OutputUrl = string;
+
+type OutputFieldsDef<T extends readonly FragmentDefinition[] | undefined> =
 	T extends readonly FragmentDefinition[]
 		? {
 				[Key in NonNullable<T[number]['name']>]?: OutputType<
 					Extract<T[number], {name: Key}>
 				>;
 		  }
-		: // eslint-disable-next-line @typescript-eslint/ban-types
-		  {};
-
-type OutputNumber = number;
-
-type OutputObject<T extends ObjectDef> = T['fields'] extends readonly FragmentDefinition[]
-	? {
-			[Key in NonNullable<T['fields'][number]['name']>]?: OutputType<
-				Extract<T['fields'][number], {name: Key}>
-			>;
-	  }
-	: never;
-
-type OutputReference = Simplify<Reference>;
-
-type OutputSlug = Simplify<SlugValue>;
-
-type OutputString = string;
-
-type OutputText = string;
-
-type OutputUrl = string;
-
-type OutputEmail = string;
+		: {};

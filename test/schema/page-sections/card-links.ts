@@ -1,6 +1,6 @@
-import type {Reference} from '@sanity/types';
 import type {IconTest} from '../primitives/icon';
 import type {PortableTextTest} from '../primitives/portable-text';
+import type {Reference} from '../primitives/reference';
 
 export type CardLinksTest = {
 	//_type: 'cardLinks';

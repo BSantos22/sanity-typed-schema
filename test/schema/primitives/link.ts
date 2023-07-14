@@ -1,10 +1,9 @@
-import type {Reference} from '@sanity/types';
-import type {Simplify} from 'type-fest';
+import type {Reference} from './reference';
 
 export type LinkTest = {
 	//_type: 'link';
 	type?: 'internal' | 'external';
-	reference?: Simplify<Reference>;
+	reference?: Reference;
 	query?: string;
 	href?: string;
 	targetBlank?: boolean;

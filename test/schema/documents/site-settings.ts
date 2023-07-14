@@ -1,12 +1,11 @@
-import type {Reference} from '@sanity/types';
 import type {ImageWebTestAltText, ImageWebTestBase} from '../primitives/image-web';
-import type {SetRequired} from 'type-fest';
+import type {Reference} from '../primitives/reference';
 
 export type SiteSettingsTest = {
 	_type: 'siteSettings';
 	title?: string;
 	frontPage?: Reference;
-	headerLinks?: SetRequired<Reference, '_key'>[];
+	headerLinks?: ({_key: string} & Reference)[];
 	meta?: {
 		description?: string;
 		image?: ImageWebTestBase;
