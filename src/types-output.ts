@@ -11,7 +11,7 @@ import type {
 	StringDef,
 	TextDef,
 } from './types-schema';
-import type {FileValue, ImageCrop, ImageHotspot, ImageOptions} from '@sanity/types';
+import type {ImageCrop, ImageHotspot, ImageOptions} from '@sanity/types';
 import type {PortableTextBlock} from '@portabletext/types';
 import type {SetOptional, SetRequired, Simplify} from 'type-fest';
 import type {ReadonlyObjectDeep} from 'type-fest/source/readonly-deep';
@@ -22,7 +22,7 @@ export type OutputType<T extends FragmentDefinition> = T['type'] extends 'array'
 		: never
 	: T['type'] extends 'block'
 	? T extends BlockDef
-		? Simplify<OutputBlock<T>>
+		? Simplify<OutputBlock>
 		: never
 	: T['type'] extends 'boolean'
 	? OutputBoolean
@@ -76,34 +76,21 @@ type OutputArrayElements<T extends readonly FragmentDefinition[]> = {
 	[Key in keyof T]: Simplify<{_type: T[Key]['name']; _key: string} & OutputType<T[Key]>>;
 }[number][];
 
-type OutputBlock<T extends BlockDef> = Simplify<
+// Ideally this would output a PortableTextBlock that is fully typed.
+// Since @portabletext/react doesn't take into account the generics of the PortableTextBlock,
+// it doesn't really matter at the moment anyways
+type OutputBlock = Simplify<
 	{_type: 'block'} & SetOptional<
-		PortableTextBlock /*<
-			OutputBlockMarks<T>,
-			OutputBlockChildren<T>,
-			OutputBlockStyles<T>,
-			OutputBlockLists<T>
-		>*/,
+		PortableTextBlock,
+		//<
+		//	OutputBlockMarks<T>,
+		//	OutputBlockChildren<T>,
+		//	OutputBlockStyles<T>,
+		//	OutputBlockLists<T>
+		//>
 		'children'
 	>
 >;
-
-type OutputBlockMarks<T extends BlockDef> = T['marks'] extends readonly FragmentDefinition[]
-	? OutputBlockMarksDef<T['marks']>
-	: {[key: string]: unknown};
-
-type OutputBlockMarksDef<T extends readonly FragmentDefinition[] | undefined> =
-	T extends readonly FragmentDefinition[]
-		? {
-				[Key in NonNullable<T[number]['name']>]: OutputType<
-					Extract<T[number], {name: Key}>
-				>;
-		  }
-		: never;
-
-type OutputBlockChildren<T extends readonly FragmentDefinition[]> = {
-	[Key in keyof T]: OutputType<T[Key]>;
-};
 
 type OutputBoolean = boolean;
 
