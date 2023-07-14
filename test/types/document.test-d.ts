@@ -656,4 +656,186 @@ describe('document', () => {
 			}>();
 		});
 	});
+
+	describe('document', () => {
+		it('document with an array of strings', async () => {
+			const sanitySchema = fragmentField({
+				name: 'test',
+				type: 'document',
+				fields: [
+					{
+						name: 'strings',
+						type: 'array',
+						of: [{type: 'string'}],
+					},
+				],
+			});
+			const output = toOutput(sanitySchema);
+			expectTypeOf(output).toEqualTypeOf<{
+				_type: 'test';
+				strings?: string[];
+			}>();
+			expectType<typeof output>().toStrictEqual<{
+				_type: 'test';
+				strings?: string[];
+			}>();
+		});
+
+		it('document with an array of objects', async () => {
+			const sanitySchema = fragmentField({
+				name: 'test',
+				type: 'document',
+				fields: [
+					{
+						name: 'objects',
+						type: 'array',
+						of: [
+							{
+								type: 'object',
+								fields: [
+									{
+										name: 'text',
+										type: 'string',
+									},
+								],
+							},
+						],
+					},
+				],
+			});
+			const output = toOutput(sanitySchema);
+			expectTypeOf(output).toEqualTypeOf<{
+				_type: 'test';
+				objects?: {
+					_key: string;
+					text?: string;
+				}[];
+			}>();
+			expectType<typeof output>().toStrictEqual<{
+				_type: 'test';
+				objects?: {
+					_key: string;
+					text?: string;
+				}[];
+			}>();
+		});
+
+		it('multiple levels of nesting between array and object', async () => {
+			// This is a bit of a silly example, but it works
+			const sanitySchema = fragmentField({
+				name: 'test',
+				type: 'document',
+				fields: [
+					{
+						name: 'objects',
+						type: 'array',
+						of: [
+							{
+								type: 'object',
+								fields: [
+									{
+										name: 'nested',
+										type: 'object',
+										fields: [
+											{
+												name: 'text',
+												type: 'string',
+											},
+											{
+												name: 'values',
+												type: 'array',
+												of: [
+													{type: 'boolean'},
+													{type: 'number'},
+													{
+														type: 'object',
+														name: 'customBoolean',
+														fields: [
+															{
+																name: 'value',
+																type: 'boolean',
+															},
+															{
+																name: 'title',
+																type: 'string',
+															},
+														],
+													},
+													{
+														type: 'object',
+														name: 'customNumber',
+														fields: [
+															{
+																name: 'value',
+																type: 'number',
+															},
+															{
+																name: 'title',
+																type: 'string',
+															},
+														],
+													},
+												],
+											},
+										],
+									},
+								],
+							},
+						],
+					},
+				],
+			});
+			const output = toOutput(sanitySchema);
+			expectTypeOf(output).toEqualTypeOf<{
+				_type: 'test';
+				objects?: {
+					_key: string;
+					nested?: {
+						text?: string;
+						values?: (
+							| boolean
+							| number
+							| {
+									_key: string;
+									_type: 'customBoolean';
+									value?: boolean;
+									title?: string;
+							  }
+							| {
+									_key: string;
+									_type: 'customNumber';
+									value?: number;
+									title?: string;
+							  }
+						)[];
+					};
+				}[];
+			}>();
+			expectType<typeof output>().toStrictEqual<{
+				_type: 'test';
+				objects?: {
+					_key: string;
+					nested?: {
+						text?: string;
+						values?: (
+							| boolean
+							| number
+							| {
+									_key: string;
+									_type: 'customBoolean';
+									value?: boolean;
+									title?: string;
+							  }
+							| {
+									_key: string;
+									_type: 'customNumber';
+									value?: number;
+									title?: string;
+							  }
+						)[];
+					};
+				}[];
+			}>();
+		});
+	});
 });
