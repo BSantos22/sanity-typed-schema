@@ -1,13 +1,38 @@
 {
-  "name": "ts-script-starter",
+  "name": "sanity-typed-schema",
   "version": "0.1.0",
-  "private": true,
   "type": "module",
+  "description": "Type inference for the output of a Sanity schema, from the schema itself",
+  "main": "lib/src/index.js",
+  "types": "lib/src/index.d.ts",
   "scripts": {
+    "build": "tsc",
+    "lint": "eslint src test",
+    "postversion": "git push && git push --tags",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
     "test": "vitest",
-    "test:types": "vitest typecheck"
+    "test:types": "vitest typecheck",
+    "version": "npm run format && git add -A src"
   },
-  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:BSantos22/sanity-typed-schema.git"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "keywords": [
+    "sanity",
+    "typescript"
+  ],
+  "author": "Bruno Santos",
+  "license": "MIT",
+  "files": [
+    "lib/src/**/*"
+  ],
   "devDependencies": {
     "@portabletext/types": "^2.0.5",
     "@sanity/types": "^3.14.1",
