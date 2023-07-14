@@ -1,3 +1,5 @@
+import type {PortableTextBlock} from '@portabletext/types';
+import {toOutput} from 'src/convert';
 import {fragmentField, fragmentType} from 'src/schema';
 import {
 	BULLET,
@@ -10,6 +12,8 @@ import {
 	STRONG,
 	portableText,
 } from 'test/schema/primitives/portable-text.test';
+import type {SetOptional} from 'type-fest';
+import {describe, expectTypeOf, it} from 'vitest';
 
 export const service = () =>
 	fragmentType({
@@ -62,6 +66,7 @@ const packages = () =>
 		title: 'Pakker',
 		of: [
 			{
+				name: 'package',
 				type: 'object',
 				fields: [packageName(), packageDescription(), packagePrice()],
 			},
@@ -109,6 +114,7 @@ const individualPrices = () =>
 		type: 'array',
 		of: [
 			{
+				name: 'individualPrice',
 				type: 'object',
 				fields: [individualPricesDescription(), individualPricesPrice()],
 			},
@@ -148,6 +154,7 @@ const addons = () =>
 		type: 'array',
 		of: [
 			{
+				name: 'addon',
 				type: 'object',
 				fields: [addonDescription(), addonPrice()],
 			},
@@ -193,3 +200,34 @@ const extraInformation = () =>
 		name: 'extraInformation',
 		title: 'Ekstra informasjon',
 	});
+
+describe('service', () => {
+	it('schema', async () => {
+		type Test = {
+			_type: 'service';
+			name: string;
+			description: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+			packages: {
+				_type: 'package';
+				name: string;
+				description: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+				price: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+			}[];
+			individualPrices: {
+				_type: 'individualPrice';
+				description: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+				price: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+			}[];
+			addons: {
+				_type: 'addon';
+				description: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+				price: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+			}[];
+			extraInformation: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+		};
+
+		const sanitySchema = service();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
+	});
+});

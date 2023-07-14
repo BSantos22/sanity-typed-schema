@@ -13,6 +13,10 @@ import {
 	NUMBERED,
 	STRONG,
 } from 'test/schema/primitives/portable-text.test';
+import {describe, expectTypeOf, it} from 'vitest';
+import {toOutput} from 'src/convert';
+import type {SetOptional} from 'type-fest';
+import type {PortableTextBlock} from '@portabletext/types';
 
 export const services = () =>
 	fragmentField({
@@ -40,3 +44,21 @@ const text = () =>
 		decorators: [STRONG, EMPHASIS],
 		customTypes: [],
 	});
+
+describe('services', () => {
+	it('schema', async () => {
+		type Test = {
+			_type: 'services';
+			textBlock: {
+				_type: 'textBlock';
+				annotation: string;
+				title: string;
+				content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+			};
+		};
+
+		const sanitySchema = services();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
+	});
+});

@@ -1,13 +1,13 @@
-/* eslint-disable @typescript-eslint/no-namespace */
 import {fragmentField} from 'src/schema';
 import {videoEmbed} from 'test/schema/primitives/video-embed.test';
 import {ALT_TEXT, CAPTION, CREDIT, WIDTH, imageWeb} from 'test/schema/primitives/image-web.test';
 import {link} from 'test/schema/primitives/link.test';
 import {callToAction} from 'test/schema/primitives/call-to-action.test';
 import {describe, expectTypeOf, it} from 'vitest';
-import type {OutputType} from 'src/types-output';
 import type {SetOptional} from 'type-fest';
-import type {PortableTextBlock, Reference} from '@sanity/types';
+import type {PortableTextBlock} from '@portabletext/types';
+import {toOutput} from 'src/convert';
+import type {BlockDef} from 'src/types-schema';
 
 // Styles
 export const H1 = {title: 'H1', value: 'h1'} as const;
@@ -87,22 +87,29 @@ export const portableText = <
 	decorators: D;
 	customTypes: C;
 }) => {
+	// TODO: Add support for typing the annotations, decorators, lists and styles
+	// In a perfect world, this wouldn't throw a
+	// "Type instantiation is excessively deep and possibly infinite.ts(2589)" error
+	// Hopefully it can be fixed later, but for now, this is the best we can do
+	// The only downside is that we don't get autocomplete in the PortableTextReact component
+	const of = [
+		{
+			type: 'block',
+			lists: args.lists,
+			marks: {
+				annotations: args.annotations,
+				decorators: args.decorators,
+			},
+			styles: [{title: 'Normal', value: 'normal'}, ...(args.styles ?? [])],
+		},
+		...(args.customTypes ?? []),
+	] as unknown as BlockDef[];
+
 	return fragmentField({
 		name: 'portableText',
 		title: 'Portable text',
 		type: 'array',
-		of: [
-			{
-				type: 'block',
-				lists: args.lists,
-				marks: {
-					annotations: args.annotations,
-					decorators: args.decorators,
-				},
-				styles: [{title: 'Normal', value: 'normal'}, ...(args.styles ?? [])],
-			},
-			...(args.customTypes ?? []),
-		],
+		of,
 	});
 };
 
@@ -117,22 +124,13 @@ describe('portable-text', () => {
 			decorators: [],
 			customTypes: [],
 		});
-		type Output = OutputType<typeof sanitySchema>;
-		expectTypeOf<Output>().toEqualTypeOf<Test>();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
 	});
 
 	it('schema with fields', async () => {
 		type BlockTest = {_type: 'block'} & SetOptional<PortableTextBlock, 'children'>;
-		type CallToActionTest = {
-			_type: 'callToAction';
-			text: string;
-			type: 'internal' | 'external';
-			reference: Reference;
-			query: string;
-			href: string;
-			targetBlank: boolean;
-		};
-		type Test = (BlockTest | CallToActionTest)[];
+		type Test = BlockTest[];
 
 		const sanitySchema = portableText({
 			styles: [BIG_TEXT, H2, H3],
@@ -141,7 +139,7 @@ describe('portable-text', () => {
 			decorators: [STRONG],
 			customTypes: [CALL_TO_ACTION],
 		});
-		type Output = OutputType<typeof sanitySchema>;
-		expectTypeOf<Output>().toEqualTypeOf<Test>();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
 	});
 });

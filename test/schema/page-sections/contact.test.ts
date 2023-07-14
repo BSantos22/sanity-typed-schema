@@ -1,3 +1,5 @@
+import type {PortableTextBlock} from '@portabletext/types';
+import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import {
 	BULLET,
@@ -8,6 +10,8 @@ import {
 	portableText,
 } from 'test/schema/primitives/portable-text.test';
 import {textBlock} from 'test/schema/primitives/text-block.test';
+import type {SetOptional} from 'type-fest';
+import {describe, expectTypeOf, it} from 'vitest';
 
 export const contact = () =>
 	fragmentField({
@@ -193,3 +197,46 @@ const confirmText = () =>
 		title: 'Bekreftelsestekst',
 		validation: (Rule) => Rule.required(),
 	});
+
+describe('contact', () => {
+	it('schema', async () => {
+		type Test = {
+			_type: 'contact';
+			forms: {
+				_type: 'form';
+				type: string;
+				id: string;
+				text: {
+					_type: 'text';
+					annotation: string;
+					title: string;
+					content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+				};
+				fields: {
+					_type: 'field';
+					label: string;
+					placeholder: string;
+					isTextarea: boolean;
+					isRequired: boolean;
+					info: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+				}[];
+				checkboxes: {
+					_type: 'checkbox';
+					reason: string;
+					checkText: string;
+				}[];
+				confirmText: string;
+			}[];
+			location: {
+				_type: 'location';
+				annotation: string;
+				title: string;
+				content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+			};
+		};
+
+		const sanitySchema = contact();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
+	});
+});

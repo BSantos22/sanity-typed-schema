@@ -1,7 +1,12 @@
+import type {PortableTextBlock} from '@portabletext/types';
+import type {Reference} from '@sanity/types';
+import {toOutput} from 'src/convert';
 import {fragmentField, fragmentType} from 'src/schema';
 import {BULLET, LINK, STRONG, portableText} from 'test/schema/primitives/portable-text.test';
 import {NUMBERED} from 'test/schema/primitives/portable-text.test';
 import {EMPHASIS} from 'test/schema/primitives/portable-text.test';
+import type {SetOptional} from 'type-fest';
+import {describe, expectTypeOf, it} from 'vitest';
 
 export const tyre = () =>
 	fragmentType({
@@ -217,3 +222,38 @@ const active = () =>
 		title: 'Aktiv',
 		validation: (Rule) => Rule.required(),
 	});
+
+describe('tyre', () => {
+	it('schema', async () => {
+		type Test = {
+			_type: 'tyre';
+			brand: Reference;
+			model: string;
+			type: string;
+			description: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+			variants: {
+				_type: 'tyreVariant';
+				id: string;
+				season: 'summer' | 'winter';
+				spiked: 'spiked' | 'spikeless';
+				dimensions: {
+					_type: 'dimensions';
+					width: number;
+					profile: number;
+					diameter: number;
+				};
+				inStock: boolean;
+				price: number;
+				speedIndex: string;
+				loadIndex: number;
+				campaignDiscount: number;
+				active: boolean;
+			}[];
+			active: boolean;
+		};
+
+		const sanitySchema = tyre();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
+	});
+});

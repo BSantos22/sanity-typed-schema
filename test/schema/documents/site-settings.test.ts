@@ -1,12 +1,15 @@
+import type {Reference} from '@sanity/types';
+import {toOutput} from 'src/convert';
 import {fragmentField, fragmentType} from 'src/schema';
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test';
+import {describe, expectTypeOf, it} from 'vitest';
 
 export const siteSettings = () =>
 	fragmentType({
 		name: 'siteSettings',
 		type: 'document',
 		title: 'Instillinger for nettstedet',
-		fields: [title(), frontPage(), headerLinks(), meta(), organization(), contactInfo()],
+		fields: [title(), organization(), contactInfo(), frontPage(), headerLinks(), meta()],
 		preview: {
 			prepare: () => ({
 				title: 'Instillinger for nettstedet',
@@ -169,3 +172,72 @@ const openingHours = () =>
 		title: 'Åpningstider',
 		validation: (Rule) => Rule.required(),
 	});
+
+describe('site-settings', () => {
+	it('schema', async () => {
+		type Test = {
+			_type: 'siteSettings';
+			title: string;
+			frontPage: Reference;
+			headerLinks: Reference[];
+			meta: {
+				_type: 'meta';
+				description: string;
+				image: {
+					_type: 'image';
+					asset: Reference;
+					hotspot: {
+						_type?: 'sanity.imageHotspot';
+						width: number;
+						height: number;
+						x: number;
+						y: number;
+					};
+				};
+			};
+			organization: {
+				_type: 'organization';
+				name: string;
+				number: string;
+				logo: {
+					_type: 'image';
+					asset: Reference;
+					hotspot: {
+						_type?: 'sanity.imageHotspot';
+						width: number;
+						height: number;
+						x: number;
+						y: number;
+					};
+					altText: string;
+				};
+				creditWorthiness: {
+					_type: 'image';
+					asset: Reference;
+					hotspot: {
+						_type?: 'sanity.imageHotspot';
+						width: number;
+						height: number;
+						x: number;
+						y: number;
+					};
+					altText: string;
+				};
+			};
+			contactInfo: {
+				_type: 'contactInfo';
+				address: string;
+				postalCode: string;
+				city: string;
+				phone: string;
+				fax: string;
+				email: string;
+				openingHours: string;
+			};
+		};
+
+		const sanitySchema = siteSettings();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
+	});
+});

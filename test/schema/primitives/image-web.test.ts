@@ -1,4 +1,5 @@
 import type {Reference} from '@sanity/types';
+import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import type {OutputType} from 'src/types-output';
 import {describe, expectTypeOf, it} from 'vitest';
@@ -67,8 +68,8 @@ describe('image-web', () => {
 		};
 
 		const sanitySchema = imageWeb({fields: [ALT_TEXT, CAPTION]});
-		type Output = OutputType<typeof sanitySchema>;
-		expectTypeOf<Output>().toEqualTypeOf<Test>();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
 	});
 
 	it('schema with fields', async () => {

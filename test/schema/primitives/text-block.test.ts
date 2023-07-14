@@ -1,4 +1,4 @@
-import type {PortableTextBlock, Reference} from '@sanity/types';
+import type {PortableTextBlock} from '@portabletext/types';
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import type {
@@ -81,18 +81,27 @@ describe('text-block', () => {
 			_type: 'textBlock';
 			annotation: string;
 			title: string;
-			content: (
-				| ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)
-				| {
-						_type: 'callToAction';
-						reference: Reference;
-						text: string;
-						type: 'internal' | 'external';
-						query: string;
-						href: string;
-						targetBlank: boolean;
-				  }
-			)[];
+			content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+		};
+
+		const sanitySchema = textBlock({
+			styles: [],
+			annotations: [],
+			lists: [],
+			decorators: [],
+			customTypes: [],
+		});
+
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
+	});
+
+	it('schema with fields', async () => {
+		type Test = {
+			_type: 'textBlock';
+			annotation: string;
+			title: string;
+			content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
 		};
 
 		const sanitySchema = textBlock({

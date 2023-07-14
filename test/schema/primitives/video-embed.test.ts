@@ -1,5 +1,5 @@
+import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import type {OutputType} from 'src/types-output';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const videoEmbed = () =>
@@ -35,7 +35,7 @@ describe('video-embed', () => {
 		};
 
 		const sanitySchema = videoEmbed();
-		type Output = OutputType<typeof sanitySchema>;
-		expectTypeOf<Output>().toEqualTypeOf<Test>();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
 	});
 });

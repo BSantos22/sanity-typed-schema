@@ -1,6 +1,6 @@
 import type {Reference} from '@sanity/types';
+import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import type {OutputType} from 'src/types-output';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const link = () => {
@@ -89,7 +89,7 @@ describe('link', () => {
 		};
 
 		const sanitySchema = link();
-		type Output = OutputType<typeof sanitySchema>;
-		expectTypeOf<Output>().toEqualTypeOf<Test>();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
 	});
 });

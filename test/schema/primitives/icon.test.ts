@@ -1,5 +1,5 @@
+import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import type {OutputType} from 'src/types-output';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const icon = () =>
@@ -24,7 +24,7 @@ describe('icon', () => {
 		type Test = 'car-glass' | 'tyres' | 'services' | 'road' | 'e-car' | 'crack';
 
 		const sanitySchema = icon();
-		type Output = OutputType<typeof sanitySchema>;
-		expectTypeOf<Output>().toEqualTypeOf<Test>();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
 	});
 });

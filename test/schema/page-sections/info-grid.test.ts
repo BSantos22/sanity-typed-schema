@@ -1,3 +1,6 @@
+import type {PortableTextBlock} from '@portabletext/types';
+import type {Reference} from '@sanity/types';
+import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test';
 import {
@@ -9,6 +12,8 @@ import {
 	portableText,
 } from 'test/schema/primitives/portable-text.test';
 import {theme} from 'test/schema/primitives/theme.test';
+import type {SetOptional} from 'type-fest';
+import {describe, expectTypeOf, it} from 'vitest';
 
 export const infoGrid = () =>
 	fragmentField({
@@ -88,3 +93,34 @@ const itemContent = () =>
 		name: 'content',
 		title: 'Info Grid Content',
 	});
+
+describe('info-grid', () => {
+	it('schema', async () => {
+		type Test = {
+			_type: 'infoGrid';
+			title: string;
+			items: {
+				_type: 'item';
+				title: string;
+				image: {
+					_type: 'image';
+					asset: Reference;
+					hotspot: {
+						_type?: 'sanity.imageHotspot';
+						width: number;
+						height: number;
+						x: number;
+						y: number;
+					};
+					altText: string;
+				};
+				content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+			}[];
+			theme: 'light' | 'dark';
+		};
+
+		const sanitySchema = infoGrid();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
+	});
+});

@@ -1,5 +1,5 @@
+import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import type {OutputType} from 'src/types-output';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const theme = () =>
@@ -22,7 +22,7 @@ describe('theme', () => {
 		type Test = 'dark' | 'light';
 
 		const sanitySchema = theme();
-		type Output = OutputType<typeof sanitySchema>;
-		expectTypeOf<Output>().toEqualTypeOf<Test>();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
 	});
 });

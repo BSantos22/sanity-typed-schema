@@ -4,7 +4,6 @@ import type {
 	BooleanDefinition,
 	DateDefinition,
 	DatetimeDefinition,
-	DocumentDefinition,
 	FileDefinition,
 	GeopointDefinition,
 	ImageDefinition,
@@ -37,7 +36,7 @@ export type BlockDef = Def<BlockDefinition>;
 export type BooleanDef = Def<BooleanDefinition>;
 export type DateDef = Def<DateDefinition>;
 export type DatetimeDef = Def<DatetimeDefinition>;
-export type DocumentDef = Def<DocumentDefinition>;
+export type DocumentDef = Omit<ObjectDef, 'type'> & {type: 'document'};
 export type FileDef = Def<FileDefinition>;
 export type GeopointDef = Def<GeopointDefinition>;
 export type ImageDef = Def<ImageDefinition>;

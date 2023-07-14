@@ -9,6 +9,11 @@ import {
 	STRONG,
 } from 'test/schema/primitives/portable-text.test';
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test';
+import {describe, expectTypeOf, it} from 'vitest';
+import {toOutput} from 'src/convert';
+import type {Reference} from '@sanity/types';
+import type {SetOptional} from 'type-fest';
+import type {PortableTextBlock} from '@portabletext/types';
 
 export const heading = () =>
 	fragmentField({
@@ -112,3 +117,57 @@ const heroContent = () =>
 		name: 'content',
 		title: 'Innhold',
 	});
+
+describe('heading', () => {
+	it('schema', async () => {
+		type Test = (
+			| {
+					_type: 'textHeading';
+					title: string;
+					backgroundImage: {
+						_type: 'image';
+						asset: Reference;
+						hotspot: {
+							_type?: 'sanity.imageHotspot';
+							width: number;
+							height: number;
+							x: number;
+							y: number;
+						};
+					};
+			  }
+			| {
+					_type: 'hero';
+					title: string;
+					mainImage: {
+						_type: 'image';
+						asset: Reference;
+						hotspot: {
+							_type?: 'sanity.imageHotspot';
+							width: number;
+							height: number;
+							x: number;
+							y: number;
+						};
+						altText: string;
+					};
+					backgroundImage: {
+						_type: 'image';
+						asset: Reference;
+						hotspot: {
+							_type?: 'sanity.imageHotspot';
+							width: number;
+							height: number;
+							x: number;
+							y: number;
+						};
+					};
+					content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+			  }
+		)[];
+
+		const sanitySchema = heading();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
+	});
+});
