@@ -134,6 +134,12 @@ describe('tyre-select', () => {
 	it('schema', async () => {
 		const sanitySchema = tyreSelect();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.description).toEqualTypeOf<TyreSelectTest['description']>();
+		expectTypeOf(output.image).toEqualTypeOf<TyreSelectTest['image']>();
+		expectTypeOf(output.summerTyreDates).toEqualTypeOf<TyreSelectTest['summerTyreDates']>();
+		expectTypeOf(output.title).toEqualTypeOf<TyreSelectTest['title']>();
+		expectTypeOf(output.winterTyreDates).toEqualTypeOf<TyreSelectTest['winterTyreDates']>();
 		expectTypeOf(output).toEqualTypeOf<TyreSelectTest>();
 	});
 });

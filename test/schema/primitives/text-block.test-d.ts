@@ -84,6 +84,10 @@ describe('text-block', () => {
 			customTypes: [],
 		});
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.annotation).toEqualTypeOf<TextBlockTest['annotation']>();
+		expectTypeOf(output.content).toEqualTypeOf<TextBlockTest['content']>();
+		expectTypeOf(output.title).toEqualTypeOf<TextBlockTest['title']>();
 		expectTypeOf(output).toEqualTypeOf<TextBlockTest>();
 	});
 
@@ -96,6 +100,10 @@ describe('text-block', () => {
 			customTypes: [CALL_TO_ACTION],
 		});
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.annotation).toEqualTypeOf<TextBlockTest['annotation']>();
+		expectTypeOf(output.content).toEqualTypeOf<TextBlockTest['content']>();
+		expectTypeOf(output.title).toEqualTypeOf<TextBlockTest['title']>();
 		expectTypeOf(output).toEqualTypeOf<TextBlockTest>();
 	});
 });

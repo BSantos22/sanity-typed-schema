@@ -3,15 +3,17 @@ import type {PortableTextTest} from '../primitives/portable-text';
 
 export type HeadingTest = (
 	| {
+			_key: string;
 			_type: 'textHeading';
-			title: string;
-			backgroundImage: ImageWebTestBase;
+			title?: string;
+			backgroundImage?: ImageWebTestBase;
 	  }
 	| {
+			_key: string;
 			_type: 'hero';
-			title: string;
-			mainImage: ImageWebTestAltText;
-			backgroundImage: ImageWebTestBase;
-			content: PortableTextTest;
+			title?: string;
+			mainImage?: ImageWebTestAltText;
+			backgroundImage?: ImageWebTestBase;
+			content?: PortableTextTest;
 	  }
 )[];

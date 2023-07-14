@@ -177,6 +177,14 @@ describe('site-settings', () => {
 	it('schema', async () => {
 		const sanitySchema = siteSettings();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output._type).toEqualTypeOf<SiteSettingsTest['_type']>();
+		expectTypeOf(output.title).toEqualTypeOf<SiteSettingsTest['title']>();
+		expectTypeOf(output.organization).toEqualTypeOf<SiteSettingsTest['organization']>();
+		expectTypeOf(output.contactInfo).toEqualTypeOf<SiteSettingsTest['contactInfo']>();
+		expectTypeOf(output.frontPage).toEqualTypeOf<SiteSettingsTest['frontPage']>();
+		expectTypeOf(output.headerLinks).toEqualTypeOf<SiteSettingsTest['headerLinks']>();
+		expectTypeOf(output.meta).toEqualTypeOf<SiteSettingsTest['meta']>();
 		expectTypeOf(output).toEqualTypeOf<SiteSettingsTest>();
 	});
 });

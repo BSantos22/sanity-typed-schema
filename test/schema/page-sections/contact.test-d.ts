@@ -201,6 +201,9 @@ describe('contact', () => {
 	it('schema', async () => {
 		const sanitySchema = contact();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.forms).toEqualTypeOf<ContactTest['forms']>();
+		expectTypeOf(output.location).toEqualTypeOf<ContactTest['location']>();
 		expectTypeOf(output).toEqualTypeOf<ContactTest>();
 	});
 });

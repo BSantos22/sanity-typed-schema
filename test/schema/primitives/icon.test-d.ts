@@ -24,6 +24,7 @@ describe('icon', () => {
 	it('schema', async () => {
 		const sanitySchema = icon();
 		const output = toOutput(sanitySchema);
+
 		expectTypeOf(output).toEqualTypeOf<IconTest>();
 	});
 });

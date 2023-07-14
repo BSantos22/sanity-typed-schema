@@ -85,6 +85,8 @@ describe('card-links', () => {
 	it('schema', async () => {
 		const sanitySchema = cardLinks();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.links).toEqualTypeOf<CardLinksTest['links']>();
 		expectTypeOf(output).toEqualTypeOf<CardLinksTest>();
 	});
 });

@@ -40,6 +40,9 @@ describe('license-plate', () => {
 	it('schema', async () => {
 		const sanitySchema = licensePlate();
 		type Output = OutputType<typeof sanitySchema>;
+
+		expectTypeOf<Output['label']>().toEqualTypeOf<LicensePlateTest['label']>();
+		expectTypeOf<Output['title']>().toEqualTypeOf<LicensePlateTest['title']>();
 		expectTypeOf<Output>().toEqualTypeOf<LicensePlateTest>();
 	});
 });

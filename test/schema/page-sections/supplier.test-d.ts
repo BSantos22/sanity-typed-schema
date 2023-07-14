@@ -56,6 +56,10 @@ describe('supplier-section', () => {
 	it('schema', async () => {
 		const sanitySchema = supplierSection();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.content).toEqualTypeOf<SupplierSectionTest['content']>();
+		expectTypeOf(output.supplier).toEqualTypeOf<SupplierSectionTest['supplier']>();
+		expectTypeOf(output.theme).toEqualTypeOf<SupplierSectionTest['theme']>();
 		expectTypeOf(output).toEqualTypeOf<SupplierSectionTest>();
 	});
 });

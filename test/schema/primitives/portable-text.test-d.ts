@@ -122,6 +122,7 @@ describe('portable-text', () => {
 			customTypes: [],
 		});
 		const output = toOutput(sanitySchema);
+
 		expectTypeOf(output).toEqualTypeOf<PortableTextTest>();
 	});
 
@@ -134,6 +135,7 @@ describe('portable-text', () => {
 			customTypes: [CALL_TO_ACTION],
 		});
 		const output = toOutput(sanitySchema);
+
 		expectTypeOf(output).toEqualTypeOf<PortableTextTest>();
 	});
 });

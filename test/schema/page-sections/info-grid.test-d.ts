@@ -96,6 +96,10 @@ describe('info-grid', () => {
 	it('schema', async () => {
 		const sanitySchema = infoGrid();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.items).toEqualTypeOf<InfoGridTest['items']>();
+		expectTypeOf(output.theme).toEqualTypeOf<InfoGridTest['theme']>();
+		expectTypeOf(output.title).toEqualTypeOf<InfoGridTest['title']>();
 		expectTypeOf(output).toEqualTypeOf<InfoGridTest>();
 	});
 });

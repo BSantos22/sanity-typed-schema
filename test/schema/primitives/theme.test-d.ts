@@ -22,6 +22,7 @@ describe('theme', () => {
 	it('schema', async () => {
 		const sanitySchema = theme();
 		const output = toOutput(sanitySchema);
+
 		expectTypeOf(output).toEqualTypeOf<ThemeTest>();
 	});
 });

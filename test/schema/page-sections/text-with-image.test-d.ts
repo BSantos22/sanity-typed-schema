@@ -86,6 +86,12 @@ describe('text-with-image', () => {
 	it('schema', async () => {
 		const sanitySchema = textWithImage();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.backgroundIcon).toEqualTypeOf<TextWithImageTest['backgroundIcon']>();
+		expectTypeOf(output.content).toEqualTypeOf<TextWithImageTest['content']>();
+		expectTypeOf(output.image).toEqualTypeOf<TextWithImageTest['image']>();
+		expectTypeOf(output.imageSide).toEqualTypeOf<TextWithImageTest['imageSide']>();
+		expectTypeOf(output.theme).toEqualTypeOf<TextWithImageTest['theme']>();
 		expectTypeOf(output).toEqualTypeOf<TextWithImageTest>();
 	});
 });

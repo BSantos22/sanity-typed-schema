@@ -32,6 +32,8 @@ describe('video-embed', () => {
 	it('schema', async () => {
 		const sanitySchema = videoEmbed();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.url).toEqualTypeOf<VideoEmbedTest['url']>();
 		expectTypeOf(output).toEqualTypeOf<VideoEmbedTest>();
 	});
 });

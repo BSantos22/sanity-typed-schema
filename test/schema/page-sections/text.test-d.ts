@@ -86,6 +86,11 @@ describe('text', () => {
 	it('schema', async () => {
 		const sanitySchema = text();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.align).toEqualTypeOf<TextTest['align']>();
+		expectTypeOf(output.content).toEqualTypeOf<TextTest['content']>();
+		expectTypeOf(output.theme).toEqualTypeOf<TextTest['theme']>();
+		expectTypeOf(output.width).toEqualTypeOf<TextTest['width']>();
 		expectTypeOf(output).toEqualTypeOf<TextTest>();
 	});
 });

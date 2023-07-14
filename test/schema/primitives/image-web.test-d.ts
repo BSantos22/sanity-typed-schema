@@ -1,6 +1,5 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import type {OutputType} from 'src/types-output';
 import type {
 	ImageWebTestAll,
 	ImageWebTestAltTextCaption,
@@ -40,19 +39,37 @@ export const imageWeb = <const F extends readonly Field[]>(args: {fields: F}) =>
 describe('image-web', () => {
 	it('schema', async () => {
 		const sanitySchema = imageWeb({fields: []});
-		type Output = OutputType<typeof sanitySchema>;
-		expectTypeOf<Output>().toEqualTypeOf<ImageWebTestBase>();
+		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.asset).toEqualTypeOf<ImageWebTestBase['asset']>();
+		expectTypeOf(output.crop).toEqualTypeOf<ImageWebTestBase['crop']>();
+		expectTypeOf(output.hotspot).toEqualTypeOf<ImageWebTestBase['hotspot']>();
+		expectTypeOf(output).toEqualTypeOf<ImageWebTestBase>();
 	});
 
 	it('schema with some fields', async () => {
 		const sanitySchema = imageWeb({fields: [ALT_TEXT, CAPTION]});
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.asset).toEqualTypeOf<ImageWebTestAltTextCaption['asset']>();
+		expectTypeOf(output.crop).toEqualTypeOf<ImageWebTestAltTextCaption['crop']>();
+		expectTypeOf(output.hotspot).toEqualTypeOf<ImageWebTestAltTextCaption['hotspot']>();
+		expectTypeOf(output.altText).toEqualTypeOf<ImageWebTestAltTextCaption['altText']>();
+		expectTypeOf(output.caption).toEqualTypeOf<ImageWebTestAltTextCaption['caption']>();
 		expectTypeOf(output).toEqualTypeOf<ImageWebTestAltTextCaption>();
 	});
 
 	it('schema with all fields', async () => {
 		const sanitySchema = imageWeb({fields: [ALT_TEXT, CAPTION, CREDIT, WIDTH]});
-		type Output = OutputType<typeof sanitySchema>;
-		expectTypeOf<Output>().toEqualTypeOf<ImageWebTestAll>();
+		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.asset).toEqualTypeOf<ImageWebTestAll['asset']>();
+		expectTypeOf(output.crop).toEqualTypeOf<ImageWebTestAll['crop']>();
+		expectTypeOf(output.hotspot).toEqualTypeOf<ImageWebTestAll['hotspot']>();
+		expectTypeOf(output.altText).toEqualTypeOf<ImageWebTestAll['altText']>();
+		expectTypeOf(output.caption).toEqualTypeOf<ImageWebTestAll['caption']>();
+		expectTypeOf(output.credit).toEqualTypeOf<ImageWebTestAll['credit']>();
+		expectTypeOf(output.width).toEqualTypeOf<ImageWebTestAll['width']>();
+		expectTypeOf(output).toEqualTypeOf<ImageWebTestAll>();
 	});
 });

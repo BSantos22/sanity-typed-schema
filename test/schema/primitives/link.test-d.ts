@@ -81,6 +81,12 @@ describe('link', () => {
 	it('schema', async () => {
 		const sanitySchema = link();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.href).toEqualTypeOf<LinkTest['href']>();
+		expectTypeOf(output.query).toEqualTypeOf<LinkTest['query']>();
+		expectTypeOf(output.reference).toEqualTypeOf<LinkTest['reference']>();
+		expectTypeOf(output.targetBlank).toEqualTypeOf<LinkTest['targetBlank']>();
+		expectTypeOf(output.type).toEqualTypeOf<LinkTest['type']>();
 		expectTypeOf(output).toEqualTypeOf<LinkTest>();
 	});
 });

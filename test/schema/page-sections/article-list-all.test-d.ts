@@ -24,6 +24,8 @@ describe('article-list-all', () => {
 	it('schema', async () => {
 		const sanitySchema = articleListAll();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.title).toEqualTypeOf<ArticleListAllTest['title']>();
 		expectTypeOf(output).toEqualTypeOf<ArticleListAllTest>();
 	});
 });

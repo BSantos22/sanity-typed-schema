@@ -13,23 +13,23 @@ import type {TyreSelectTest} from '../page-sections/tyre-select';
 
 export type PageTest = {
 	_type: 'page';
-	title: string;
-	slug: {
+	title?: string;
+	slug?: {
 		_type: 'slug';
 		current?: string;
 	};
-	heading: HeadingTest;
-	content: (
-		| ArticleListAllTest
-		| CardLinksTest
-		| ContactTest
-		| InfoGridTest
-		| LicensePlateTest
-		| ServicesTest
-		| SupplierSectionTest
-		| TextTest
-		| TextWithImageTest
-		| TwoColumnTest
-		| TyreSelectTest
+	heading?: HeadingTest;
+	content?: (
+		| ({_type: 'articleListAll'; _key: string} & ArticleListAllTest)
+		| ({_type: 'cardLinks'; _key: string} & CardLinksTest)
+		| ({_type: 'contact'; _key: string} & ContactTest)
+		| ({_type: 'infoGrid'; _key: string} & InfoGridTest)
+		| ({_type: 'licensePlate'; _key: string} & LicensePlateTest)
+		| ({_type: 'services'; _key: string} & ServicesTest)
+		| ({_type: 'supplierSection'; _key: string} & SupplierSectionTest)
+		| ({_type: 'textSection'; _key: string} & TextTest)
+		| ({_type: 'textWithImage'; _key: string} & TextWithImageTest)
+		| ({_type: 'twoColumn'; _key: string} & TwoColumnTest)
+		| ({_type: 'tyreSelect'; _key: string} & TyreSelectTest)
 	)[];
 };

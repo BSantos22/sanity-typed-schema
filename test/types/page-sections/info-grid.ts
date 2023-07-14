@@ -3,13 +3,14 @@ import type {PortableTextTest} from '../primitives/portable-text';
 import type {ThemeTest} from '../primitives/theme';
 
 export type InfoGridTest = {
-	_type: 'infoGrid';
-	title: string;
-	items: {
+	//_type: 'infoGrid';
+	title?: string;
+	items?: {
 		_type: 'item';
-		title: string;
-		image: ImageWebTestAltText;
-		content: PortableTextTest;
+		_key: string;
+		title?: string;
+		image?: ImageWebTestAltText;
+		content?: PortableTextTest;
 	}[];
-	theme: ThemeTest;
+	theme?: ThemeTest;
 };

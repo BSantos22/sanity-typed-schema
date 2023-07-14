@@ -77,6 +77,12 @@ describe('page', () => {
 	it('schema', async () => {
 		const sanitySchema = page();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output._type).toEqualTypeOf<PageTest['_type']>();
+		expectTypeOf(output.title).toEqualTypeOf<PageTest['title']>();
+		expectTypeOf(output.slug).toEqualTypeOf<PageTest['slug']>();
+		expectTypeOf(output.heading).toEqualTypeOf<PageTest['heading']>();
+		expectTypeOf(output.content).toEqualTypeOf<PageTest['content']>();
 		expectTypeOf(output).toEqualTypeOf<PageTest>();
 	});
 });

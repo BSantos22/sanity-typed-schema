@@ -34,6 +34,13 @@ describe('call-to-action', () => {
 	it('schema', async () => {
 		const sanitySchema = callToAction();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.href).toEqualTypeOf<CallToActionTest['href']>();
+		expectTypeOf(output.query).toEqualTypeOf<CallToActionTest['query']>();
+		expectTypeOf(output.reference).toEqualTypeOf<CallToActionTest['reference']>();
+		expectTypeOf(output.targetBlank).toEqualTypeOf<CallToActionTest['targetBlank']>();
+		expectTypeOf(output.text).toEqualTypeOf<CallToActionTest['text']>();
+		expectTypeOf(output.type).toEqualTypeOf<CallToActionTest['type']>();
 		expectTypeOf(output).toEqualTypeOf<CallToActionTest>();
 	});
 });

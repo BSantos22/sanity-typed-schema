@@ -9,13 +9,14 @@ import type {
 import type {
 	FileValue,
 	GeopointValue,
+	ImageCrop,
 	ImageHotspot,
 	ImageOptions,
 	Reference,
 	SlugValue,
 } from '@sanity/types';
 import type {PortableTextBlock} from '@portabletext/types';
-import type {SetOptional, Simplify} from 'type-fest';
+import type {SetOptional, SetRequired, Simplify} from 'type-fest';
 import type {ReadonlyObjectDeep} from 'type-fest/source/readonly-deep';
 
 export type OutputType<T extends FragmentDefinition> = T['options'] extends {
@@ -71,7 +72,7 @@ export type OutputType<T extends FragmentDefinition> = T['options'] extends {
 type OutputArray<T extends ArrayDef> = OutputArrayElements<T['of']>;
 
 type OutputArrayElements<T extends readonly FragmentDefinition[]> = {
-	[Key in keyof T]: OutputType<T[Key]>;
+	[Key in keyof T]: Simplify<{_type: T[Key]['name']; _key: string} & OutputType<T[Key]>>;
 }[number][];
 
 type OutputBlock<T extends BlockDef> = Simplify<
@@ -115,7 +116,7 @@ type OutputDocument<T extends DocumentDef> = {
 	_type: T['name'];
 } & (T['fields'] extends readonly FragmentDefinition[]
 	? {
-			[Key in NonNullable<T['fields'][number]['name']>]: OutputType<
+			[Key in NonNullable<T['fields'][number]['name']>]?: OutputType<
 				Extract<T['fields'][number], {name: Key}>
 			>;
 	  }
@@ -126,19 +127,22 @@ type OutputFile = FileValue;
 type OutputGeopoint = GeopointValue;
 
 type OutputImage<T extends ImageDef> = {
-	_type: 'image';
-	asset: Reference;
+	//_type: 'image';
+	asset?: Reference;
 } & OutputImageOptions<T['options']> &
 	OutputImageFields<T>;
 
 type OutputImageOptions<T extends ReadonlyObjectDeep<ImageOptions> | undefined> =
 	T extends ReadonlyObjectDeep<ImageOptions>
 		? T['hotspot'] extends true
-			? {hotspot: ImageHotspot}
+			? {hotspot?: OutputImageHotspot; crop?: OutputImageCrop}
 			: // eslint-disable-next-line @typescript-eslint/ban-types
 			  {}
 		: // eslint-disable-next-line @typescript-eslint/ban-types
 		  {};
+
+type OutputImageHotspot = SetRequired<Partial<ImageHotspot>, '_type'>;
+type OutputImageCrop = SetRequired<Partial<ImageCrop>, '_type'>;
 
 type OutputImageFields<T extends ImageDef> = T['fields'] extends readonly FragmentDefinition[]
 	? OutputImageFieldsDef<T['fields']>
@@ -148,7 +152,7 @@ type OutputImageFields<T extends ImageDef> = T['fields'] extends readonly Fragme
 type OutputImageFieldsDef<T extends readonly FragmentDefinition[] | undefined> =
 	T extends readonly FragmentDefinition[]
 		? {
-				[Key in NonNullable<T[number]['name']>]: OutputType<
+				[Key in NonNullable<T[number]['name']>]?: OutputType<
 					Extract<T[number], {name: Key}>
 				>;
 		  }
@@ -157,19 +161,17 @@ type OutputImageFieldsDef<T extends readonly FragmentDefinition[] | undefined> =
 
 type OutputNumber = number;
 
-type OutputObject<T extends ObjectDef> = {
-	_type: T['name'];
-} & (T['fields'] extends readonly FragmentDefinition[]
+type OutputObject<T extends ObjectDef> = T['fields'] extends readonly FragmentDefinition[]
 	? {
-			[Key in NonNullable<T['fields'][number]['name']>]: OutputType<
+			[Key in NonNullable<T['fields'][number]['name']>]?: OutputType<
 				Extract<T['fields'][number], {name: Key}>
 			>;
 	  }
-	: never);
+	: never;
 
-type OutputReference = Reference;
+type OutputReference = Simplify<Reference>;
 
-type OutputSlug = SlugValue;
+type OutputSlug = Simplify<SlugValue>;
 
 type OutputString = string;
 

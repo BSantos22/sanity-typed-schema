@@ -1,36 +1,38 @@
 import type {PortableTextTest} from '../primitives/portable-text';
 
 export type ContactTest = {
-	_type: 'contact';
-	forms: {
+	//_type: 'contact';
+	forms?: {
 		_type: 'form';
-		type: string;
-		id: string;
-		text: {
-			_type: 'text';
-			annotation: string;
-			title: string;
-			content: PortableTextTest;
+		_key: string;
+		type?: string;
+		id?: string;
+		text?: {
+			//_type: 'text';
+			annotation?: string;
+			title?: string;
+			content?: PortableTextTest;
 		};
-		fields: {
+		fields?: {
 			_type: 'field';
-			label: string;
-			placeholder: string;
-			isTextarea: boolean;
-			isRequired: boolean;
-			info: PortableTextTest;
+			_key: string;
+			label?: string;
+			placeholder?: string;
+			isTextarea?: boolean;
+			isRequired?: boolean;
+			info?: PortableTextTest;
 		}[];
-		checkboxes: {
+		checkboxes?: {
 			_type: 'checkbox';
-			reason: string;
-			checkText: string;
+			_key: string;
+			reason?: string;
+			checkText?: string;
 		}[];
-		confirmText: string;
+		confirmText?: string;
 	}[];
-	location: {
-		_type: 'location';
-		annotation: string;
-		title: string;
-		content: PortableTextTest;
+	location?: {
+		annotation?: string;
+		title?: string;
+		content?: PortableTextTest;
 	};
 };

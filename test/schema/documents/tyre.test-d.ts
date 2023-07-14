@@ -225,6 +225,14 @@ describe('tyre', () => {
 	it('schema', async () => {
 		const sanitySchema = tyre();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output._type).toEqualTypeOf<TyreTest['_type']>();
+		expectTypeOf(output.active).toEqualTypeOf<TyreTest['active']>();
+		expectTypeOf(output.brand).toEqualTypeOf<TyreTest['brand']>();
+		expectTypeOf(output.description).toEqualTypeOf<TyreTest['description']>();
+		expectTypeOf(output.model).toEqualTypeOf<TyreTest['model']>();
+		expectTypeOf(output.type).toEqualTypeOf<TyreTest['type']>();
+		expectTypeOf(output.variants).toEqualTypeOf<TyreTest['variants']>();
 		expectTypeOf(output).toEqualTypeOf<TyreTest>();
 	});
 });

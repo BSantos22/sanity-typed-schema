@@ -99,6 +99,13 @@ describe('two-column', () => {
 	it('schema', async () => {
 		const sanitySchema = twoColumn();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.align).toEqualTypeOf<TwoColumnTest['align']>();
+		expectTypeOf(output.left).toEqualTypeOf<TwoColumnTest['left']>();
+		expectTypeOf(output.right).toEqualTypeOf<TwoColumnTest['right']>();
+		expectTypeOf(output.theme).toEqualTypeOf<TwoColumnTest['theme']>();
+		expectTypeOf(output.title).toEqualTypeOf<TwoColumnTest['title']>();
+		expectTypeOf(output.titleInvisible).toEqualTypeOf<TwoColumnTest['titleInvisible']>();
 		expectTypeOf(output).toEqualTypeOf<TwoColumnTest>();
 	});
 });

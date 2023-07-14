@@ -204,6 +204,14 @@ describe('service', () => {
 	it('schema', async () => {
 		const sanitySchema = service();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output._type).toEqualTypeOf<ServiceTest['_type']>();
+		expectTypeOf(output.name).toEqualTypeOf<ServiceTest['name']>();
+		expectTypeOf(output.description).toEqualTypeOf<ServiceTest['description']>();
+		expectTypeOf(output.packages).toEqualTypeOf<ServiceTest['packages']>();
+		expectTypeOf(output.individualPrices).toEqualTypeOf<ServiceTest['individualPrices']>();
+		expectTypeOf(output.addons).toEqualTypeOf<ServiceTest['addons']>();
+		expectTypeOf(output.extraInformation).toEqualTypeOf<ServiceTest['extraInformation']>();
 		expectTypeOf(output).toEqualTypeOf<ServiceTest>();
 	});
 });

@@ -48,6 +48,11 @@ describe('supplier', () => {
 	it('schema', async () => {
 		const sanitySchema = supplier();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output._type).toEqualTypeOf<SupplierTest['_type']>();
+		expectTypeOf(output.name).toEqualTypeOf<SupplierTest['name']>();
+		expectTypeOf(output.id).toEqualTypeOf<SupplierTest['id']>();
+		expectTypeOf(output.logo).toEqualTypeOf<SupplierTest['logo']>();
 		expectTypeOf(output).toEqualTypeOf<SupplierTest>();
 	});
 });

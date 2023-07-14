@@ -120,6 +120,7 @@ describe('heading', () => {
 	it('schema', async () => {
 		const sanitySchema = heading();
 		const output = toOutput(sanitySchema);
+
 		expectTypeOf(output).toEqualTypeOf<HeadingTest>();
 	});
 });

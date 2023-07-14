@@ -48,6 +48,8 @@ describe('services', () => {
 	it('schema', async () => {
 		const sanitySchema = services();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output.textBlock).toEqualTypeOf<ServicesTest['textBlock']>();
 		expectTypeOf(output).toEqualTypeOf<ServicesTest>();
 	});
 });

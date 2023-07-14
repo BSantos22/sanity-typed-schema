@@ -4,8 +4,8 @@ import type {SlugTest} from '../primitives/slug';
 
 export type ArticleTest = {
 	_type: 'article';
-	title: string;
-	slug: SlugTest;
-	image: ImageWebTestAltText;
-	content: PortableTextTest;
+	title?: string;
+	slug?: SlugTest;
+	image?: ImageWebTestAltText;
+	content?: PortableTextTest;
 };

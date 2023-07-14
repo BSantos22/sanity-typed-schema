@@ -74,6 +74,12 @@ describe('article', () => {
 	it('schema', async () => {
 		const sanitySchema = article();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output._type).toEqualTypeOf<ArticleTest['_type']>();
+		expectTypeOf(output.content).toEqualTypeOf<ArticleTest['content']>();
+		expectTypeOf(output.image).toEqualTypeOf<ArticleTest['image']>();
+		expectTypeOf(output.slug).toEqualTypeOf<ArticleTest['slug']>();
+		expectTypeOf(output.title).toEqualTypeOf<ArticleTest['title']>();
 		expectTypeOf(output).toEqualTypeOf<ArticleTest>();
 	});
 });

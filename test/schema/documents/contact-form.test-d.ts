@@ -44,6 +44,10 @@ describe('contact-form', () => {
 	it('schema', async () => {
 		const sanitySchema = contactForm();
 		const output = toOutput(sanitySchema);
+
+		expectTypeOf(output._type).toEqualTypeOf<ContactFormTest['_type']>();
+		expectTypeOf(output.data).toEqualTypeOf<ContactFormTest['data']>();
+		expectTypeOf(output.type).toEqualTypeOf<ContactFormTest['type']>();
 		expectTypeOf(output).toEqualTypeOf<ContactFormTest>();
 	});
 });
