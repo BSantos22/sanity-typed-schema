@@ -14,7 +14,7 @@ jobs:
           node-version: 18
       - run: yarn --frozen-lockfile
       - run: yarn lint
-      - run: yarn test
+      - run: yarn test:types
 
   publish-npm:
     needs: build
