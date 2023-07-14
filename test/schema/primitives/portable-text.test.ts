@@ -26,7 +26,7 @@ export const FOOTNOTE = {
 	value: 'footnote',
 } as const;
 
-type Styles =
+export type Styles =
 	| typeof H1
 	| typeof H2
 	| typeof H3
@@ -39,12 +39,12 @@ type Styles =
 
 // Annotations
 export const LINK = link();
-type Annotations = typeof LINK;
+export type Annotations = typeof LINK;
 
 // Lists
 export const BULLET = {title: 'Bullet', value: 'bullet'} as const;
 export const NUMBERED = {title: 'Numbered', value: 'number'} as const;
-type Lists = typeof BULLET | typeof NUMBERED;
+export type Lists = typeof BULLET | typeof NUMBERED;
 
 // Decorators
 export const STRONG = {title: 'Strong', value: 'strong'} as const;
@@ -56,7 +56,7 @@ export const PRICE = {
 	title: 'Price',
 	value: 'price',
 } as const;
-type Decorators =
+export type Decorators =
 	| typeof STRONG
 	| typeof EMPHASIS
 	| typeof CODE
@@ -71,17 +71,9 @@ export const IMAGE = fragmentField({
 	title: 'Bilde',
 });
 export const VIDEO_EMBED = videoEmbed();
-type CustomTypes = typeof CALL_TO_ACTION | typeof IMAGE | typeof VIDEO_EMBED;
+export type CustomTypes = typeof CALL_TO_ACTION | typeof IMAGE | typeof VIDEO_EMBED;
 
 // Portable text
-export type PortableTextArgs = {
-	styles: Styles[];
-	annotations: Annotations[];
-	lists: Lists[];
-	decorators: Decorators[];
-	customTypes: CustomTypes[];
-};
-
 export const portableText = <
 	const S extends readonly Styles[],
 	const A extends readonly Annotations[],

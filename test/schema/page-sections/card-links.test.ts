@@ -107,7 +107,3 @@ describe('card-links', () => {
 		//expectTypeOf<Output>().toEqualTypeOf<Test>();
 	});
 });
-
-const output = <T extends FragmentDefinition>(value: T): Simplify<OutputType<T>> => {
-	return value as any;
-};

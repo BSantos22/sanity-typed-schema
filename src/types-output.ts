@@ -8,7 +8,7 @@ import type {
 	Reference,
 	SlugValue,
 } from '@sanity/types';
-import type {SetOptional} from 'type-fest';
+import type {SetOptional, Simplify} from 'type-fest';
 import type {ReadonlyObjectDeep} from 'type-fest/source/readonly-deep';
 
 export type OutputType<T extends FragmentDefinition> = T['options'] extends {
@@ -17,7 +17,7 @@ export type OutputType<T extends FragmentDefinition> = T['options'] extends {
 	? U
 	: T['type'] extends 'array'
 	? T extends ArrayDef
-		? OutputArray<T>
+		? Simplify<OutputArray<T>>
 		: never
 	: T['type'] extends 'block'
 	? OutputBlock
@@ -29,7 +29,7 @@ export type OutputType<T extends FragmentDefinition> = T['options'] extends {
 	? OutputDatetime
 	: T['type'] extends 'document'
 	? T extends DocumentDef
-		? OutputDocument<T>
+		? Simplify<OutputDocument<T>>
 		: never
 	: T['type'] extends 'file'
 	? OutputFile
@@ -37,13 +37,13 @@ export type OutputType<T extends FragmentDefinition> = T['options'] extends {
 	? OutputGeopoint
 	: T['type'] extends 'image'
 	? T extends ImageDef
-		? OutputImage<T>
+		? Simplify<OutputImage<T>>
 		: never
 	: T['type'] extends 'number'
 	? OutputNumber
 	: T['type'] extends 'object'
 	? T extends ObjectDef
-		? OutputObject<T>
+		? Simplify<OutputObject<T>>
 		: never
 	: T['type'] extends 'reference'
 	? OutputReference
@@ -65,7 +65,7 @@ type OutputArrayElements<T extends readonly FragmentDefinition[]> = {
 	[Key in keyof T]: OutputType<T[Key]>;
 }[number][];
 
-type OutputBlock = {_type: 'block'} & SetOptional<PortableTextBlock, 'children'>;
+type OutputBlock = Simplify<{_type: 'block'} & SetOptional<PortableTextBlock, 'children'>>;
 
 type OutputBoolean = boolean;
 

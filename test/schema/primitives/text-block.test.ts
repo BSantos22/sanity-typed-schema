@@ -1,13 +1,30 @@
-import type {PortableTextBlock} from '@sanity/types';
+import type {PortableTextBlock, Reference} from '@sanity/types';
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import type {OutputType} from 'src/types-output';
-import type {PortableTextArgs} from 'test/schema/primitives/portable-text.test';
-import {portableText} from 'test/schema/primitives/portable-text.test';
+import type {
+	Annotations,
+	CustomTypes,
+	Decorators,
+	Lists,
+	Styles,
+} from 'test/schema/primitives/portable-text.test';
+import {CALL_TO_ACTION, portableText} from 'test/schema/primitives/portable-text.test';
 import type {SetOptional} from 'type-fest';
 import {describe, expectTypeOf, it} from 'vitest';
 
-export const textBlock = (args: PortableTextArgs) =>
+export const textBlock = <
+	const S extends readonly Styles[],
+	const A extends readonly Annotations[],
+	const L extends readonly Lists[],
+	const D extends readonly Decorators[],
+	const C extends readonly CustomTypes[]
+>(args: {
+	styles: S;
+	annotations: A;
+	lists: L;
+	decorators: D;
+	customTypes: C;
+}) =>
 	fragmentField({
 		name: 'textBlock',
 		title: 'Innhold',
@@ -39,7 +56,19 @@ const title = () =>
 		type: 'string',
 	});
 
-const content = (args: PortableTextArgs) =>
+const content = <
+	const S extends readonly Styles[],
+	const A extends readonly Annotations[],
+	const L extends readonly Lists[],
+	const D extends readonly Decorators[],
+	const C extends readonly CustomTypes[]
+>(args: {
+	styles: S;
+	annotations: A;
+	lists: L;
+	decorators: D;
+	customTypes: C;
+}) =>
 	fragmentField({
 		...portableText(args),
 		name: 'content',
@@ -52,7 +81,18 @@ describe('text-block', () => {
 			_type: 'textBlock';
 			annotation: string;
 			title: string;
-			content: ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)[];
+			content: (
+				| ({_type: 'block'} & SetOptional<PortableTextBlock, 'children'>)
+				| {
+						_type: 'callToAction';
+						reference: Reference;
+						text: string;
+						type: 'internal' | 'external';
+						query: string;
+						href: string;
+						targetBlank: boolean;
+				  }
+			)[];
 		};
 
 		const sanitySchema = textBlock({
@@ -60,10 +100,10 @@ describe('text-block', () => {
 			annotations: [],
 			lists: [],
 			decorators: [],
-			customTypes: [],
+			customTypes: [CALL_TO_ACTION],
 		});
 
-		type Output = OutputType<typeof sanitySchema>;
-		expectTypeOf<Output>().toEqualTypeOf<Test>();
+		const output = toOutput(sanitySchema);
+		expectTypeOf(output).toEqualTypeOf<Test>();
 	});
 });
