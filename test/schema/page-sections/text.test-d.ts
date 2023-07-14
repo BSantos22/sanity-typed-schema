@@ -1,5 +1,5 @@
 import {fragmentField} from 'src/schema';
-import {textBlock} from 'test/schema/primitives/text-block.test';
+import {textBlock} from 'test/schema/primitives/text-block.test-d';
 import {
 	BIG_TEXT,
 	BULLET,
@@ -14,8 +14,8 @@ import {
 	LINK,
 	NUMBERED,
 	STRONG,
-} from 'test/schema/primitives/portable-text.test';
-import {theme} from 'test/schema/primitives/theme.test';
+} from 'test/schema/primitives/portable-text.test-d';
+import {theme} from 'test/schema/primitives/theme.test-d';
 import {toOutput} from 'src/convert';
 import {describe, expectTypeOf, it} from 'vitest';
 import type {TextTest} from 'test/types/page-sections/text';

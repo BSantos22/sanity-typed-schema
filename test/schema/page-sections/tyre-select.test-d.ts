@@ -1,6 +1,6 @@
 import {fragmentField} from 'src/schema';
-import {EMPHASIS, LINK, STRONG, portableText} from 'test/schema/primitives/portable-text.test';
-import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test';
+import {EMPHASIS, LINK, STRONG, portableText} from 'test/schema/primitives/portable-text.test-d';
+import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {TyreSelectTest} from 'test/types/page-sections/tyre-select';

@@ -1,6 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField, fragmentType} from 'src/schema';
-import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test';
+import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import type {SiteSettingsTest} from 'test/types/documents/site-settings';
 import {describe, expectTypeOf, it} from 'vitest';
 

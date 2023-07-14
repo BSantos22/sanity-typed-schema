@@ -1,6 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import {IMAGE, portableText} from 'test/schema/primitives/portable-text.test';
+import {IMAGE, portableText} from 'test/schema/primitives/portable-text.test-d';
 import {
 	BIG_TEXT,
 	BULLET,
@@ -14,8 +14,8 @@ import {
 	LINK,
 	NUMBERED,
 	STRONG,
-} from 'test/schema/primitives/portable-text.test';
-import {theme} from 'test/schema/primitives/theme.test';
+} from 'test/schema/primitives/portable-text.test-d';
+import {theme} from 'test/schema/primitives/theme.test-d';
 import type {TwoColumnTest} from 'test/types/page-sections/two-column';
 import {describe, expectTypeOf, it} from 'vitest';
 

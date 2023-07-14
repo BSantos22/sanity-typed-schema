@@ -14,8 +14,8 @@ import {
 	STRONG,
 	VIDEO_EMBED,
 	portableText,
-} from 'test/schema/primitives/portable-text.test';
-import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test';
+} from 'test/schema/primitives/portable-text.test-d';
+import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {ArticleTest} from 'test/types/documents/article';

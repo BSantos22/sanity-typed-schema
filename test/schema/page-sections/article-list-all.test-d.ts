@@ -1,6 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import {theme} from 'test/schema/primitives/theme.test';
+import {theme} from 'test/schema/primitives/theme.test-d';
 import type {ArticleListAllTest} from 'test/types/page-sections/article-list-all';
 import {describe, expectTypeOf, it} from 'vitest';
 

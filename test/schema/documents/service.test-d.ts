@@ -10,7 +10,7 @@ import {
 	PRICE,
 	STRONG,
 	portableText,
-} from 'test/schema/primitives/portable-text.test';
+} from 'test/schema/primitives/portable-text.test-d';
 import type {ServiceTest} from 'test/types/documents/service';
 import {describe, expectTypeOf, it} from 'vitest';
 

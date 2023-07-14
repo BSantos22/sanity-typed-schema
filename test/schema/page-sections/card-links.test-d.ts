@@ -1,7 +1,7 @@
 import {fragmentField} from 'src/schema';
-import {link} from 'test/schema/primitives/link.test';
-import {EMPHASIS, STRONG, portableText} from 'test/schema/primitives/portable-text.test';
-import {icon} from 'test/schema/primitives/icon.test';
+import {link} from 'test/schema/primitives/link.test-d';
+import {EMPHASIS, STRONG, portableText} from 'test/schema/primitives/portable-text.test-d';
+import {icon} from 'test/schema/primitives/icon.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {CardLinksTest} from 'test/types/page-sections/card-links';

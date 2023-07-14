@@ -7,8 +7,8 @@ import {
 	NUMBERED,
 	STRONG,
 	portableText,
-} from 'test/schema/primitives/portable-text.test';
-import {textBlock} from 'test/schema/primitives/text-block.test';
+} from 'test/schema/primitives/portable-text.test-d';
+import {textBlock} from 'test/schema/primitives/text-block.test-d';
 import type {ContactTest} from 'test/types/page-sections/contact';
 import {describe, expectTypeOf, it} from 'vitest';
 

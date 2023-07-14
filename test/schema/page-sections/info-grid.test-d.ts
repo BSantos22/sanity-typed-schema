@@ -1,6 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test';
+import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import {
 	BULLET,
 	EMPHASIS,
@@ -8,8 +8,8 @@ import {
 	NUMBERED,
 	STRONG,
 	portableText,
-} from 'test/schema/primitives/portable-text.test';
-import {theme} from 'test/schema/primitives/theme.test';
+} from 'test/schema/primitives/portable-text.test-d';
+import {theme} from 'test/schema/primitives/theme.test-d';
 import type {InfoGridTest} from 'test/types/page-sections/info-grid';
 import {describe, expectTypeOf, it} from 'vitest';
 

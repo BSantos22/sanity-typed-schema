@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "test:types": "vitest typecheck"
   },
   "dependencies": {},
   "devDependencies": {

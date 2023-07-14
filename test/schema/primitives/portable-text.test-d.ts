@@ -1,8 +1,8 @@
 import {fragmentField} from 'src/schema';
-import {videoEmbed} from 'test/schema/primitives/video-embed.test';
-import {ALT_TEXT, CAPTION, CREDIT, WIDTH, imageWeb} from 'test/schema/primitives/image-web.test';
-import {link} from 'test/schema/primitives/link.test';
-import {callToAction} from 'test/schema/primitives/call-to-action.test';
+import {videoEmbed} from 'test/schema/primitives/video-embed.test-d';
+import {ALT_TEXT, CAPTION, CREDIT, WIDTH, imageWeb} from 'test/schema/primitives/image-web.test-d';
+import {link} from 'test/schema/primitives/link.test-d';
+import {callToAction} from 'test/schema/primitives/call-to-action.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {BlockDef} from 'src/types-schema';

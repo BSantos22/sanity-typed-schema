@@ -44,13 +44,13 @@ describe('image-web', () => {
 		expectTypeOf<Output>().toEqualTypeOf<ImageWebTestBase>();
 	});
 
-	it('schema with fields', async () => {
+	it('schema with some fields', async () => {
 		const sanitySchema = imageWeb({fields: [ALT_TEXT, CAPTION]});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<ImageWebTestAltTextCaption>();
 	});
 
-	it('schema with fields', async () => {
+	it('schema with all fields', async () => {
 		const sanitySchema = imageWeb({fields: [ALT_TEXT, CAPTION, CREDIT, WIDTH]});
 		type Output = OutputType<typeof sanitySchema>;
 		expectTypeOf<Output>().toEqualTypeOf<ImageWebTestAll>();

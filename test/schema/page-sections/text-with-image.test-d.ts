@@ -1,6 +1,6 @@
 import {fragmentField} from 'src/schema';
-import {textBlock} from 'test/schema/primitives/text-block.test';
-import {imageWeb, ALT_TEXT} from 'test/schema/primitives/image-web.test';
+import {textBlock} from 'test/schema/primitives/text-block.test-d';
+import {imageWeb, ALT_TEXT} from 'test/schema/primitives/image-web.test-d';
 import {
 	BIG_TEXT,
 	BULLET,
@@ -15,9 +15,9 @@ import {
 	LINK,
 	NUMBERED,
 	STRONG,
-} from 'test/schema/primitives/portable-text.test';
-import {theme} from 'test/schema/primitives/theme.test';
-import {icon} from 'test/schema/primitives/icon.test';
+} from 'test/schema/primitives/portable-text.test-d';
+import {theme} from 'test/schema/primitives/theme.test-d';
+import {icon} from 'test/schema/primitives/icon.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {TextWithImageTest} from 'test/types/page-sections/text-with-image';

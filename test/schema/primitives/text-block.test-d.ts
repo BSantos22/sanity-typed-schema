@@ -6,8 +6,8 @@ import type {
 	Decorators,
 	Lists,
 	Styles,
-} from 'test/schema/primitives/portable-text.test';
-import {CALL_TO_ACTION, portableText} from 'test/schema/primitives/portable-text.test';
+} from 'test/schema/primitives/portable-text.test-d';
+import {CALL_TO_ACTION, portableText} from 'test/schema/primitives/portable-text.test-d';
 import type {TextBlockTest} from 'test/types/primitives/text-block';
 import {describe, expectTypeOf, it} from 'vitest';
 

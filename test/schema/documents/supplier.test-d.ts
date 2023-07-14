@@ -1,6 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField, fragmentType} from 'src/schema';
-import {imageWeb} from 'test/schema/primitives/image-web.test';
+import {imageWeb} from 'test/schema/primitives/image-web.test-d';
 import type {SupplierTest} from 'test/types/documents/supplier';
 import {describe, expectTypeOf, it} from 'vitest';
 
