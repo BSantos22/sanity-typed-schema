@@ -1,6 +1,6 @@
 import {fragmentField} from 'src/schema';
 import {textBlock} from 'test/schema/primitives/text-block';
-import {imageWeb, ALT_TEXT} from 'test/schema/primitives/image-web';
+import {imageWeb, ALT_TEXT} from 'test/schema/primitives/image-web.test';
 import {
 	BIG_TEXT,
 	BULLET,

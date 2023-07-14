@@ -48,7 +48,7 @@ export function fragmentField<
 		NarrowPreview<TType, TAlias, TSelect, TPrepareValue> &
 		MaybeAllowUnknownProps<TStrict> &
 		FieldDefinitionBase
->(schemaField: Schema): typeof schemaField & WidenValidation & WidenInitialValue {
+>(schemaField: Schema) {
 	return schemaField;
 }
 

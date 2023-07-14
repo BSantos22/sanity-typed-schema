@@ -4,7 +4,6 @@ import type {
 	GeopointValue,
 	ImageHotspot,
 	ImageOptions,
-	ImageValue,
 	PortableTextBlock,
 	Reference,
 	SlugValue,
@@ -85,8 +84,8 @@ type OutputGeopoint = GeopointValue;
 type OutputImage<T extends ImageDef> = {
 	_type: 'image';
 	asset: Reference;
-} & OutputImageOptions<T['options']>;
-//& OutputImageFields<T['fields']>;
+} & OutputImageOptions<T['options']> &
+	OutputImageFields<T>;
 
 type OutputImageOptions<T extends ReadonlyObjectDeep<ImageOptions> | undefined> =
 	T extends ReadonlyObjectDeep<ImageOptions>
@@ -97,7 +96,12 @@ type OutputImageOptions<T extends ReadonlyObjectDeep<ImageOptions> | undefined> 
 		: // eslint-disable-next-line @typescript-eslint/ban-types
 		  {};
 
-type OutputImageFields<T extends readonly FragmentDefinition[] | undefined> =
+type OutputImageFields<T extends ImageDef> = T['fields'] extends readonly FragmentDefinition[]
+	? OutputImageFieldsDef<T['fields']>
+	: // eslint-disable-next-line @typescript-eslint/ban-types
+	  {};
+
+type OutputImageFieldsDef<T extends readonly FragmentDefinition[] | undefined> =
 	T extends readonly FragmentDefinition[]
 		? {
 				[Key in NonNullable<T[number]['name']>]: OutputType<

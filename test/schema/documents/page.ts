@@ -1,9 +1,9 @@
 import {fragmentField, fragmentType} from 'src/schema';
 import {heading} from 'test/schema/page-sections/heading';
-import {articleListAll} from 'test/schema/page-sections/article-list-all';
+import {articleListAll} from 'test/schema/page-sections/article-list-all.test';
 import {cardLinks} from 'test/schema/page-sections/card-links';
 import {infoGrid} from 'test/schema/page-sections/info-grid';
-import {licensePlate} from 'test/schema/page-sections/license-plate';
+import {licensePlate} from 'test/schema/page-sections/license-plate.test';
 import {supplierSection} from 'test/schema/page-sections/supplier';
 import {text} from 'test/schema/page-sections/text';
 import {textWithImage} from 'test/schema/page-sections/text-with-image';

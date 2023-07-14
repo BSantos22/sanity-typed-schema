@@ -8,7 +8,7 @@ import {
 	portableText,
 	STRONG,
 } from 'test/schema/primitives/portable-text';
-import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web';
+import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test';
 
 export const heading = () =>
 	fragmentField({
@@ -46,7 +46,7 @@ const textHeadingTitle = () =>
 
 const textHeadingBackgroundImage = () =>
 	fragmentField({
-		...imageWeb(),
+		...imageWeb({fields: []}),
 		name: 'backgroundImage',
 		title: 'Bakgrunnsbilde',
 	});
@@ -93,7 +93,7 @@ const heroMainImage = () =>
 
 const heroBackgroundImage = () =>
 	fragmentField({
-		...imageWeb(),
+		...imageWeb({fields: []}),
 		name: 'backgroundImage',
 		title: 'Bakgrunnsbilde',
 		group: 'images',

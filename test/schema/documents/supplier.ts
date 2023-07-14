@@ -1,6 +1,5 @@
 import {fragmentField, fragmentType} from 'src/schema';
-import {imageWeb} from 'test/schema/primitives/image-web';
-import {describe} from 'vitest';
+import {imageWeb} from 'test/schema/primitives/image-web.test';
 
 export const supplier = () =>
 	fragmentType({
@@ -36,22 +35,8 @@ const id = () =>
 
 const logo = () =>
 	fragmentField({
-		...imageWeb(),
+		...imageWeb({fields: []}),
 		name: 'logo',
 		title: 'Logo',
 		validation: (Rule) => Rule.required(),
 	});
-
-describe('supplier', () => {
-	type Test = {
-		_type: 'supplier';
-		name: string;
-		id: string;
-		logo: {};
-	};
-
-	it('schema', async () => {
-		type Output = OutputType<ReturnType<typeof licensePlate>>;
-		expectTypeOf<Output>().toEqualTypeOf<Test>();
-	});
-});

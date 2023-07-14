@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 import {fragmentField} from 'src/schema';
 import {videoEmbed} from 'test/schema/primitives/video-embed.test';
-import {ALT_TEXT, CAPTION, CREDIT, imageWeb, WIDTH} from 'test/schema/primitives/image-web';
+import {ALT_TEXT, CAPTION, CREDIT, imageWeb, WIDTH} from 'test/schema/primitives/image-web.test';
 import {link} from 'test/schema/primitives/link.test';
 import {callToAction} from 'test/schema/primitives/call-to-action.test';
 import type {

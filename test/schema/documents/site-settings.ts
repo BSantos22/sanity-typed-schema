@@ -1,5 +1,5 @@
 import {fragmentField, fragmentType} from 'src/schema';
-import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web';
+import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test';
 
 export const siteSettings = () =>
 	fragmentType({
@@ -57,7 +57,7 @@ const metaDescription = () =>
 
 const metaImage = () =>
 	fragmentField({
-		...imageWeb(),
+		...imageWeb({fields: []}),
 		title: 'Meta-bilde',
 	});
 
