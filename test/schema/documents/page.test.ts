@@ -73,7 +73,7 @@ const contentSections = () =>
 		],
 	});
 
-describe('service', () => {
+describe('page', () => {
 	it('schema', async () => {
 		const sanitySchema = page();
 		const output = toOutput(sanitySchema);

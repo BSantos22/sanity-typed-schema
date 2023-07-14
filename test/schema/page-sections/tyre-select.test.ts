@@ -130,7 +130,7 @@ const image = () =>
 		title: 'Dekkbilde',
 	});
 
-describe('text-with-image', () => {
+describe('tyre-select', () => {
 	it('schema', async () => {
 		const sanitySchema = tyreSelect();
 		const output = toOutput(sanitySchema);
