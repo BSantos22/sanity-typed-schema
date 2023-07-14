@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/typing';
+import {fragmentField} from 'src/schema';
 import type {PortableTextArgs} from 'test/schema/primitives/portable-text';
 import {portableText} from 'test/schema/primitives/portable-text';
 

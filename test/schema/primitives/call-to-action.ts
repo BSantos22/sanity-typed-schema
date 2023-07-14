@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/typing';
+import {fragmentField} from 'src/schema';
 import {link} from 'test/schema/primitives/link';
 
 export const callToAction = () =>

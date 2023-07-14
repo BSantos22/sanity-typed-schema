@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-namespace */
-import {fragmentField} from 'src/typing';
+import {fragmentField} from 'src/schema';
 import {videoEmbed} from 'test/schema/primitives/video-embed';
 import {ALT_TEXT, CAPTION, CREDIT, imageWeb, WIDTH} from 'test/schema/primitives/image-web';
 import {link} from 'test/schema/primitives/link';

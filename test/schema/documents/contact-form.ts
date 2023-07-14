@@ -1,4 +1,4 @@
-import {fragmentField, fragmentType} from 'src/typing';
+import {fragmentField, fragmentType} from 'src/schema';
 
 export const contactForm = () =>
 	fragmentType({

@@ -1,4 +1,4 @@
-import {fragmentField, fragmentType} from 'src/typing';
+import {fragmentField, fragmentType} from 'src/schema';
 import {imageWeb} from 'test/schema/primitives/image-web';
 
 export const supplier = () =>

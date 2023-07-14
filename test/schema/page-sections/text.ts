@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/typing';
+import {fragmentField} from 'src/schema';
 import {textBlock} from 'test/schema/primitives/text-block';
 import {
 	BIG_TEXT,

@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/typing';
+import {fragmentField} from 'src/schema';
 import {EMPHASIS, LINK, STRONG, portableText} from 'test/schema/primitives/portable-text';
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web';
 

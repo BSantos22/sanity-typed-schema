@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/typing';
+import {fragmentField} from 'src/schema';
 
 export const ALT_TEXT = Symbol('altText');
 export const CAPTION = Symbol('caption');

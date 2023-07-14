@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/typing';
+import {fragmentField} from 'src/schema';
 import {theme} from 'test/schema/primitives/theme';
 
 export const articleListAll = () =>

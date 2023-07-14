@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/typing';
+import {fragmentField} from 'src/schema';
 import {IMAGE, portableText} from 'test/schema/primitives/portable-text';
 import {
 	BIG_TEXT,

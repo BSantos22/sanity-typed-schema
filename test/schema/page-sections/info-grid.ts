@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/typing';
+import {fragmentField} from 'src/schema';
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web';
 import {
 	BULLET,

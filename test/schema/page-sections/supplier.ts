@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/typing';
+import {fragmentField} from 'src/schema';
 import {
 	BULLET,
 	CALL_TO_ACTION,

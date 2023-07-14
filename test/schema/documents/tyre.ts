@@ -1,4 +1,4 @@
-import {fragmentField, fragmentType} from 'src/typing';
+import {fragmentField, fragmentType} from 'src/schema';
 import {BULLET, LINK, STRONG, portableText} from 'test/schema/primitives/portable-text';
 import {NUMBERED} from 'test/schema/primitives/portable-text';
 import {EMPHASIS} from 'test/schema/primitives/portable-text';

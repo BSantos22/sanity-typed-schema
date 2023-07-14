@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/typing';
+import {fragmentField} from 'src/schema';
 import {
 	BIG_TEXT,
 	CALL_TO_ACTION,

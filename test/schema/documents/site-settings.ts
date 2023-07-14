@@ -1,4 +1,4 @@
-import {fragmentField, fragmentType} from 'src/typing';
+import {fragmentField, fragmentType} from 'src/schema';
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web';
 
 export const siteSettings = () =>

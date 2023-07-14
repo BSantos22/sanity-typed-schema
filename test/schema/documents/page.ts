@@ -1,4 +1,4 @@
-import {fragmentField, fragmentType} from 'src/typing';
+import {fragmentField, fragmentType} from 'src/schema';
 import {heading} from 'test/schema/page-sections/heading';
 import {articleListAll} from 'test/schema/page-sections/article-list-all';
 import {cardLinks} from 'test/schema/page-sections/card-links';

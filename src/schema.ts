@@ -12,7 +12,9 @@ import type {
 } from '@sanity/types';
 
 /**
- * This is all straight-up yoinked from @sanity/types, but with the addition of `const` to narrow the type.
+ * These functions are used to define the Sanity schema.
+ * This is all straight-up yoinked from @sanity/types,
+ * but with the addition of `const` to narrow the type.
  */
 
 export function fragmentType<
