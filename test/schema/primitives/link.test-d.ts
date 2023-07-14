@@ -1,6 +1,7 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import type {LinkTest} from 'test/schema/primitives/link';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const link = () => {
@@ -88,5 +89,11 @@ describe('link', () => {
 		expectTypeOf(output.targetBlank).toEqualTypeOf<LinkTest['targetBlank']>();
 		expectTypeOf(output.type).toEqualTypeOf<LinkTest['type']>();
 		expectTypeOf(output).toEqualTypeOf<LinkTest>();
+		expectType<typeof output.href>().toStrictEqual<LinkTest['href']>();
+		expectType<typeof output.query>().toStrictEqual<LinkTest['query']>();
+		expectType<typeof output.reference>().toStrictEqual<LinkTest['reference']>();
+		expectType<typeof output.targetBlank>().toStrictEqual<LinkTest['targetBlank']>();
+		expectType<typeof output.type>().toStrictEqual<LinkTest['type']>();
+		expectType<typeof output>().toStrictEqual<LinkTest>();
 	});
 });

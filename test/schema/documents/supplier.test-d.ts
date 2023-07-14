@@ -3,6 +3,7 @@ import {fragmentField, fragmentType} from 'src/schema';
 import {imageWeb} from 'test/schema/primitives/image-web.test-d';
 import type {SupplierTest} from 'test/schema/documents/supplier';
 import {describe, expectTypeOf, it} from 'vitest';
+import {expectType} from 'test/utils';
 
 export const supplier = () =>
 	fragmentType({
@@ -54,5 +55,10 @@ describe('supplier', () => {
 		expectTypeOf(output.id).toEqualTypeOf<SupplierTest['id']>();
 		expectTypeOf(output.logo).toEqualTypeOf<SupplierTest['logo']>();
 		expectTypeOf(output).toEqualTypeOf<SupplierTest>();
+		expectType<typeof output._type>().toStrictEqual<SupplierTest['_type']>();
+		expectType<typeof output.name>().toStrictEqual<SupplierTest['name']>();
+		expectType<typeof output.id>().toStrictEqual<SupplierTest['id']>();
+		expectType<typeof output.logo>().toStrictEqual<SupplierTest['logo']>();
+		expectType<typeof output>().toStrictEqual<SupplierTest>();
 	});
 });

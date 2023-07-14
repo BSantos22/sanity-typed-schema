@@ -5,6 +5,7 @@ import type {
 	ImageWebTestAltTextCaption,
 	ImageWebTestBase,
 } from 'test/schema/primitives/image-web';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const ALT_TEXT = {name: 'altText', title: 'Alternativ tekst', type: 'string'} as const;
@@ -45,6 +46,10 @@ describe('image-web', () => {
 		expectTypeOf(output.crop).toEqualTypeOf<ImageWebTestBase['crop']>();
 		expectTypeOf(output.hotspot).toEqualTypeOf<ImageWebTestBase['hotspot']>();
 		expectTypeOf(output).toEqualTypeOf<ImageWebTestBase>();
+		expectType<typeof output.asset>().toStrictEqual<ImageWebTestBase['asset']>();
+		expectType<typeof output.crop>().toStrictEqual<ImageWebTestBase['crop']>();
+		expectType<typeof output.hotspot>().toStrictEqual<ImageWebTestBase['hotspot']>();
+		expectType<typeof output>().toStrictEqual<ImageWebTestBase>();
 	});
 
 	it('schema with some fields', async () => {
@@ -57,6 +62,12 @@ describe('image-web', () => {
 		expectTypeOf(output.altText).toEqualTypeOf<ImageWebTestAltTextCaption['altText']>();
 		expectTypeOf(output.caption).toEqualTypeOf<ImageWebTestAltTextCaption['caption']>();
 		expectTypeOf(output).toEqualTypeOf<ImageWebTestAltTextCaption>();
+		expectType<typeof output.asset>().toStrictEqual<ImageWebTestAltTextCaption['asset']>();
+		expectType<typeof output.crop>().toStrictEqual<ImageWebTestAltTextCaption['crop']>();
+		expectType<typeof output.hotspot>().toStrictEqual<ImageWebTestAltTextCaption['hotspot']>();
+		expectType<typeof output.altText>().toStrictEqual<ImageWebTestAltTextCaption['altText']>();
+		expectType<typeof output.caption>().toStrictEqual<ImageWebTestAltTextCaption['caption']>();
+		expectType<typeof output>().toStrictEqual<ImageWebTestAltTextCaption>();
 	});
 
 	it('schema with all fields', async () => {
@@ -71,5 +82,13 @@ describe('image-web', () => {
 		expectTypeOf(output.credit).toEqualTypeOf<ImageWebTestAll['credit']>();
 		expectTypeOf(output.width).toEqualTypeOf<ImageWebTestAll['width']>();
 		expectTypeOf(output).toEqualTypeOf<ImageWebTestAll>();
+		expectType<typeof output.asset>().toStrictEqual<ImageWebTestAll['asset']>();
+		expectType<typeof output.crop>().toStrictEqual<ImageWebTestAll['crop']>();
+		expectType<typeof output.hotspot>().toStrictEqual<ImageWebTestAll['hotspot']>();
+		expectType<typeof output.altText>().toStrictEqual<ImageWebTestAll['altText']>();
+		expectType<typeof output.caption>().toStrictEqual<ImageWebTestAll['caption']>();
+		expectType<typeof output.credit>().toStrictEqual<ImageWebTestAll['credit']>();
+		expectType<typeof output.width>().toStrictEqual<ImageWebTestAll['width']>();
+		expectType<typeof output>().toStrictEqual<ImageWebTestAll>();
 	});
 });

@@ -13,6 +13,7 @@ import {
 } from 'test/schema/primitives/portable-text.test-d';
 import type {ServiceTest} from 'test/schema/documents/service';
 import {describe, expectTypeOf, it} from 'vitest';
+import {expectType} from 'test/utils';
 
 export const service = () =>
 	fragmentType({
@@ -213,5 +214,17 @@ describe('service', () => {
 		expectTypeOf(output.addons).toEqualTypeOf<ServiceTest['addons']>();
 		expectTypeOf(output.extraInformation).toEqualTypeOf<ServiceTest['extraInformation']>();
 		expectTypeOf(output).toEqualTypeOf<ServiceTest>();
+		expectType<typeof output._type>().toStrictEqual<ServiceTest['_type']>();
+		expectType<typeof output.name>().toStrictEqual<ServiceTest['name']>();
+		expectType<typeof output.description>().toStrictEqual<ServiceTest['description']>();
+		expectType<typeof output.packages>().toStrictEqual<ServiceTest['packages']>();
+		expectType<typeof output.individualPrices>().toStrictEqual<
+			ServiceTest['individualPrices']
+		>();
+		expectType<typeof output.addons>().toStrictEqual<ServiceTest['addons']>();
+		expectType<typeof output.extraInformation>().toStrictEqual<
+			ServiceTest['extraInformation']
+		>();
+		expectType<typeof output>().toStrictEqual<ServiceTest>();
 	});
 });

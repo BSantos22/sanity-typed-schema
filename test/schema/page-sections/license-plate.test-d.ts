@@ -1,6 +1,7 @@
+import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
-import type {OutputType} from 'src/types-output';
 import type {LicensePlateTest} from 'test/schema/page-sections/license-plate';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const licensePlate = () =>
@@ -39,10 +40,13 @@ const label = () =>
 describe('license-plate', () => {
 	it('schema', async () => {
 		const sanitySchema = licensePlate();
-		type Output = OutputType<typeof sanitySchema>;
+		const output = toOutput(sanitySchema);
 
-		expectTypeOf<Output['label']>().toEqualTypeOf<LicensePlateTest['label']>();
-		expectTypeOf<Output['title']>().toEqualTypeOf<LicensePlateTest['title']>();
-		expectTypeOf<Output>().toEqualTypeOf<LicensePlateTest>();
+		expectTypeOf(output.label).toEqualTypeOf<LicensePlateTest['label']>();
+		expectTypeOf(output.title).toEqualTypeOf<LicensePlateTest['title']>();
+		expectTypeOf(output).toEqualTypeOf<LicensePlateTest>();
+		expectType<(typeof output)['label']>().toStrictEqual<LicensePlateTest['label']>();
+		expectType<(typeof output)['title']>().toStrictEqual<LicensePlateTest['title']>();
+		expectType<typeof output>().toStrictEqual<LicensePlateTest>();
 	});
 });

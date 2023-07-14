@@ -5,6 +5,7 @@ import type {
 } from '@portabletext/types';
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 describe('block', () => {
@@ -19,6 +20,15 @@ describe('block', () => {
 		// Since @portabletext/react doesn't take into account the generics of the PortableTextBlock,
 		// it doesn't really matter at the moment anyways
 		expectTypeOf(output).toEqualTypeOf<{
+			_type: 'block';
+			_key?: string;
+			markDefs?: PortableTextMarkDefinition[];
+			style?: string;
+			listItem?: string;
+			level?: number;
+			children?: (ArbitraryTypedObject | PortableTextSpan)[] | undefined;
+		}>();
+		expectType<typeof output>().toStrictEqual<{
 			_type: 'block';
 			_key?: string;
 			markDefs?: PortableTextMarkDefinition[];

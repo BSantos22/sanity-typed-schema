@@ -9,6 +9,7 @@ import type {
 } from 'test/schema/primitives/portable-text.test-d';
 import {CALL_TO_ACTION, portableText} from 'test/schema/primitives/portable-text.test-d';
 import type {TextBlockTest} from 'test/schema/primitives/text-block';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const textBlock = <
@@ -105,5 +106,9 @@ describe('text-block', () => {
 		expectTypeOf(output.content).toEqualTypeOf<TextBlockTest['content']>();
 		expectTypeOf(output.title).toEqualTypeOf<TextBlockTest['title']>();
 		expectTypeOf(output).toEqualTypeOf<TextBlockTest>();
+		expectType<typeof output.annotation>().toStrictEqual<TextBlockTest['annotation']>();
+		expectType<typeof output.content>().toStrictEqual<TextBlockTest['content']>();
+		expectType<typeof output.title>().toStrictEqual<TextBlockTest['title']>();
+		expectType<typeof output>().toStrictEqual<TextBlockTest>();
 	});
 });

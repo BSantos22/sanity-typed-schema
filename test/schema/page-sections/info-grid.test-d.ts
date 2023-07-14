@@ -12,6 +12,7 @@ import {
 import {theme} from 'test/schema/primitives/theme.test-d';
 import type {InfoGridTest} from 'test/schema/page-sections/info-grid';
 import {describe, expectTypeOf, it} from 'vitest';
+import {expectType} from 'test/utils';
 
 export const infoGrid = () =>
 	fragmentField({
@@ -101,5 +102,9 @@ describe('info-grid', () => {
 		expectTypeOf(output.theme).toEqualTypeOf<InfoGridTest['theme']>();
 		expectTypeOf(output.title).toEqualTypeOf<InfoGridTest['title']>();
 		expectTypeOf(output).toEqualTypeOf<InfoGridTest>();
+		expectType<typeof output.items>().toStrictEqual<InfoGridTest['items']>();
+		expectType<typeof output.theme>().toStrictEqual<InfoGridTest['theme']>();
+		expectType<typeof output.title>().toStrictEqual<InfoGridTest['title']>();
+		expectType<typeof output>().toStrictEqual<InfoGridTest>();
 	});
 });

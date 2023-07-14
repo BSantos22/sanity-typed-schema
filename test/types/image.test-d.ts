@@ -1,5 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 describe('image', () => {
@@ -10,6 +11,12 @@ describe('image', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			asset?: {
+				_type: 'reference';
+				_ref: string;
+			};
+		}>();
+		expectType<typeof output>().toStrictEqual<{
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -27,6 +34,26 @@ describe('image', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			asset?: {
+				_type: 'reference';
+				_ref: string;
+			};
+			hotspot?: {
+				_type: 'sanity.imageHotspot';
+				x?: number;
+				y?: number;
+				height?: number;
+				width?: number;
+			};
+			crop?: {
+				_type: 'sanity.imageCrop';
+				top?: number;
+				bottom?: number;
+				left?: number;
+				right?: number;
+			};
+		}>();
+		expectType<typeof output>().toStrictEqual<{
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -72,6 +99,14 @@ describe('image', () => {
 			alt?: string;
 			caption?: string;
 		}>();
+		expectType<typeof output>().toStrictEqual<{
+			asset?: {
+				_type: 'reference';
+				_ref: string;
+			};
+			alt?: string;
+			caption?: string;
+		}>();
 	});
 
 	it('image with hotspot and fields', async () => {
@@ -94,6 +129,28 @@ describe('image', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			asset?: {
+				_type: 'reference';
+				_ref: string;
+			};
+			hotspot?: {
+				_type: 'sanity.imageHotspot';
+				x?: number;
+				y?: number;
+				height?: number;
+				width?: number;
+			};
+			crop?: {
+				_type: 'sanity.imageCrop';
+				top?: number;
+				bottom?: number;
+				left?: number;
+				right?: number;
+			};
+			timeTaken?: string;
+			numberOfViews?: number;
+		}>();
+		expectType<typeof output>().toStrictEqual<{
 			asset?: {
 				_type: 'reference';
 				_ref: string;
@@ -210,6 +267,63 @@ describe('image', () => {
 					name?: string;
 					location?: {
 						_type: 'sanity.geopoint';
+						lat?: number;
+						lng?: number;
+						alt?: number;
+					};
+				};
+				alternativeImage?: {
+					asset?: {
+						_type: 'reference';
+						_ref: string;
+					};
+					hotspot?: {
+						_type: 'sanity.imageHotspot';
+						x?: number;
+						y?: number;
+						height?: number;
+						width?: number;
+					};
+					crop?: {
+						_type: 'sanity.imageCrop';
+						top?: number;
+						bottom?: number;
+						left?: number;
+						right?: number;
+					};
+					alt?: string;
+				};
+			};
+		}>();
+		expectType<typeof output>().toStrictEqual<{
+			asset?: {
+				_type: 'reference';
+				_ref: string;
+			};
+			hotspot?: {
+				_type: 'sanity.imageHotspot';
+				x?: number;
+				y?: number;
+				height?: number;
+				width?: number;
+			};
+			crop?: {
+				_type: 'sanity.imageCrop';
+				top?: number;
+				bottom?: number;
+				left?: number;
+				right?: number;
+			};
+			timeTaken?: string;
+			numberOfViews?: number;
+			alt?: string;
+			caption?: string;
+			extraInformation?: {
+				extraField?: string;
+				city?: {
+					name?: string;
+					location?: {
+						_type: 'geopoint';
 						lat?: number;
 						lng?: number;
 						alt?: number;

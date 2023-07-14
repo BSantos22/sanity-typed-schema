@@ -21,6 +21,7 @@ import {icon} from 'test/schema/primitives/icon.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {TextWithImageTest} from 'test/schema/page-sections/text-with-image';
+import {expectType} from 'test/utils';
 
 export const textWithImage = () =>
 	fragmentField({
@@ -93,5 +94,13 @@ describe('text-with-image', () => {
 		expectTypeOf(output.imageSide).toEqualTypeOf<TextWithImageTest['imageSide']>();
 		expectTypeOf(output.theme).toEqualTypeOf<TextWithImageTest['theme']>();
 		expectTypeOf(output).toEqualTypeOf<TextWithImageTest>();
+		expectType<typeof output.backgroundIcon>().toStrictEqual<
+			TextWithImageTest['backgroundIcon']
+		>();
+		expectType<typeof output.content>().toStrictEqual<TextWithImageTest['content']>();
+		expectType<typeof output.image>().toStrictEqual<TextWithImageTest['image']>();
+		expectType<typeof output.imageSide>().toStrictEqual<TextWithImageTest['imageSide']>();
+		expectType<typeof output.theme>().toStrictEqual<TextWithImageTest['theme']>();
+		expectType<typeof output>().toStrictEqual<TextWithImageTest>();
 	});
 });

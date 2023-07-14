@@ -3,6 +3,7 @@ import {fragmentField, fragmentType} from 'src/schema';
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import type {SiteSettingsTest} from 'test/schema/documents/site-settings';
 import {describe, expectTypeOf, it} from 'vitest';
+import {expectType} from 'test/utils';
 
 export const siteSettings = () =>
 	fragmentType({
@@ -186,5 +187,13 @@ describe('site-settings', () => {
 		expectTypeOf(output.headerLinks).toEqualTypeOf<SiteSettingsTest['headerLinks']>();
 		expectTypeOf(output.meta).toEqualTypeOf<SiteSettingsTest['meta']>();
 		expectTypeOf(output).toEqualTypeOf<SiteSettingsTest>();
+		expectType<typeof output._type>().toStrictEqual<SiteSettingsTest['_type']>();
+		expectType<typeof output.title>().toStrictEqual<SiteSettingsTest['title']>();
+		expectType<typeof output.organization>().toStrictEqual<SiteSettingsTest['organization']>();
+		expectType<typeof output.contactInfo>().toStrictEqual<SiteSettingsTest['contactInfo']>();
+		expectType<typeof output.frontPage>().toStrictEqual<SiteSettingsTest['frontPage']>();
+		expectType<typeof output.headerLinks>().toStrictEqual<SiteSettingsTest['headerLinks']>();
+		expectType<typeof output.meta>().toStrictEqual<SiteSettingsTest['meta']>();
+		expectType<typeof output>().toStrictEqual<SiteSettingsTest>();
 	});
 });

@@ -19,6 +19,7 @@ import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {ArticleTest} from 'test/schema/documents/article';
+import {expectType} from 'test/utils';
 
 export const article = () =>
 	fragmentType({
@@ -81,5 +82,11 @@ describe('article', () => {
 		expectTypeOf(output.slug).toEqualTypeOf<ArticleTest['slug']>();
 		expectTypeOf(output.title).toEqualTypeOf<ArticleTest['title']>();
 		expectTypeOf(output).toEqualTypeOf<ArticleTest>();
+		expectType<typeof output._type>().toStrictEqual<ArticleTest['_type']>();
+		expectType<typeof output.content>().toStrictEqual<ArticleTest['content']>();
+		expectType<typeof output.image>().toStrictEqual<ArticleTest['image']>();
+		expectType<typeof output.slug>().toStrictEqual<ArticleTest['slug']>();
+		expectType<typeof output.title>().toStrictEqual<ArticleTest['title']>();
+		expectType<typeof output>().toStrictEqual<ArticleTest>();
 	});
 });

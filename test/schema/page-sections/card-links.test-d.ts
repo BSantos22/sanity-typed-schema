@@ -5,6 +5,7 @@ import {icon} from 'test/schema/primitives/icon.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {CardLinksTest} from 'test/schema/page-sections/card-links';
+import {expectType} from 'test/utils';
 
 export const cardLinks = () =>
 	fragmentField({
@@ -88,5 +89,7 @@ describe('card-links', () => {
 
 		expectTypeOf(output.links).toEqualTypeOf<CardLinksTest['links']>();
 		expectTypeOf(output).toEqualTypeOf<CardLinksTest>();
+		expectType<typeof output.links>().toStrictEqual<CardLinksTest['links']>();
+		expectType<typeof output>().toStrictEqual<CardLinksTest>();
 	});
 });

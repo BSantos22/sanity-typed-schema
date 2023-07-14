@@ -1,5 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 describe('email', () => {
@@ -10,6 +11,7 @@ describe('email', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<string>();
+		expectType<typeof output>().toStrictEqual<string>();
 	});
 
 	it('email does not support option list', async () => {
@@ -23,5 +25,6 @@ describe('email', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<string>();
+		expectType<typeof output>().toStrictEqual<string>();
 	});
 });

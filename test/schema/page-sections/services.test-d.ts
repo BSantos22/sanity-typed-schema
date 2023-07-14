@@ -16,6 +16,7 @@ import {
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {ServicesTest} from 'test/schema/page-sections/services';
+import {expectType} from 'test/utils';
 
 export const services = () =>
 	fragmentField({
@@ -51,5 +52,7 @@ describe('services', () => {
 
 		expectTypeOf(output.textBlock).toEqualTypeOf<ServicesTest['textBlock']>();
 		expectTypeOf(output).toEqualTypeOf<ServicesTest>();
+		expectType<typeof output.textBlock>().toStrictEqual<ServicesTest['textBlock']>();
+		expectType<typeof output>().toStrictEqual<ServicesTest>();
 	});
 });

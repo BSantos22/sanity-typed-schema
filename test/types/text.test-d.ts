@@ -1,5 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 describe('text', () => {
@@ -10,6 +11,7 @@ describe('text', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<string>();
+		expectType<typeof output>().toStrictEqual<string>();
 	});
 
 	it('schema with object options', async () => {
@@ -22,6 +24,7 @@ describe('text', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<'test1' | 'test2'>();
+		expectType<typeof output>().toStrictEqual<'test1' | 'test2'>();
 	});
 
 	it('schema with value options', async () => {
@@ -34,5 +37,6 @@ describe('text', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<'test3' | 'test4'>();
+		expectType<typeof output>().toStrictEqual<'test3' | 'test4'>();
 	});
 });

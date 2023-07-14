@@ -5,6 +5,7 @@ import {NUMBERED} from 'test/schema/primitives/portable-text.test-d';
 import {EMPHASIS} from 'test/schema/primitives/portable-text.test-d';
 import type {TyreTest} from 'test/schema/documents/tyre';
 import {describe, expectTypeOf, it} from 'vitest';
+import {expectType} from 'test/utils';
 
 export const tyre = () =>
 	fragmentType({
@@ -234,5 +235,13 @@ describe('tyre', () => {
 		expectTypeOf(output.type).toEqualTypeOf<TyreTest['type']>();
 		expectTypeOf(output.variants).toEqualTypeOf<TyreTest['variants']>();
 		expectTypeOf(output).toEqualTypeOf<TyreTest>();
+		expectType<typeof output._type>().toStrictEqual<TyreTest['_type']>();
+		expectType<typeof output.active>().toStrictEqual<TyreTest['active']>();
+		expectType<typeof output.brand>().toStrictEqual<TyreTest['brand']>();
+		expectType<typeof output.description>().toStrictEqual<TyreTest['description']>();
+		expectType<typeof output.model>().toStrictEqual<TyreTest['model']>();
+		expectType<typeof output.type>().toStrictEqual<TyreTest['type']>();
+		expectType<typeof output.variants>().toStrictEqual<TyreTest['variants']>();
+		expectType<typeof output>().toStrictEqual<TyreTest>();
 	});
 });

@@ -18,6 +18,7 @@ import {
 import {theme} from 'test/schema/primitives/theme.test-d';
 import type {TwoColumnTest} from 'test/schema/page-sections/two-column';
 import {describe, expectTypeOf, it} from 'vitest';
+import {expectType} from 'test/utils';
 
 export const twoColumn = () =>
 	fragmentField({
@@ -107,5 +108,12 @@ describe('two-column', () => {
 		expectTypeOf(output.title).toEqualTypeOf<TwoColumnTest['title']>();
 		expectTypeOf(output.titleInvisible).toEqualTypeOf<TwoColumnTest['titleInvisible']>();
 		expectTypeOf(output).toEqualTypeOf<TwoColumnTest>();
+		expectType<typeof output.align>().toStrictEqual<TwoColumnTest['align']>();
+		expectType<typeof output.left>().toStrictEqual<TwoColumnTest['left']>();
+		expectType<typeof output.right>().toStrictEqual<TwoColumnTest['right']>();
+		expectType<typeof output.theme>().toStrictEqual<TwoColumnTest['theme']>();
+		expectType<typeof output.title>().toStrictEqual<TwoColumnTest['title']>();
+		expectType<typeof output.titleInvisible>().toStrictEqual<TwoColumnTest['titleInvisible']>();
+		expectType<typeof output>().toStrictEqual<TwoColumnTest>();
 	});
 });

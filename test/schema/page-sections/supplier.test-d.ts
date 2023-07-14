@@ -12,6 +12,7 @@ import {
 import {theme} from 'test/schema/primitives/theme.test-d';
 import type {SupplierSectionTest} from 'test/schema/page-sections/supplier';
 import {describe, expectTypeOf, it} from 'vitest';
+import {expectType} from 'test/utils';
 
 export const supplierSection = () =>
 	fragmentField({
@@ -61,5 +62,9 @@ describe('supplier-section', () => {
 		expectTypeOf(output.supplier).toEqualTypeOf<SupplierSectionTest['supplier']>();
 		expectTypeOf(output.theme).toEqualTypeOf<SupplierSectionTest['theme']>();
 		expectTypeOf(output).toEqualTypeOf<SupplierSectionTest>();
+		expectType<typeof output.content>().toStrictEqual<SupplierSectionTest['content']>();
+		expectType<typeof output.supplier>().toStrictEqual<SupplierSectionTest['supplier']>();
+		expectType<typeof output.theme>().toStrictEqual<SupplierSectionTest['theme']>();
+		expectType<typeof output>().toStrictEqual<SupplierSectionTest>();
 	});
 });

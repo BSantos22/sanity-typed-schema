@@ -1,5 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 describe('boolean', () => {
@@ -10,6 +11,7 @@ describe('boolean', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<boolean>();
+		expectType<typeof output>().toStrictEqual<boolean>();
 	});
 
 	it('boolean does not support option list', async () => {
@@ -23,5 +25,6 @@ describe('boolean', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<boolean>();
+		expectType<typeof output>().toStrictEqual<boolean>();
 	});
 });

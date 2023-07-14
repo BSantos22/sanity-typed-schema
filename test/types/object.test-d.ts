@@ -5,6 +5,7 @@ import type {
 } from '@portabletext/types';
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 describe('object', () => {
@@ -32,6 +33,17 @@ describe('object', () => {
 					children?: (ArbitraryTypedObject | PortableTextSpan)[] | undefined;
 				};
 			}>();
+			expectType<typeof output>().toStrictEqual<{
+				text?: {
+					_type: 'block';
+					_key?: string;
+					markDefs?: PortableTextMarkDefinition[];
+					style?: string;
+					listItem?: string;
+					level?: number;
+					children?: (ArbitraryTypedObject | PortableTextSpan)[] | undefined;
+				};
+			}>();
 		});
 
 		it('object with a boolean field', async () => {
@@ -47,6 +59,7 @@ describe('object', () => {
 			});
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{isTrue?: boolean}>();
+			expectType<typeof output>().toStrictEqual<{isTrue?: boolean}>();
 		});
 
 		it('object with a date field', async () => {
@@ -62,6 +75,7 @@ describe('object', () => {
 			});
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{when?: string}>();
+			expectType<typeof output>().toStrictEqual<{when?: string}>();
 		});
 
 		it('object with a datetime field', async () => {
@@ -77,6 +91,7 @@ describe('object', () => {
 			});
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{when?: string}>();
+			expectType<typeof output>().toStrictEqual<{when?: string}>();
 		});
 
 		it('object with an email field', async () => {
@@ -92,6 +107,7 @@ describe('object', () => {
 			});
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{where?: string}>();
+			expectType<typeof output>().toStrictEqual<{where?: string}>();
 		});
 
 		it('object with a geopoint field', async () => {
@@ -107,6 +123,14 @@ describe('object', () => {
 			});
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
+				where?: {
+					_type: 'geopoint';
+					lat?: number;
+					lng?: number;
+					alt?: number;
+				};
+			}>();
+			expectType<typeof output>().toStrictEqual<{
 				where?: {
 					_type: 'geopoint';
 					lat?: number;
@@ -139,6 +163,10 @@ describe('object', () => {
 				count?: number;
 				options?: 1 | 2 | 3 | 4 | 5;
 			}>();
+			expectType<typeof output>().toStrictEqual<{
+				count?: number;
+				options?: 1 | 2 | 3 | 4 | 5;
+			}>();
 		});
 
 		it('object with a reference field', async () => {
@@ -159,6 +187,12 @@ describe('object', () => {
 					_ref: string;
 				};
 			}>();
+			expectType<typeof output>().toStrictEqual<{
+				ref?: {
+					_type: 'reference';
+					_ref: string;
+				};
+			}>();
 		});
 
 		it('object with a slug field', async () => {
@@ -174,6 +208,12 @@ describe('object', () => {
 			});
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
+				sluggySlug?: {
+					_type: 'slug';
+					current?: string;
+				};
+			}>();
+			expectType<typeof output>().toStrictEqual<{
 				sluggySlug?: {
 					_type: 'slug';
 					current?: string;
@@ -201,6 +241,10 @@ describe('object', () => {
 			});
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{text?: string; options?: 'test1' | 'test2'}>();
+			expectType<typeof output>().toStrictEqual<{
+				text?: string;
+				options?: 'test1' | 'test2';
+			}>();
 		});
 
 		it('object with a text field', async () => {
@@ -226,6 +270,10 @@ describe('object', () => {
 				longText?: string;
 				options?: 'logTest1' | 'longTest2';
 			}>();
+			expectType<typeof output>().toStrictEqual<{
+				longText?: string;
+				options?: 'logTest1' | 'longTest2';
+			}>();
 		});
 
 		it('object with a url field', async () => {
@@ -241,6 +289,9 @@ describe('object', () => {
 			});
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
+				uniformResourceLocator?: string;
+			}>();
+			expectType<typeof output>().toStrictEqual<{
 				uniformResourceLocator?: string;
 			}>();
 		});
@@ -273,6 +324,12 @@ describe('object', () => {
 					text?: string;
 				};
 			}>();
+			expectType<typeof output>().toStrictEqual<{
+				doc?: {
+					_type: 'doc';
+					text?: string;
+				};
+			}>();
 		});
 	});
 
@@ -296,6 +353,11 @@ describe('object', () => {
 			});
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
+				nested?: {
+					text?: string;
+				};
+			}>();
+			expectType<typeof output>().toStrictEqual<{
 				nested?: {
 					text?: string;
 				};
@@ -445,6 +507,93 @@ describe('object', () => {
 									level6?: {
 										level7?: {
 											level8?: {
+												level9?: {
+													level10?: {
+														level11?: {
+															level12?: {
+																level13?: {
+																	level14?: {
+																		level15?: {
+																			level16?: {
+																				level17?: {
+																					level18?: {
+																						level19?: {
+																							level20?: {
+																								text?: string;
+																							};
+																						};
+																					};
+																				};
+																			};
+																		};
+																	};
+																};
+															};
+														};
+													};
+												};
+											};
+										};
+									};
+								};
+							};
+						};
+					};
+				};
+			}>();
+			expectType<typeof output>().toStrictEqual<{
+				level1?: {
+					level2?: {
+						level3?: {
+							level4?: {
+								level5?: {
+									level6?: {
+										level7?: {
+											level8?: {
+												level9?: {
+													level10?: {
+														level11?: {
+															level12?: {
+																level13?: {
+																	level14?: {
+																		level15?: {
+																			level16?: {
+																				level17?: {
+																					level18?: {
+																						level19?: {
+																							level20?: {
+																								text?: string;
+																							};
+																						};
+																					};
+																				};
+																			};
+																		};
+																	};
+																};
+															};
+														};
+													};
+												};
+											};
+										};
+									};
+								};
+							};
+						};
+					};
+				};
+			}>();
+			// Find Wally for the missing question mark
+			expectType<typeof output>().not.toStrictEqual<{
+				level1?: {
+					level2?: {
+						level3?: {
+							level4?: {
+								level5?: {
+									level6?: {
+										level7?: {
+											level8: {
 												level9?: {
 													level10?: {
 														level11?: {

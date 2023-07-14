@@ -7,6 +7,7 @@ import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {BlockDef} from 'src/types-schema';
 import type {PortableTextTest} from 'test/schema/primitives/portable-text';
+import {expectType} from 'test/utils';
 
 // Styles
 export const H1 = {title: 'H1', value: 'h1'} as const;
@@ -124,6 +125,7 @@ describe('portable-text', () => {
 		const output = toOutput(sanitySchema);
 
 		expectTypeOf(output).toEqualTypeOf<PortableTextTest>();
+		expectType<typeof output>().toStrictEqual<PortableTextTest>();
 	});
 
 	it('schema with fields', async () => {
@@ -137,5 +139,6 @@ describe('portable-text', () => {
 		const output = toOutput(sanitySchema);
 
 		expectTypeOf(output).toEqualTypeOf<PortableTextTest>();
+		expectType<typeof output>().toStrictEqual<PortableTextTest>();
 	});
 });

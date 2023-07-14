@@ -1,6 +1,7 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import type {ThemeTest} from 'test/schema/primitives/theme';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const theme = () =>
@@ -24,5 +25,6 @@ describe('theme', () => {
 		const output = toOutput(sanitySchema);
 
 		expectTypeOf(output).toEqualTypeOf<ThemeTest>();
+		expectType<typeof output>().toStrictEqual<ThemeTest>();
 	});
 });

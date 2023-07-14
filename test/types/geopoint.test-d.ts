@@ -1,5 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 describe('geopoint', () => {
@@ -10,6 +11,12 @@ describe('geopoint', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			_type: 'geopoint';
+			lat?: number;
+			lng?: number;
+			alt?: number;
+		}>();
+		expectType<typeof output>().toStrictEqual<{
 			_type: 'geopoint';
 			lat?: number;
 			lng?: number;
@@ -45,6 +52,12 @@ describe('geopoint', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			_type: 'geopoint';
+			lat?: number;
+			lng?: number;
+			alt?: number;
+		}>();
+		expectType<typeof output>().toStrictEqual<{
 			_type: 'geopoint';
 			lat?: number;
 			lng?: number;

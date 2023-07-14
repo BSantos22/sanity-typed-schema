@@ -11,6 +11,7 @@ import {
 import {textBlock} from 'test/schema/primitives/text-block.test-d';
 import type {ContactTest} from 'test/schema/page-sections/contact';
 import {describe, expectTypeOf, it} from 'vitest';
+import {expectType} from 'test/utils';
 
 export const contact = () =>
 	fragmentField({
@@ -205,5 +206,8 @@ describe('contact', () => {
 		expectTypeOf(output.forms).toEqualTypeOf<ContactTest['forms']>();
 		expectTypeOf(output.location).toEqualTypeOf<ContactTest['location']>();
 		expectTypeOf(output).toEqualTypeOf<ContactTest>();
+		expectType<typeof output.forms>().toStrictEqual<ContactTest['forms']>();
+		expectType<typeof output.location>().toStrictEqual<ContactTest['location']>();
+		expectType<typeof output>().toStrictEqual<ContactTest>();
 	});
 });

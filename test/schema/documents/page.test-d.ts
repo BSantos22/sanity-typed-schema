@@ -14,6 +14,7 @@ import {contact} from 'test/schema/page-sections/contact.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {PageTest} from 'test/schema/documents/page';
+import {expectType} from 'test/utils';
 
 export const page = () =>
 	fragmentType({
@@ -84,5 +85,11 @@ describe('page', () => {
 		expectTypeOf(output.heading).toEqualTypeOf<PageTest['heading']>();
 		expectTypeOf(output.content).toEqualTypeOf<PageTest['content']>();
 		expectTypeOf(output).toEqualTypeOf<PageTest>();
+		expectType<typeof output._type>().toStrictEqual<PageTest['_type']>();
+		expectType<typeof output.title>().toStrictEqual<PageTest['title']>();
+		expectType<typeof output.slug>().toStrictEqual<PageTest['slug']>();
+		expectType<typeof output.heading>().toStrictEqual<PageTest['heading']>();
+		expectType<typeof output.content>().toStrictEqual<PageTest['content']>();
+		expectType<typeof output>().toStrictEqual<PageTest>();
 	});
 });

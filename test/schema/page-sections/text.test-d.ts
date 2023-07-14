@@ -19,6 +19,7 @@ import {theme} from 'test/schema/primitives/theme.test-d';
 import {toOutput} from 'src/convert';
 import {describe, expectTypeOf, it} from 'vitest';
 import type {TextTest} from 'test/schema/page-sections/text';
+import {expectType} from 'test/utils';
 
 export const text = () =>
 	fragmentField({
@@ -92,5 +93,10 @@ describe('text', () => {
 		expectTypeOf(output.theme).toEqualTypeOf<TextTest['theme']>();
 		expectTypeOf(output.width).toEqualTypeOf<TextTest['width']>();
 		expectTypeOf(output).toEqualTypeOf<TextTest>();
+		expectType<typeof output.align>().toStrictEqual<TextTest['align']>();
+		expectType<typeof output.content>().toStrictEqual<TextTest['content']>();
+		expectType<typeof output.theme>().toStrictEqual<TextTest['theme']>();
+		expectType<typeof output.width>().toStrictEqual<TextTest['width']>();
+		expectType<typeof output>().toStrictEqual<TextTest>();
 	});
 });

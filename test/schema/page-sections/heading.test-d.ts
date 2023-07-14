@@ -12,6 +12,7 @@ import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {HeadingTest} from 'test/schema/page-sections/heading';
+import {expectType} from 'test/utils';
 
 export const heading = () =>
 	fragmentField({
@@ -122,5 +123,6 @@ describe('heading', () => {
 		const output = toOutput(sanitySchema);
 
 		expectTypeOf(output).toEqualTypeOf<HeadingTest>();
+		expectType<typeof output>().toStrictEqual<HeadingTest>();
 	});
 });

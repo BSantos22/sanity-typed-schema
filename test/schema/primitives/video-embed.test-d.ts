@@ -1,6 +1,7 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
 import type {VideoEmbedTest} from 'test/schema/primitives/video-embed';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const videoEmbed = () =>
@@ -35,5 +36,7 @@ describe('video-embed', () => {
 
 		expectTypeOf(output.url).toEqualTypeOf<VideoEmbedTest['url']>();
 		expectTypeOf(output).toEqualTypeOf<VideoEmbedTest>();
+		expectType<typeof output.url>().toStrictEqual<VideoEmbedTest['url']>();
+		expectType<typeof output>().toStrictEqual<VideoEmbedTest>();
 	});
 });

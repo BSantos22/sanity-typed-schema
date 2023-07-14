@@ -4,6 +4,7 @@ import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
 import {toOutput} from 'src/convert';
 import type {TyreSelectTest} from 'test/schema/page-sections/tyre-select';
+import {expectType} from 'test/utils';
 
 export const tyreSelect = () =>
 	fragmentField({
@@ -141,5 +142,15 @@ describe('tyre-select', () => {
 		expectTypeOf(output.title).toEqualTypeOf<TyreSelectTest['title']>();
 		expectTypeOf(output.winterTyreDates).toEqualTypeOf<TyreSelectTest['winterTyreDates']>();
 		expectTypeOf(output).toEqualTypeOf<TyreSelectTest>();
+		expectType<typeof output.description>().toStrictEqual<TyreSelectTest['description']>();
+		expectType<typeof output.image>().toStrictEqual<TyreSelectTest['image']>();
+		expectType<typeof output.summerTyreDates>().toStrictEqual<
+			TyreSelectTest['summerTyreDates']
+		>();
+		expectType<typeof output.title>().toStrictEqual<TyreSelectTest['title']>();
+		expectType<typeof output.winterTyreDates>().toStrictEqual<
+			TyreSelectTest['winterTyreDates']
+		>();
+		expectType<typeof output>().toStrictEqual<TyreSelectTest>();
 	});
 });

@@ -1,7 +1,6 @@
 import type {PortableTextBlock} from '@portabletext/types';
-import type {SetOptional, SetRequired} from 'type-fest';
+import type {SetOptional, SetRequired, Simplify} from 'type-fest';
 
-export type PortableTextTest = ({_type: 'block'} & SetRequired<
-	SetOptional<PortableTextBlock, 'children'>,
-	'_key'
->)[];
+export type PortableTextTest = Simplify<
+	{_type: 'block'} & SetRequired<SetOptional<PortableTextBlock, 'children'>, '_key'>
+>[];

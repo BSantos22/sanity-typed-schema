@@ -3,6 +3,7 @@ import {fragmentField} from 'src/schema';
 import {theme} from 'test/schema/primitives/theme.test-d';
 import type {ArticleListAllTest} from 'test/schema/page-sections/article-list-all';
 import {describe, expectTypeOf, it} from 'vitest';
+import {expectType} from 'test/utils';
 
 export const articleListAll = () =>
 	fragmentField({
@@ -27,5 +28,7 @@ describe('article-list-all', () => {
 
 		expectTypeOf(output.title).toEqualTypeOf<ArticleListAllTest['title']>();
 		expectTypeOf(output).toEqualTypeOf<ArticleListAllTest>();
+		expectType<typeof output.title>().toStrictEqual<ArticleListAllTest['title']>();
+		expectType<typeof output>().toStrictEqual<ArticleListAllTest>();
 	});
 });

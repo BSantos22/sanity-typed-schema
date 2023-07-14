@@ -1,5 +1,6 @@
 import {toOutput} from 'src/convert';
 import {fragmentField} from 'src/schema';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 describe('slug', () => {
@@ -10,6 +11,10 @@ describe('slug', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			_type: 'slug';
+			current?: string;
+		}>();
+		expectType<typeof output>().toStrictEqual<{
 			_type: 'slug';
 			current?: string;
 		}>();
@@ -26,6 +31,10 @@ describe('slug', () => {
 		});
 		const output = toOutput(sanitySchema);
 		expectTypeOf(output).toEqualTypeOf<{
+			_type: 'slug';
+			current?: string;
+		}>();
+		expectType<typeof output>().toStrictEqual<{
 			_type: 'slug';
 			current?: string;
 		}>();

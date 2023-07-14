@@ -1,6 +1,7 @@
 import {toOutput} from 'src/convert';
 import {fragmentField, fragmentType} from 'src/schema';
 import type {ContactFormTest} from 'test/schema/documents/contact-form';
+import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const contactForm = () =>
@@ -49,5 +50,9 @@ describe('contact-form', () => {
 		expectTypeOf(output.data).toEqualTypeOf<ContactFormTest['data']>();
 		expectTypeOf(output.type).toEqualTypeOf<ContactFormTest['type']>();
 		expectTypeOf(output).toEqualTypeOf<ContactFormTest>();
+		expectType<typeof output._type>().toStrictEqual<ContactFormTest['_type']>();
+		expectType<typeof output.data>().toStrictEqual<ContactFormTest['data']>();
+		expectType<typeof output.type>().toStrictEqual<ContactFormTest['type']>();
+		expectType<typeof output>().toStrictEqual<ContactFormTest>();
 	});
 });

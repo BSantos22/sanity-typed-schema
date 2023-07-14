@@ -3,6 +3,7 @@ import {fragmentField} from 'src/schema';
 import {link} from 'test/schema/primitives/link.test-d';
 import type {CallToActionTest} from 'test/schema/primitives/call-to-action';
 import {describe, expectTypeOf, it} from 'vitest';
+import {expectType} from 'test/utils';
 
 export const callToAction = () =>
 	fragmentField({
@@ -42,5 +43,12 @@ describe('call-to-action', () => {
 		expectTypeOf(output.text).toEqualTypeOf<CallToActionTest['text']>();
 		expectTypeOf(output.type).toEqualTypeOf<CallToActionTest['type']>();
 		expectTypeOf(output).toEqualTypeOf<CallToActionTest>();
+		expectType<typeof output.href>().toStrictEqual<CallToActionTest['href']>();
+		expectType<typeof output.query>().toStrictEqual<CallToActionTest['query']>();
+		expectType<typeof output.reference>().toStrictEqual<CallToActionTest['reference']>();
+		expectType<typeof output.targetBlank>().toStrictEqual<CallToActionTest['targetBlank']>();
+		expectType<typeof output.text>().toStrictEqual<CallToActionTest['text']>();
+		expectType<typeof output.type>().toStrictEqual<CallToActionTest['type']>();
+		expectType<typeof output>().toStrictEqual<CallToActionTest>();
 	});
 });
