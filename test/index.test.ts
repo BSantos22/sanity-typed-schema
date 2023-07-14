@@ -1,4 +1,4 @@
-import { main } from 'src';
+import {main} from 'src';
 import {describe, expect, it} from 'vitest';
 
 describe('ts-script-starter', () => {
