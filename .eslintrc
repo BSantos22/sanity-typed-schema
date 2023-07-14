@@ -22,7 +22,8 @@
 		"prettier"
 	],
 	"ignorePatterns": [
-		"node_modules/**/*.*"
+		"node_modules/**/*.*",
+		"dist/**/*.*"
 	],
 	"settings": {
 		"react": {
