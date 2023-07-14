@@ -1,5 +1,5 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {IMAGE, portableText} from 'test/schema/primitives/portable-text.test-d';
 import {
 	BIG_TEXT,
@@ -21,7 +21,7 @@ import {describe, expectTypeOf, it} from 'vitest';
 import {expectType} from 'test/utils';
 
 export const twoColumn = () =>
-	fragmentField({
+	defineField({
 		name: 'twoColumn',
 		title: 'To kolonner',
 		type: 'object',
@@ -38,7 +38,7 @@ export const twoColumn = () =>
 	});
 
 const title = () =>
-	fragmentField({
+	defineField({
 		name: 'title',
 		title: 'Tittel',
 		type: 'string',
@@ -46,7 +46,7 @@ const title = () =>
 	});
 
 const titleInvisible = () =>
-	fragmentField({
+	defineField({
 		name: 'titleInvisible',
 		title: 'Skjul tittel',
 		type: 'boolean',
@@ -55,7 +55,7 @@ const titleInvisible = () =>
 	});
 
 const left = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			styles: [H3, H4, H5, H6, BIG_TEXT, FOOTNOTE],
 			annotations: [LINK],
@@ -68,7 +68,7 @@ const left = () =>
 	});
 
 const right = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			styles: [H3, H4, H5, H6, BIG_TEXT, FOOTNOTE],
 			annotations: [LINK],
@@ -81,7 +81,7 @@ const right = () =>
 	});
 
 const align = () =>
-	fragmentField({
+	defineField({
 		name: 'align',
 		title: 'Innhold justering',
 		type: 'string',

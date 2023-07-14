@@ -1,11 +1,11 @@
 import {toOutput} from 'src/convert';
-import {fragmentField, fragmentType} from 'src/schema';
+import {defineField, defineType} from 'src/schema';
 import type {ContactFormTest} from 'test/schema/documents/contact-form';
 import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const contactForm = () =>
-	fragmentType({
+	defineType({
 		name: 'contactForm',
 		type: 'document',
 		title: 'Kontaktskjema',
@@ -24,7 +24,7 @@ export const contactForm = () =>
 	});
 
 const type = () =>
-	fragmentField({
+	defineField({
 		name: 'type',
 		type: 'string',
 		title: 'Type',
@@ -33,7 +33,7 @@ const type = () =>
 	});
 
 const data = () =>
-	fragmentField({
+	defineField({
 		name: 'data',
 		type: 'string',
 		title: 'Data',

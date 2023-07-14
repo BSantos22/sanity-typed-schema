@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {videoEmbed} from 'test/schema/primitives/video-embed.test-d';
 import {ALT_TEXT, CAPTION, CREDIT, WIDTH, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import {link} from 'test/schema/primitives/link.test-d';
@@ -66,7 +66,7 @@ export type Decorators =
 
 // Custom types
 export const CALL_TO_ACTION = callToAction();
-export const IMAGE = fragmentField({
+export const IMAGE = defineField({
 	...imageWeb({fields: [ALT_TEXT, CREDIT, CAPTION, WIDTH]}),
 	title: 'Bilde',
 });
@@ -105,7 +105,7 @@ export const portableText = <
 		...(args.customTypes ?? []),
 	] as unknown as BlockDef[];
 
-	return fragmentField({
+	return defineField({
 		name: 'portableText',
 		title: 'Portable text',
 		type: 'array',

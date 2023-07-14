@@ -1,5 +1,5 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import type {
 	Annotations,
 	CustomTypes,
@@ -25,7 +25,7 @@ export const textBlock = <
 	decorators: D;
 	customTypes: C;
 }) =>
-	fragmentField({
+	defineField({
 		name: 'textBlock',
 		title: 'Innhold',
 		type: 'object',
@@ -43,14 +43,14 @@ export const textBlock = <
 	});
 
 const annotation = () =>
-	fragmentField({
+	defineField({
 		name: 'annotation',
 		title: 'Annotering',
 		type: 'string',
 	});
 
 const title = () =>
-	fragmentField({
+	defineField({
 		name: 'title',
 		title: 'Tittel',
 		type: 'string',
@@ -69,7 +69,7 @@ const content = <
 	decorators: D;
 	customTypes: C;
 }) =>
-	fragmentField({
+	defineField({
 		...portableText(args),
 		name: 'content',
 		title: 'Innhold',

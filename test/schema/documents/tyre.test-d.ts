@@ -1,5 +1,5 @@
 import {toOutput} from 'src/convert';
-import {fragmentField, fragmentType} from 'src/schema';
+import {defineField, defineType} from 'src/schema';
 import {BULLET, LINK, STRONG, portableText} from 'test/schema/primitives/portable-text.test-d';
 import {NUMBERED} from 'test/schema/primitives/portable-text.test-d';
 import {EMPHASIS} from 'test/schema/primitives/portable-text.test-d';
@@ -8,7 +8,7 @@ import {describe, expectTypeOf, it} from 'vitest';
 import {expectType} from 'test/utils';
 
 export const tyre = () =>
-	fragmentType({
+	defineType({
 		name: 'tyre',
 		type: 'document',
 		title: 'Dekk',
@@ -27,7 +27,7 @@ export const tyre = () =>
 	});
 
 const brand = () =>
-	fragmentField({
+	defineField({
 		name: 'brand',
 		type: 'reference',
 		title: 'Leverandør',
@@ -36,7 +36,7 @@ const brand = () =>
 	});
 
 const model = () =>
-	fragmentField({
+	defineField({
 		name: 'model',
 		type: 'string',
 		title: 'Modell',
@@ -44,7 +44,7 @@ const model = () =>
 	});
 
 const type = () =>
-	fragmentField({
+	defineField({
 		name: 'type',
 		type: 'string',
 		title: 'Type',
@@ -52,7 +52,7 @@ const type = () =>
 	});
 
 const description = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
@@ -65,7 +65,7 @@ const description = () =>
 	});
 
 const variants = () =>
-	fragmentField({
+	defineField({
 		name: 'variants',
 		type: 'array',
 		title: 'Varianter',
@@ -73,7 +73,7 @@ const variants = () =>
 	});
 
 const variant = () =>
-	fragmentField({
+	defineField({
 		name: 'tyreVariant',
 		type: 'object',
 		title: 'Variant',
@@ -107,7 +107,7 @@ const variant = () =>
 	});
 
 const id = () =>
-	fragmentField({
+	defineField({
 		name: 'id',
 		type: 'string',
 		title: 'ID',
@@ -115,7 +115,7 @@ const id = () =>
 	});
 
 const season = () =>
-	fragmentField({
+	defineField({
 		name: 'season',
 		type: 'string',
 		title: 'Sesong',
@@ -129,7 +129,7 @@ const season = () =>
 	});
 
 const spiked = () =>
-	fragmentField({
+	defineField({
 		name: 'spiked',
 		type: 'string',
 		title: 'Pigg eller piggfritt',
@@ -144,7 +144,7 @@ const spiked = () =>
 	});
 
 const dimensions = () =>
-	fragmentField({
+	defineField({
 		name: 'dimensions',
 		type: 'object',
 		title: 'Dimensjoner',
@@ -152,7 +152,7 @@ const dimensions = () =>
 	});
 
 const width = () =>
-	fragmentField({
+	defineField({
 		name: 'width',
 		type: 'number',
 		title: 'Bredde',
@@ -160,7 +160,7 @@ const width = () =>
 	});
 
 const profile = () =>
-	fragmentField({
+	defineField({
 		name: 'profile',
 		type: 'number',
 		title: 'Profil',
@@ -168,7 +168,7 @@ const profile = () =>
 	});
 
 const diameter = () =>
-	fragmentField({
+	defineField({
 		name: 'diameter',
 		type: 'number',
 		title: 'Diameter',
@@ -176,7 +176,7 @@ const diameter = () =>
 	});
 
 const inStock = () =>
-	fragmentField({
+	defineField({
 		name: 'inStock',
 		type: 'boolean',
 		title: 'På lager',
@@ -184,7 +184,7 @@ const inStock = () =>
 	});
 
 const price = () =>
-	fragmentField({
+	defineField({
 		name: 'price',
 		type: 'number',
 		title: 'Pris',
@@ -192,7 +192,7 @@ const price = () =>
 	});
 
 const speedIndex = () =>
-	fragmentField({
+	defineField({
 		name: 'speedIndex',
 		type: 'string',
 		title: 'Hastighetsindeks',
@@ -200,7 +200,7 @@ const speedIndex = () =>
 	});
 
 const loadIndex = () =>
-	fragmentField({
+	defineField({
 		name: 'loadIndex',
 		type: 'number',
 		title: 'Lastindeks',
@@ -208,14 +208,14 @@ const loadIndex = () =>
 	});
 
 const campaignDiscount = () =>
-	fragmentField({
+	defineField({
 		name: 'campaignDiscount',
 		type: 'number',
 		title: 'Kampanjerabatt',
 	});
 
 const active = () =>
-	fragmentField({
+	defineField({
 		name: 'active',
 		type: 'boolean',
 		title: 'Aktiv',

@@ -1,11 +1,11 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import type {LinkTest} from 'test/schema/primitives/link';
 import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const link = () => {
-	return fragmentField({
+	return defineField({
 		title: 'Lenke',
 		name: 'link',
 		type: 'object',
@@ -24,7 +24,7 @@ export const link = () => {
 };
 
 const type = () =>
-	fragmentField({
+	defineField({
 		name: 'type',
 		title: 'Type',
 		type: 'string',
@@ -39,7 +39,7 @@ const type = () =>
 	});
 
 const reference = () =>
-	fragmentField({
+	defineField({
 		name: 'reference',
 		title: 'Intern lenke',
 		type: 'reference',
@@ -48,7 +48,7 @@ const reference = () =>
 	});
 
 const query = () =>
-	fragmentField({
+	defineField({
 		name: 'query',
 		title: 'Query',
 		type: 'string',
@@ -56,7 +56,7 @@ const query = () =>
 	});
 
 const href = () =>
-	fragmentField({
+	defineField({
 		name: 'href',
 		title: 'URL',
 		type: 'url',
@@ -69,7 +69,7 @@ const href = () =>
 	});
 
 const targetBlank = () =>
-	fragmentField({
+	defineField({
 		name: 'targetBlank',
 		title: 'Åpne i nytt pane',
 		type: 'boolean',

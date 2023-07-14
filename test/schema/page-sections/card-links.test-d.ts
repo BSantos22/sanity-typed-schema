@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {link} from 'test/schema/primitives/link.test-d';
 import {EMPHASIS, STRONG, portableText} from 'test/schema/primitives/portable-text.test-d';
 import {icon} from 'test/schema/primitives/icon.test-d';
@@ -8,7 +8,7 @@ import type {CardLinksTest} from 'test/schema/page-sections/card-links';
 import {expectType} from 'test/utils';
 
 export const cardLinks = () =>
-	fragmentField({
+	defineField({
 		name: 'cardLinks',
 		title: 'Card lenker',
 		type: 'object',
@@ -21,7 +21,7 @@ export const cardLinks = () =>
 	});
 
 const cards = () =>
-	fragmentField({
+	defineField({
 		name: 'links',
 		title: 'Lenker',
 		type: 'array',
@@ -30,7 +30,7 @@ const cards = () =>
 	});
 
 const card = () =>
-	fragmentField({
+	defineField({
 		name: 'link',
 		title: 'Lenke',
 		type: 'object',
@@ -48,13 +48,13 @@ const card = () =>
 	});
 
 const mainIcon = () =>
-	fragmentField({
+	defineField({
 		...icon(),
 		validation: (Rule) => Rule.required(),
 	});
 
 const title = () =>
-	fragmentField({
+	defineField({
 		name: 'title',
 		title: 'Tittel',
 		type: 'string',
@@ -62,7 +62,7 @@ const title = () =>
 	});
 
 const content = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			decorators: [EMPHASIS, STRONG],
 			styles: [],
@@ -75,7 +75,7 @@ const content = () =>
 	});
 
 const supplier = () =>
-	fragmentField({
+	defineField({
 		name: 'supplier',
 		title: 'Leverandør',
 		type: 'reference',

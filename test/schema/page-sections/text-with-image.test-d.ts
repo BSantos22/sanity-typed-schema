@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {textBlock} from 'test/schema/primitives/text-block.test-d';
 import {imageWeb, ALT_TEXT} from 'test/schema/primitives/image-web.test-d';
 import {
@@ -24,7 +24,7 @@ import type {TextWithImageTest} from 'test/schema/page-sections/text-with-image'
 import {expectType} from 'test/utils';
 
 export const textWithImage = () =>
-	fragmentField({
+	defineField({
 		name: 'textWithImage',
 		title: 'Tekst med bilde',
 		type: 'object',
@@ -42,14 +42,14 @@ export const textWithImage = () =>
 	});
 
 const backgroundIcon = () =>
-	fragmentField({
+	defineField({
 		...icon(),
 		name: 'backgroundIcon',
 		title: 'Bakgrunnsikon',
 	});
 
 const content = () =>
-	fragmentField({
+	defineField({
 		...textBlock({
 			styles: [H2, H3, H4, H5, H6, BIG_TEXT, FOOTNOTE],
 			annotations: [LINK],
@@ -62,13 +62,13 @@ const content = () =>
 	});
 
 const image = () =>
-	fragmentField({
+	defineField({
 		...imageWeb({fields: [ALT_TEXT]}),
 		validation: (Rule) => Rule.required(),
 	});
 
 const imageSide = () =>
-	fragmentField({
+	defineField({
 		name: 'imageSide',
 		title: 'Bilde side',
 		type: 'string',

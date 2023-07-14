@@ -1,12 +1,12 @@
 import {toOutput} from 'src/convert';
-import {fragmentField, fragmentType} from 'src/schema';
+import {defineField, defineType} from 'src/schema';
 import {imageWeb} from 'test/schema/primitives/image-web.test-d';
 import type {SupplierTest} from 'test/schema/documents/supplier';
 import {describe, expectTypeOf, it} from 'vitest';
 import {expectType} from 'test/utils';
 
 export const supplier = () =>
-	fragmentType({
+	defineType({
 		name: 'supplier',
 		type: 'document',
 		title: 'Leverandør',
@@ -22,7 +22,7 @@ export const supplier = () =>
 	});
 
 const name = () =>
-	fragmentField({
+	defineField({
 		name: 'name',
 		type: 'string',
 		title: 'Navn',
@@ -30,7 +30,7 @@ const name = () =>
 	});
 
 const id = () =>
-	fragmentField({
+	defineField({
 		name: 'id',
 		type: 'string',
 		title: 'ID',
@@ -38,7 +38,7 @@ const id = () =>
 	});
 
 const logo = () =>
-	fragmentField({
+	defineField({
 		...imageWeb({fields: []}),
 		name: 'logo',
 		title: 'Logo',

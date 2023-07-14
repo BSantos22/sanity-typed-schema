@@ -1,11 +1,11 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import type {LicensePlateTest} from 'test/schema/page-sections/license-plate';
 import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const licensePlate = () =>
-	fragmentField({
+	defineField({
 		name: 'licensePlate',
 		title: 'Nummerplater',
 		type: 'object',
@@ -22,7 +22,7 @@ export const licensePlate = () =>
 	});
 
 const title = () =>
-	fragmentField({
+	defineField({
 		name: 'title',
 		title: 'Tittel',
 		type: 'string',
@@ -30,7 +30,7 @@ const title = () =>
 	});
 
 const label = () =>
-	fragmentField({
+	defineField({
 		name: 'label',
 		title: 'Label',
 		type: 'string',

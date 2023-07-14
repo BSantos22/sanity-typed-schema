@@ -1,12 +1,12 @@
 import {toOutput} from 'src/convert';
-import {fragmentField, fragmentType} from 'src/schema';
+import {defineField, defineType} from 'src/schema';
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import type {SiteSettingsTest} from 'test/schema/documents/site-settings';
 import {describe, expectTypeOf, it} from 'vitest';
 import {expectType} from 'test/utils';
 
 export const siteSettings = () =>
-	fragmentType({
+	defineType({
 		name: 'siteSettings',
 		type: 'document',
 		title: 'Instillinger for nettstedet',
@@ -19,7 +19,7 @@ export const siteSettings = () =>
 	});
 
 const title = () =>
-	fragmentField({
+	defineField({
 		name: 'title',
 		type: 'string',
 		title: 'Nettstedsnavn',
@@ -27,7 +27,7 @@ const title = () =>
 	});
 
 const frontPage = () =>
-	fragmentField({
+	defineField({
 		name: 'frontPage',
 		type: 'reference',
 		title: 'Forside',
@@ -36,7 +36,7 @@ const frontPage = () =>
 	});
 
 const headerLinks = () =>
-	fragmentField({
+	defineField({
 		name: 'headerLinks',
 		type: 'array',
 		title: 'Header-lenker',
@@ -45,7 +45,7 @@ const headerLinks = () =>
 	});
 
 const meta = () =>
-	fragmentField({
+	defineField({
 		name: 'meta',
 		type: 'object',
 		title: 'Meta-informasjon',
@@ -53,20 +53,20 @@ const meta = () =>
 	});
 
 const metaDescription = () =>
-	fragmentField({
+	defineField({
 		name: 'description',
 		type: 'string',
 		title: 'Beskrivelse',
 	});
 
 const metaImage = () =>
-	fragmentField({
+	defineField({
 		...imageWeb({fields: []}),
 		title: 'Meta-bilde',
 	});
 
 const organization = () =>
-	fragmentField({
+	defineField({
 		name: 'organization',
 		type: 'object',
 		title: 'Organisasjon',
@@ -79,7 +79,7 @@ const organization = () =>
 	});
 
 const organizationName = () =>
-	fragmentField({
+	defineField({
 		name: 'name',
 		type: 'string',
 		title: 'Navn',
@@ -87,7 +87,7 @@ const organizationName = () =>
 	});
 
 const organizationNumber = () =>
-	fragmentField({
+	defineField({
 		name: 'number',
 		type: 'string',
 		title: 'Nummer',
@@ -95,7 +95,7 @@ const organizationNumber = () =>
 	});
 
 const organizationLogo = () =>
-	fragmentField({
+	defineField({
 		...imageWeb({fields: [ALT_TEXT]}),
 		name: 'logo',
 		title: 'Logo',
@@ -103,7 +103,7 @@ const organizationLogo = () =>
 	});
 
 const organizationCreditWorthiness = () =>
-	fragmentField({
+	defineField({
 		...imageWeb({fields: [ALT_TEXT]}),
 		name: 'creditWorthiness',
 		title: 'Kredittverdihet',
@@ -111,7 +111,7 @@ const organizationCreditWorthiness = () =>
 	});
 
 const contactInfo = () =>
-	fragmentField({
+	defineField({
 		name: 'contactInfo',
 		type: 'object',
 		title: 'Kontaktinformasjon',
@@ -119,7 +119,7 @@ const contactInfo = () =>
 	});
 
 const address = () =>
-	fragmentField({
+	defineField({
 		name: 'address',
 		type: 'string',
 		title: 'Adresse',
@@ -127,7 +127,7 @@ const address = () =>
 	});
 
 const postalCode = () =>
-	fragmentField({
+	defineField({
 		name: 'postalCode',
 		type: 'string',
 		title: 'Postnummer',
@@ -135,7 +135,7 @@ const postalCode = () =>
 	});
 
 const city = () =>
-	fragmentField({
+	defineField({
 		name: 'city',
 		type: 'string',
 		title: 'Poststed',
@@ -143,7 +143,7 @@ const city = () =>
 	});
 
 const phone = () =>
-	fragmentField({
+	defineField({
 		name: 'phone',
 		type: 'string',
 		title: 'Telefon',
@@ -151,7 +151,7 @@ const phone = () =>
 	});
 
 const fax = () =>
-	fragmentField({
+	defineField({
 		name: 'fax',
 		type: 'string',
 		title: 'Fax',
@@ -159,7 +159,7 @@ const fax = () =>
 	});
 
 const email = () =>
-	fragmentField({
+	defineField({
 		name: 'email',
 		type: 'string',
 		title: 'E-post',
@@ -167,7 +167,7 @@ const email = () =>
 	});
 
 const openingHours = () =>
-	fragmentField({
+	defineField({
 		name: 'openingHours',
 		type: 'string',
 		title: 'Åpningstider',

@@ -1,11 +1,11 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 describe('string', () => {
 	it('base schema', async () => {
-		const sanitySchema = fragmentField({
+		const sanitySchema = defineField({
 			name: 'test',
 			type: 'string',
 		});
@@ -15,7 +15,7 @@ describe('string', () => {
 	});
 
 	it('schema with object options', async () => {
-		const sanitySchema = fragmentField({
+		const sanitySchema = defineField({
 			name: 'test',
 			type: 'string',
 			options: {
@@ -28,7 +28,7 @@ describe('string', () => {
 	});
 
 	it('schema with value options', async () => {
-		const sanitySchema = fragmentField({
+		const sanitySchema = defineField({
 			name: 'test',
 			type: 'string',
 			options: {

@@ -1,4 +1,4 @@
-import {fragmentField, fragmentType} from 'src/schema';
+import {defineField, defineType} from 'src/schema';
 import {
 	BULLET,
 	CALL_TO_ACTION,
@@ -22,7 +22,7 @@ import type {ArticleTest} from 'test/schema/documents/article';
 import {expectType} from 'test/utils';
 
 export const article = () =>
-	fragmentType({
+	defineType({
 		name: 'article',
 		type: 'document',
 		title: 'Artikkel',
@@ -38,7 +38,7 @@ export const article = () =>
 	});
 
 const title = () =>
-	fragmentField({
+	defineField({
 		name: 'title',
 		type: 'string',
 		title: 'Tittel',
@@ -46,7 +46,7 @@ const title = () =>
 	});
 
 const slug = () =>
-	fragmentField({
+	defineField({
 		name: 'slug',
 		type: 'slug',
 		title: 'Slug',
@@ -59,7 +59,7 @@ const slug = () =>
 const image = () => imageWeb({fields: [ALT_TEXT]});
 
 const content = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			annotations: [LINK],
 			styles: [H2, H3, H4, H5, H6],

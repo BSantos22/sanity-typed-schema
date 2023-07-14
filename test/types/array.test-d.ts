@@ -4,14 +4,14 @@ import type {
 	PortableTextSpan,
 } from '@portabletext/types';
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 describe('array', () => {
 	describe('block', () => {
 		it('block array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'block'}],
@@ -47,7 +47,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'block'}],
@@ -66,7 +66,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'block'}],
@@ -88,7 +88,7 @@ describe('array', () => {
 
 	describe('boolean', () => {
 		it('boolean array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'boolean'}],
@@ -99,7 +99,7 @@ describe('array', () => {
 		});
 
 		it('boolean array with value options', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'boolean',
 				type: 'array',
 				of: [{type: 'boolean'}],
@@ -113,7 +113,7 @@ describe('array', () => {
 		});
 
 		it('boolean array with object options', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'boolean',
 				type: 'array',
 				of: [{type: 'boolean'}],
@@ -134,7 +134,7 @@ describe('array', () => {
 
 	describe('date', () => {
 		it('date array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'date'}],
@@ -150,7 +150,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'date'}],
@@ -169,7 +169,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'date'}],
@@ -191,7 +191,7 @@ describe('array', () => {
 
 	describe('datetime', () => {
 		it('datetime array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'datetime'}],
@@ -207,7 +207,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'datetime'}],
@@ -226,7 +226,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'datetime'}],
@@ -250,7 +250,7 @@ describe('array', () => {
 		it('object with a document field', async () => {
 			// Is this a thing?
 			// I feel like this shouldn't be a thing, but it works
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [
@@ -286,7 +286,7 @@ describe('array', () => {
 
 	describe('email', () => {
 		it('email array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'email'}],
@@ -302,7 +302,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'email'}],
@@ -321,7 +321,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'email'}],
@@ -343,7 +343,7 @@ describe('array', () => {
 
 	describe('file', () => {
 		it('file array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'pdf',
 				type: 'array',
 				of: [{type: 'file'}],
@@ -372,7 +372,7 @@ describe('array', () => {
 		});
 
 		it('file array with fields', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'pdfs',
 				type: 'array',
 				of: [
@@ -420,7 +420,7 @@ describe('array', () => {
 		});
 
 		it('file with complex fields', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'pdfs',
 				type: 'array',
 				of: [
@@ -575,7 +575,7 @@ describe('array', () => {
 
 	describe('geopoint', () => {
 		it('geopoint array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'geopoint'}],
@@ -607,7 +607,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'geopoint'}],
@@ -626,7 +626,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'geopoint'}],
@@ -648,7 +648,7 @@ describe('array', () => {
 
 	describe('image', () => {
 		it('image array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'photos',
 				type: 'array',
 				of: [
@@ -682,7 +682,7 @@ describe('array', () => {
 		});
 
 		it('image array without name', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'photos',
 				type: 'array',
 				of: [
@@ -715,7 +715,7 @@ describe('array', () => {
 		});
 
 		it('image with hotspot', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'photos',
 				type: 'array',
 				of: [
@@ -780,7 +780,7 @@ describe('array', () => {
 		});
 
 		it('image with fields', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'photos',
 				type: 'array',
 				of: [
@@ -828,7 +828,7 @@ describe('array', () => {
 		});
 
 		it('image with hotspot and fields', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'photos',
 				type: 'array',
 				of: [
@@ -907,7 +907,7 @@ describe('array', () => {
 		});
 
 		it('basic with hotspot and complex fields', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'photos',
 				type: 'array',
 				of: [
@@ -1105,7 +1105,7 @@ describe('array', () => {
 
 	describe('number', () => {
 		it('number array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'number',
 				type: 'array',
 				of: [{type: 'number'}],
@@ -1116,7 +1116,7 @@ describe('array', () => {
 		});
 
 		it('number array with value options', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'number',
 				type: 'array',
 				of: [{type: 'number'}],
@@ -1130,7 +1130,7 @@ describe('array', () => {
 		});
 
 		it('number array with object options', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'number',
 				type: 'array',
 				of: [{type: 'number'}],
@@ -1159,7 +1159,7 @@ describe('array', () => {
 
 	describe('object', () => {
 		it('array of nested objects', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [
@@ -1193,7 +1193,7 @@ describe('array', () => {
 		});
 
 		it('array of nested objects without a name', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [
@@ -1226,7 +1226,7 @@ describe('array', () => {
 		it('object with 20 levels of nesting', async () => {
 			// Maybe 20 is overkill to test this, but it works
 			// Good luck to whoever has to deal with 20 levels of nesting
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [
@@ -1498,7 +1498,7 @@ describe('array', () => {
 
 	describe('reference', () => {
 		it('reference array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'reference'}],
@@ -1526,7 +1526,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'reference'}],
@@ -1545,7 +1545,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'reference'}],
@@ -1567,7 +1567,7 @@ describe('array', () => {
 
 	describe('slug', () => {
 		it('slug array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'slug'}],
@@ -1595,7 +1595,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'slug'}],
@@ -1614,7 +1614,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'slug'}],
@@ -1636,7 +1636,7 @@ describe('array', () => {
 
 	describe('string', () => {
 		it('string array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'string',
 				type: 'array',
 				of: [{type: 'string'}],
@@ -1647,7 +1647,7 @@ describe('array', () => {
 		});
 
 		it('string array with value options', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'string',
 				type: 'array',
 				of: [{type: 'string'}],
@@ -1661,7 +1661,7 @@ describe('array', () => {
 		});
 
 		it('string array with object options', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'string',
 				type: 'array',
 				of: [{type: 'string'}],
@@ -1690,7 +1690,7 @@ describe('array', () => {
 
 	describe('text', () => {
 		it('text array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'text'}],
@@ -1701,7 +1701,7 @@ describe('array', () => {
 		});
 
 		it('text array with value options', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'text'}],
@@ -1715,7 +1715,7 @@ describe('array', () => {
 		});
 
 		it('text array with object options', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'text'}],
@@ -1737,7 +1737,7 @@ describe('array', () => {
 
 	describe('url', () => {
 		it('url array', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'url'}],
@@ -1753,7 +1753,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'url'}],
@@ -1772,7 +1772,7 @@ describe('array', () => {
 			// But this is how it should probably work.
 			// This is ok behaviour because the value is always going to be [],
 			// which fulfills the type requirements of ('logTest1' | 'longTest2')[]
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'array',
 				of: [{type: 'url'}],
@@ -1794,7 +1794,7 @@ describe('array', () => {
 
 	describe('mixed primitive types', () => {
 		it('array of multiple primitive fields', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'string',
 				type: 'array',
 				of: [{type: 'string'}, {type: 'number'}, {type: 'boolean'}, {type: 'date'}],
@@ -1805,7 +1805,7 @@ describe('array', () => {
 		});
 
 		it('array of multiple primitive fields with value options', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'string',
 				type: 'array',
 				of: [{type: 'string'}, {type: 'number'}, {type: 'boolean'}, {type: 'date'}],
@@ -1823,7 +1823,7 @@ describe('array', () => {
 		});
 
 		it('array of multiple primitive fields with object options', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'string',
 				type: 'array',
 				of: [{type: 'string'}, {type: 'number'}, {type: 'boolean'}, {type: 'date'}],
@@ -1878,7 +1878,7 @@ describe('array', () => {
 	describe('mixed complex types', () => {
 		it('array of files, images and a custom type', async () => {
 			it('file array with fields', async () => {
-				const sanitySchema = fragmentField({
+				const sanitySchema = defineField({
 					name: 'attachments',
 					type: 'array',
 					of: [

@@ -4,14 +4,14 @@ import type {
 	PortableTextSpan,
 } from '@portabletext/types';
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 describe('object', () => {
 	describe('simple types', () => {
 		it('object with a block field', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -47,7 +47,7 @@ describe('object', () => {
 		});
 
 		it('object with a boolean field', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -63,7 +63,7 @@ describe('object', () => {
 		});
 
 		it('object with a date field', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -79,7 +79,7 @@ describe('object', () => {
 		});
 
 		it('object with a datetime field', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -95,7 +95,7 @@ describe('object', () => {
 		});
 
 		it('object with an email field', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -111,7 +111,7 @@ describe('object', () => {
 		});
 
 		it('object with a geopoint field', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -141,7 +141,7 @@ describe('object', () => {
 		});
 
 		it('object with a number field', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -170,7 +170,7 @@ describe('object', () => {
 		});
 
 		it('object with a reference field', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -196,7 +196,7 @@ describe('object', () => {
 		});
 
 		it('object with a slug field', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -222,7 +222,7 @@ describe('object', () => {
 		});
 
 		it('object with a string field', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -248,7 +248,7 @@ describe('object', () => {
 		});
 
 		it('object with a text field', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -277,7 +277,7 @@ describe('object', () => {
 		});
 
 		it('object with a url field', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -301,7 +301,7 @@ describe('object', () => {
 		it('object with a document field', async () => {
 			// Is this a thing?
 			// I feel like this shouldn't be a thing, but it works
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -335,7 +335,7 @@ describe('object', () => {
 
 	describe('nested objects', () => {
 		it('object with a nested object field', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -367,7 +367,7 @@ describe('object', () => {
 		it('object with 20 levels of nesting', async () => {
 			// Maybe 20 is overkill to test this, but it works
 			// Good luck to whoever has to deal with 20 levels of nesting
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -633,7 +633,7 @@ describe('object', () => {
 
 	describe('array', () => {
 		it('object with an array of strings', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -654,7 +654,7 @@ describe('object', () => {
 		});
 
 		it('object with an array of objects', async () => {
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [
@@ -692,7 +692,7 @@ describe('object', () => {
 
 		it('multiple levels of nesting between array and object', async () => {
 			// This is a bit of a silly example, but it works
-			const sanitySchema = fragmentField({
+			const sanitySchema = defineField({
 				name: 'test',
 				type: 'object',
 				fields: [

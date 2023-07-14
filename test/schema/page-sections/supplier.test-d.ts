@@ -1,5 +1,5 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {
 	BULLET,
 	CALL_TO_ACTION,
@@ -15,7 +15,7 @@ import {describe, expectTypeOf, it} from 'vitest';
 import {expectType} from 'test/utils';
 
 export const supplierSection = () =>
-	fragmentField({
+	defineField({
 		name: 'supplierSection',
 		title: 'Leverandør',
 		type: 'object',
@@ -32,7 +32,7 @@ export const supplierSection = () =>
 	});
 
 const supplier = () =>
-	fragmentField({
+	defineField({
 		name: 'supplier',
 		title: 'Leverandør',
 		type: 'reference',
@@ -41,7 +41,7 @@ const supplier = () =>
 	});
 
 const content = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			annotations: [LINK],
 			lists: [BULLET, NUMBERED],

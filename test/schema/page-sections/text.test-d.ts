@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {textBlock} from 'test/schema/primitives/text-block.test-d';
 import {
 	BIG_TEXT,
@@ -22,7 +22,7 @@ import type {TextTest} from 'test/schema/page-sections/text';
 import {expectType} from 'test/utils';
 
 export const text = () =>
-	fragmentField({
+	defineField({
 		name: 'textSection',
 		title: 'Tekst',
 		type: 'object',
@@ -40,7 +40,7 @@ export const text = () =>
 	});
 
 const align = () =>
-	fragmentField({
+	defineField({
 		name: 'align',
 		title: 'Justering',
 		type: 'string',
@@ -56,7 +56,7 @@ const align = () =>
 	});
 
 const width = () =>
-	fragmentField({
+	defineField({
 		name: 'width',
 		title: 'Bredde',
 		type: 'string',
@@ -72,7 +72,7 @@ const width = () =>
 	});
 
 const content = () =>
-	fragmentField({
+	defineField({
 		...textBlock({
 			styles: [H3, H4, H5, H6, BIG_TEXT, FOOTNOTE],
 			annotations: [LINK],

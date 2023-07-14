@@ -1,11 +1,11 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import type {VideoEmbedTest} from 'test/schema/primitives/video-embed';
 import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const videoEmbed = () =>
-	fragmentField({
+	defineField({
 		title: 'Video',
 		name: 'video',
 		type: 'object',
@@ -22,7 +22,7 @@ export const videoEmbed = () =>
 	});
 
 const url = () =>
-	fragmentField({
+	defineField({
 		name: 'url',
 		type: 'url',
 		title: 'Video URL',

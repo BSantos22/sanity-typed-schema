@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {textBlock} from 'test/schema/primitives/text-block.test-d';
 import {
 	BIG_TEXT,
@@ -19,7 +19,7 @@ import type {ServicesTest} from 'test/schema/page-sections/services';
 import {expectType} from 'test/utils';
 
 export const services = () =>
-	fragmentField({
+	defineField({
 		name: 'services',
 		title: 'Tjenester',
 		type: 'object',

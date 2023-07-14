@@ -1,11 +1,11 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import type {ThemeTest} from 'test/schema/primitives/theme';
 import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const theme = () =>
-	fragmentField({
+	defineField({
 		title: 'Tema',
 		name: 'theme',
 		type: 'string',

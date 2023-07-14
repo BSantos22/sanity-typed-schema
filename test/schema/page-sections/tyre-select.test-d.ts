@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {EMPHASIS, LINK, STRONG, portableText} from 'test/schema/primitives/portable-text.test-d';
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import {describe, expectTypeOf, it} from 'vitest';
@@ -7,7 +7,7 @@ import type {TyreSelectTest} from 'test/schema/page-sections/tyre-select';
 import {expectType} from 'test/utils';
 
 export const tyreSelect = () =>
-	fragmentField({
+	defineField({
 		name: 'tyreSelect',
 		title: 'Dekkvalg',
 		type: 'object',
@@ -20,7 +20,7 @@ export const tyreSelect = () =>
 	});
 
 const title = () =>
-	fragmentField({
+	defineField({
 		name: 'title',
 		title: 'Tittel',
 		type: 'string',
@@ -28,7 +28,7 @@ const title = () =>
 	});
 
 const summerTyreDates = () =>
-	fragmentField({
+	defineField({
 		name: 'summerTyreDates',
 		title: 'Datoperiode for sommerdekk',
 		type: 'object',
@@ -36,7 +36,7 @@ const summerTyreDates = () =>
 	});
 
 const summerTyreStartDate = () =>
-	fragmentField({
+	defineField({
 		name: 'start',
 		title: 'Startdato for sommerdekk',
 		type: 'object',
@@ -44,7 +44,7 @@ const summerTyreStartDate = () =>
 	});
 
 const summerTyreEndDate = () =>
-	fragmentField({
+	defineField({
 		name: 'end',
 		title: 'Sluttdato for sommerdekk',
 		type: 'object',
@@ -52,7 +52,7 @@ const summerTyreEndDate = () =>
 	});
 
 const winterTyreDates = () =>
-	fragmentField({
+	defineField({
 		name: 'winterTyreDates',
 		title: 'Datoperiode for vinsterdekk',
 		type: 'object',
@@ -60,7 +60,7 @@ const winterTyreDates = () =>
 	});
 
 const winterTyreStartDate = () =>
-	fragmentField({
+	defineField({
 		name: 'start',
 		title: 'Startdato for vinterdekk',
 		type: 'object',
@@ -68,7 +68,7 @@ const winterTyreStartDate = () =>
 	});
 
 const winterTyreEndDate = () =>
-	fragmentField({
+	defineField({
 		name: 'end',
 		title: 'Sluttdato for vinterdekk',
 		type: 'object',
@@ -76,7 +76,7 @@ const winterTyreEndDate = () =>
 	});
 
 const tyreMonth = () =>
-	fragmentField({
+	defineField({
 		name: 'month',
 		title: 'Måned',
 		type: 'number',
@@ -84,7 +84,7 @@ const tyreMonth = () =>
 	});
 
 const tyreDay = () =>
-	fragmentField({
+	defineField({
 		name: 'day',
 		title: 'Dag',
 		type: 'number',
@@ -92,7 +92,7 @@ const tyreDay = () =>
 	});
 
 const description = () =>
-	fragmentField({
+	defineField({
 		name: 'description',
 		title: 'Beskrivelse',
 		type: 'object',
@@ -100,7 +100,7 @@ const description = () =>
 	});
 
 const descriptionUnselected = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
@@ -113,7 +113,7 @@ const descriptionUnselected = () =>
 	});
 
 const descriptionSelected = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
@@ -126,7 +126,7 @@ const descriptionSelected = () =>
 	});
 
 const image = () =>
-	fragmentField({
+	defineField({
 		...imageWeb({fields: [ALT_TEXT]}),
 		title: 'Dekkbilde',
 	});

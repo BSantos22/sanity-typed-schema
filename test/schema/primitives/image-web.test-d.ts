@@ -1,5 +1,5 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import type {
 	ImageWebTestAll,
 	ImageWebTestAltTextCaption,
@@ -16,7 +16,7 @@ export const WIDTH = {name: 'width', title: 'Bredde', type: 'number'} as const;
 type Field = typeof ALT_TEXT | typeof CAPTION | typeof CREDIT | typeof WIDTH;
 
 export const imageWeb = <const F extends readonly Field[]>(args: {fields: F}) => {
-	return fragmentField({
+	return defineField({
 		name: 'image',
 		title: 'Bilde',
 		type: 'image',

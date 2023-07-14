@@ -17,7 +17,7 @@ import type {
  * but with the addition of `const` to narrow the type.
  */
 
-export function fragmentType<
+export function defineType<
 	TType extends string | IntrinsicTypeName,
 	TName extends string,
 	TSelect extends Record<string, string> | undefined,
@@ -34,7 +34,7 @@ export function fragmentType<
 	return schemaDefinition;
 }
 
-export function fragmentField<
+export function defineField<
 	TType extends string | IntrinsicTypeName,
 	TName extends string,
 	TSelect extends Record<string, string> | undefined,
@@ -52,7 +52,7 @@ export function fragmentField<
 	return schemaField;
 }
 
-export function fragmentArrayMember<
+export function defineArrayMember<
 	TType extends string | IntrinsicTypeName,
 	TName extends string,
 	TSelect extends Record<string, string> | undefined,

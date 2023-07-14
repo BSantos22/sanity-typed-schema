@@ -1,4 +1,4 @@
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {
 	BIG_TEXT,
 	CALL_TO_ACTION,
@@ -15,7 +15,7 @@ import type {HeadingTest} from 'test/schema/page-sections/heading';
 import {expectType} from 'test/utils';
 
 export const heading = () =>
-	fragmentField({
+	defineField({
 		name: 'heading',
 		title: 'Heading',
 		type: 'array',
@@ -24,7 +24,7 @@ export const heading = () =>
 	});
 
 const textHeading = () =>
-	fragmentField({
+	defineField({
 		name: 'textHeading',
 		title: 'Tekst Heading',
 		type: 'object',
@@ -41,7 +41,7 @@ const textHeading = () =>
 	});
 
 const textHeadingTitle = () =>
-	fragmentField({
+	defineField({
 		name: 'title',
 		title: 'Tittel',
 		type: 'string',
@@ -49,14 +49,14 @@ const textHeadingTitle = () =>
 	});
 
 const textHeadingBackgroundImage = () =>
-	fragmentField({
+	defineField({
 		...imageWeb({fields: []}),
 		name: 'backgroundImage',
 		title: 'Bakgrunnsbilde',
 	});
 
 const hero = () =>
-	fragmentField({
+	defineField({
 		name: 'hero',
 		title: 'Hero',
 		type: 'object',
@@ -79,7 +79,7 @@ const hero = () =>
 	});
 
 const heroTitle = () =>
-	fragmentField({
+	defineField({
 		name: 'title',
 		title: 'Tittel',
 		type: 'string',
@@ -87,7 +87,7 @@ const heroTitle = () =>
 	});
 
 const heroMainImage = () =>
-	fragmentField({
+	defineField({
 		...imageWeb({fields: [ALT_TEXT]}),
 		name: 'mainImage',
 		title: 'Hovedbilde',
@@ -96,7 +96,7 @@ const heroMainImage = () =>
 	});
 
 const heroBackgroundImage = () =>
-	fragmentField({
+	defineField({
 		...imageWeb({fields: []}),
 		name: 'backgroundImage',
 		title: 'Bakgrunnsbilde',
@@ -105,7 +105,7 @@ const heroBackgroundImage = () =>
 	});
 
 const heroContent = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			styles: [BIG_TEXT, FOOTNOTE],
 			annotations: [LINK],

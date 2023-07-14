@@ -1,11 +1,11 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 describe('image', () => {
 	it('basic', async () => {
-		const sanitySchema = fragmentField({
+		const sanitySchema = defineField({
 			name: 'photo',
 			type: 'image',
 		});
@@ -27,7 +27,7 @@ describe('image', () => {
 	});
 
 	it('with hotspot', async () => {
-		const sanitySchema = fragmentField({
+		const sanitySchema = defineField({
 			name: 'photo',
 			type: 'image',
 			options: {
@@ -80,7 +80,7 @@ describe('image', () => {
 	});
 
 	it('with fields', async () => {
-		const sanitySchema = fragmentField({
+		const sanitySchema = defineField({
 			name: 'photo',
 			type: 'image',
 			fields: [
@@ -116,7 +116,7 @@ describe('image', () => {
 	});
 
 	it('with hotspot and fields', async () => {
-		const sanitySchema = fragmentField({
+		const sanitySchema = defineField({
 			name: 'photo',
 			type: 'image',
 			options: {
@@ -183,7 +183,7 @@ describe('image', () => {
 	});
 
 	it('with hotspot and complex fields', async () => {
-		const sanitySchema = fragmentField({
+		const sanitySchema = defineField({
 			name: 'photo',
 			type: 'image',
 			options: {
@@ -367,7 +367,7 @@ describe('image', () => {
 	});
 
 	it('with hotspot and array fields', async () => {
-		const sanitySchema = fragmentField({
+		const sanitySchema = defineField({
 			name: 'photo',
 			type: 'image',
 			options: {

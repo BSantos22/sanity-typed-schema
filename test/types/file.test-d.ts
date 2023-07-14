@@ -1,11 +1,11 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 describe('file', () => {
 	it('basic schema', async () => {
-		const sanitySchema = fragmentField({
+		const sanitySchema = defineField({
 			name: 'pdf',
 			type: 'file',
 		});
@@ -27,7 +27,7 @@ describe('file', () => {
 	});
 
 	it('file with fields', async () => {
-		const sanitySchema = fragmentField({
+		const sanitySchema = defineField({
 			name: 'pdf',
 			type: 'file',
 			fields: [
@@ -63,7 +63,7 @@ describe('file', () => {
 	});
 
 	it('file with complex fields', async () => {
-		const sanitySchema = fragmentField({
+		const sanitySchema = defineField({
 			name: 'photo',
 			type: 'file',
 			fields: [
@@ -204,7 +204,7 @@ describe('file', () => {
 	});
 
 	it('file with array fields', async () => {
-		const sanitySchema = fragmentField({
+		const sanitySchema = defineField({
 			name: 'photo',
 			type: 'file',
 			fields: [

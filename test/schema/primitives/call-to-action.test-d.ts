@@ -1,12 +1,12 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {link} from 'test/schema/primitives/link.test-d';
 import type {CallToActionTest} from 'test/schema/primitives/call-to-action';
 import {describe, expectTypeOf, it} from 'vitest';
 import {expectType} from 'test/utils';
 
 export const callToAction = () =>
-	fragmentField({
+	defineField({
 		title: 'Call To Action',
 		name: 'callToAction',
 		type: 'object',
@@ -24,7 +24,7 @@ export const callToAction = () =>
 	});
 
 const text = () =>
-	fragmentField({
+	defineField({
 		name: 'text',
 		type: 'string',
 		title: 'Tekst',

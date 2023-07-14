@@ -1,5 +1,5 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {
 	BULLET,
 	EMPHASIS,
@@ -14,7 +14,7 @@ import {describe, expectTypeOf, it} from 'vitest';
 import {expectType} from 'test/utils';
 
 export const contact = () =>
-	fragmentField({
+	defineField({
 		name: 'contact',
 		type: 'object',
 		title: 'Kontakt',
@@ -27,7 +27,7 @@ export const contact = () =>
 	});
 
 const location = () =>
-	fragmentField({
+	defineField({
 		...textBlock({
 			annotations: [LINK],
 			lists: [BULLET, NUMBERED],
@@ -40,7 +40,7 @@ const location = () =>
 	});
 
 const forms = () =>
-	fragmentField({
+	defineField({
 		name: 'forms',
 		type: 'array',
 		title: 'Skjemaer',
@@ -49,7 +49,7 @@ const forms = () =>
 	});
 
 const form = () =>
-	fragmentField({
+	defineField({
 		name: 'form',
 		type: 'object',
 		title: 'Kontaktskjema',
@@ -67,7 +67,7 @@ const form = () =>
 	});
 
 const type = () =>
-	fragmentField({
+	defineField({
 		name: 'type',
 		type: 'string',
 		title: 'Type',
@@ -75,7 +75,7 @@ const type = () =>
 	});
 
 const ticketID = () =>
-	fragmentField({
+	defineField({
 		name: 'id',
 		type: 'string',
 		title: 'ID',
@@ -83,7 +83,7 @@ const ticketID = () =>
 	});
 
 const text = () =>
-	fragmentField({
+	defineField({
 		...textBlock({
 			annotations: [LINK],
 			lists: [BULLET, NUMBERED],
@@ -96,7 +96,7 @@ const text = () =>
 	});
 
 const fields = () =>
-	fragmentField({
+	defineField({
 		name: 'fields',
 		type: 'array',
 		title: 'Felter',
@@ -105,7 +105,7 @@ const fields = () =>
 	});
 
 const field = () =>
-	fragmentField({
+	defineField({
 		name: 'field',
 		type: 'object',
 		title: 'Felt',
@@ -113,7 +113,7 @@ const field = () =>
 	});
 
 const label = () =>
-	fragmentField({
+	defineField({
 		name: 'label',
 		type: 'string',
 		title: 'Label',
@@ -121,14 +121,14 @@ const label = () =>
 	});
 
 const placeholder = () =>
-	fragmentField({
+	defineField({
 		name: 'placeholder',
 		type: 'string',
 		title: 'Placeholder',
 	});
 
 const isTextarea = () =>
-	fragmentField({
+	defineField({
 		name: 'isTextarea',
 		type: 'boolean',
 		title: 'Textarea',
@@ -137,7 +137,7 @@ const isTextarea = () =>
 	});
 
 const isRequired = () =>
-	fragmentField({
+	defineField({
 		name: 'isRequired',
 		type: 'boolean',
 		title: 'Påkrevd',
@@ -146,7 +146,7 @@ const isRequired = () =>
 	});
 
 const info = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
@@ -159,7 +159,7 @@ const info = () =>
 	});
 
 const checkboxes = () =>
-	fragmentField({
+	defineField({
 		name: 'checkboxes',
 		type: 'array',
 		title: 'Checkboxes',
@@ -167,7 +167,7 @@ const checkboxes = () =>
 	});
 
 const checkbox = () =>
-	fragmentField({
+	defineField({
 		name: 'checkbox',
 		type: 'object',
 		title: 'Checkbox',
@@ -175,7 +175,7 @@ const checkbox = () =>
 	});
 
 const reason = () =>
-	fragmentField({
+	defineField({
 		name: 'reason',
 		type: 'string',
 		title: 'Årsak',
@@ -183,7 +183,7 @@ const reason = () =>
 	});
 
 const checkText = () =>
-	fragmentField({
+	defineField({
 		name: 'checkText',
 		type: 'string',
 		title: 'OK-Tekst',
@@ -191,7 +191,7 @@ const checkText = () =>
 	});
 
 const confirmText = () =>
-	fragmentField({
+	defineField({
 		name: 'confirmText',
 		type: 'string',
 		title: 'Bekreftelsestekst',

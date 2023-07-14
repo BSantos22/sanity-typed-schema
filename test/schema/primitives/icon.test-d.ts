@@ -1,11 +1,11 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import type {IconTest} from 'test/schema/primitives/icon';
 import {expectType} from 'test/utils';
 import {describe, expectTypeOf, it} from 'vitest';
 
 export const icon = () =>
-	fragmentField({
+	defineField({
 		title: 'Ikon',
 		name: 'icon',
 		type: 'string',

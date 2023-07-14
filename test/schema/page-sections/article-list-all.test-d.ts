@@ -1,12 +1,12 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {theme} from 'test/schema/primitives/theme.test-d';
 import type {ArticleListAllTest} from 'test/schema/page-sections/article-list-all';
 import {describe, expectTypeOf, it} from 'vitest';
 import {expectType} from 'test/utils';
 
 export const articleListAll = () =>
-	fragmentField({
+	defineField({
 		name: 'articleListAll',
 		title: 'Artikkeloversikt',
 		type: 'object',
@@ -14,7 +14,7 @@ export const articleListAll = () =>
 	});
 
 const title = () =>
-	fragmentField({
+	defineField({
 		name: 'title',
 		title: 'Tittel',
 		type: 'string',

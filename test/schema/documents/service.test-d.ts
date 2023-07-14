@@ -1,5 +1,5 @@
 import {toOutput} from 'src/convert';
-import {fragmentField, fragmentType} from 'src/schema';
+import {defineField, defineType} from 'src/schema';
 import {
 	BULLET,
 	CALL_TO_ACTION,
@@ -16,7 +16,7 @@ import {describe, expectTypeOf, it} from 'vitest';
 import {expectType} from 'test/utils';
 
 export const service = () =>
-	fragmentType({
+	defineType({
 		name: 'service',
 		type: 'document',
 		title: 'Tjeneste',
@@ -39,7 +39,7 @@ export const service = () =>
 	});
 
 const name = () =>
-	fragmentField({
+	defineField({
 		name: 'name',
 		type: 'string',
 		title: 'Navn',
@@ -47,7 +47,7 @@ const name = () =>
 	});
 
 const description = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
@@ -60,7 +60,7 @@ const description = () =>
 	});
 
 const packages = () =>
-	fragmentField({
+	defineField({
 		name: 'packages',
 		type: 'array',
 		title: 'Pakker',
@@ -74,7 +74,7 @@ const packages = () =>
 	});
 
 const packageName = () =>
-	fragmentField({
+	defineField({
 		name: 'name',
 		type: 'string',
 		title: 'Navn',
@@ -82,7 +82,7 @@ const packageName = () =>
 	});
 
 const packageDescription = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
@@ -95,7 +95,7 @@ const packageDescription = () =>
 	});
 
 const packagePrice = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			decorators: [PRICE, STRONG, EMPHASIS],
 			customTypes: [],
@@ -108,7 +108,7 @@ const packagePrice = () =>
 	});
 
 const individualPrices = () =>
-	fragmentField({
+	defineField({
 		name: 'individualPrices',
 		title: 'Enkeltpriser',
 		type: 'array',
@@ -122,7 +122,7 @@ const individualPrices = () =>
 	});
 
 const individualPricesDescription = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
@@ -136,7 +136,7 @@ const individualPricesDescription = () =>
 	});
 
 const individualPricesPrice = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			decorators: [PRICE, STRONG, EMPHASIS],
 			customTypes: [],
@@ -149,7 +149,7 @@ const individualPricesPrice = () =>
 	});
 
 const addons = () =>
-	fragmentField({
+	defineField({
 		name: 'addons',
 		type: 'array',
 		of: [
@@ -162,7 +162,7 @@ const addons = () =>
 	});
 
 const addonDescription = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],
@@ -176,7 +176,7 @@ const addonDescription = () =>
 	});
 
 const addonPrice = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			decorators: [PRICE, STRONG, EMPHASIS],
 			customTypes: [],
@@ -189,7 +189,7 @@ const addonPrice = () =>
 	});
 
 const extraInformation = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			annotations: [LINK],
 			decorators: [STRONG, EMPHASIS],

@@ -1,5 +1,5 @@
 import {toOutput} from 'src/convert';
-import {fragmentField} from 'src/schema';
+import {defineField} from 'src/schema';
 import {ALT_TEXT, imageWeb} from 'test/schema/primitives/image-web.test-d';
 import {
 	BULLET,
@@ -15,7 +15,7 @@ import {describe, expectTypeOf, it} from 'vitest';
 import {expectType} from 'test/utils';
 
 export const infoGrid = () =>
-	fragmentField({
+	defineField({
 		name: 'infoGrid',
 		title: 'Info Grid',
 		type: 'object',
@@ -32,7 +32,7 @@ export const infoGrid = () =>
 	});
 
 const title = () =>
-	fragmentField({
+	defineField({
 		name: 'title',
 		title: 'Tittel',
 		type: 'string',
@@ -40,7 +40,7 @@ const title = () =>
 	});
 
 const items = () =>
-	fragmentField({
+	defineField({
 		name: 'items',
 		title: 'Info Grid Items',
 		type: 'array',
@@ -49,7 +49,7 @@ const items = () =>
 	});
 
 const item = () =>
-	fragmentField({
+	defineField({
 		name: 'item',
 		title: 'Info Grid Item',
 		type: 'object',
@@ -67,13 +67,13 @@ const item = () =>
 	});
 
 const itemImage = () =>
-	fragmentField({
+	defineField({
 		...imageWeb({fields: [ALT_TEXT]}),
 		title: 'Info Grid Image',
 	});
 
 const itemTitle = () =>
-	fragmentField({
+	defineField({
 		name: 'title',
 		title: 'Info Grid Title',
 		type: 'string',
@@ -81,7 +81,7 @@ const itemTitle = () =>
 	});
 
 const itemContent = () =>
-	fragmentField({
+	defineField({
 		...portableText({
 			annotations: [LINK],
 			lists: [BULLET, NUMBERED],

@@ -1,4 +1,4 @@
-import {fragmentField, fragmentType} from 'src/schema';
+import {defineField, defineType} from 'src/schema';
 import {heading} from 'test/schema/page-sections/heading.test-d';
 import {articleListAll} from 'test/schema/page-sections/article-list-all.test-d';
 import {cardLinks} from 'test/schema/page-sections/card-links.test-d';
@@ -17,7 +17,7 @@ import type {PageTest} from 'test/schema/documents/page';
 import {expectType} from 'test/utils';
 
 export const page = () =>
-	fragmentType({
+	defineType({
 		name: 'page',
 		type: 'document',
 		title: 'Sider',
@@ -33,7 +33,7 @@ export const page = () =>
 	});
 
 const title = () =>
-	fragmentField({
+	defineField({
 		name: 'title',
 		type: 'string',
 		title: 'Sidetittel',
@@ -42,7 +42,7 @@ const title = () =>
 	});
 
 const slug = () =>
-	fragmentField({
+	defineField({
 		name: 'slug',
 		type: 'slug',
 		title: 'Slug',
@@ -55,7 +55,7 @@ const slug = () =>
 const headingSection = () => heading();
 
 const contentSections = () =>
-	fragmentField({
+	defineField({
 		name: 'content',
 		title: 'Innhold',
 		type: 'array',
