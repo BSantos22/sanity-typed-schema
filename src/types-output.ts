@@ -16,6 +16,8 @@ import type {PortableTextBlock} from '@portabletext/types';
 import type {SetOptional, SetRequired, Simplify} from 'type-fest';
 import type {ReadonlyObjectDeep} from 'type-fest/source/readonly-deep';
 
+export type Fetched<T extends () => FragmentDefinition> = Simplify<OutputType<ReturnType<T>>>;
+
 export type OutputType<T extends FragmentDefinition> = T['type'] extends 'array'
 	? T extends ArrayDef
 		? Simplify<OutputArray<T>>
