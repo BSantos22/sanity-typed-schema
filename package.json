@@ -1,6 +1,6 @@
 {
   "name": "sanity-typed-schema",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Type inference for the output of a Sanity schema, from the schema itself",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
