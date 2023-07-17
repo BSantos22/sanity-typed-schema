@@ -79,7 +79,7 @@ const slug = () =>
 
 type Slug = OutputType<ReturnType<typeof slug>>;
 // OR
-type Slug = Fetched<typeof slug>;		  
+type Slug = Output<typeof slug>;		  
 // type Slug = {
 //   _type: 'slug';  
 //   current?: string;
@@ -703,13 +703,13 @@ type Attachments = Output<typeof attachments>;
 
 ## Implementation
 
-The objective was to arrive at a type `Fetched` that enabled doing something like
+The objective was to arrive at a type `Output` that enabled doing something like
 ```ts
-type Article = Fetched<typeof article>
+type Article = Output<typeof article>
 ```
 where `Article` would be the same as the type we previously had to explicitly define.
 
-The `Fetched` is a generic that receives a `FragmentDefinition` and maps that to its output type, based on its literal definition.
+The `Output` is a generic that receives a `FragmentDefinition` and maps that to its output type, based on its literal definition.
 
 A `FragmentDefinition` is a union of all type definitions from `@sanity/types`, where only the relevant fields for inference were picked from each of the definitions (this was done to manage the complexity of the types for the Typescript compiler).
 
@@ -757,8 +757,8 @@ groq`
 	}
 `
 
-type SiteSettings = Fetched<typeof siteSettings>;
-type Page = Fetched<typeof page>;
+type SiteSettings = Output<typeof siteSettings>;
+type Page = Output<typeof page>;
 
 // By default frontpage would be a page reference, but in the GROQ query this is replaced with the page itself
 type SiteSettingWithFrontpage = Omit<SiteSettings, 'frontpage'> & {
