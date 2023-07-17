@@ -134,7 +134,11 @@ type OutputDate = string;
 type OutputDatetime = string;
 
 type OutputDocument<T extends DocumentDef> = {
+	_id: string;
 	_type: T['name'];
+	_createdAt?: string;
+	_updatedAt?: string;
+	_rev?: string;
 } & (T['fields'] extends readonly FragmentDefinition[] ? OutputFieldsDef<T['fields']> : never);
 
 type OutputEmail = string;

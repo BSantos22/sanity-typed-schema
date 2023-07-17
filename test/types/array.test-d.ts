@@ -270,6 +270,10 @@ describe('array', () => {
 			expectTypeOf(output).toEqualTypeOf<
 				{
 					_type: 'doc';
+					_id: string;
+					_createdAt?: string;
+					_updatedAt?: string;
+					_rev?: string;
 					_key: string;
 					text?: string;
 				}[]
@@ -277,6 +281,10 @@ describe('array', () => {
 			expectType<typeof output>().toStrictEqual<
 				{
 					_type: 'doc';
+					_id: string;
+					_createdAt?: string;
+					_updatedAt?: string;
+					_rev?: string;
 					_key: string;
 					text?: string;
 				}[]

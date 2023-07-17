@@ -24,6 +24,10 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'block';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				text?: {
 					_type: 'block';
 					_key?: string;
@@ -36,6 +40,10 @@ describe('document', () => {
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'block';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				text?: {
 					_type: 'block';
 					_key?: string;
@@ -60,8 +68,22 @@ describe('document', () => {
 				],
 			});
 			const output = toOutput(sanitySchema);
-			expectTypeOf(output).toEqualTypeOf<{_type: 'boolean'; isTrue?: boolean}>();
-			expectType<typeof output>().toStrictEqual<{_type: 'boolean'; isTrue?: boolean}>();
+			expectTypeOf(output).toEqualTypeOf<{
+				_type: 'boolean';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
+				isTrue?: boolean;
+			}>();
+			expectType<typeof output>().toStrictEqual<{
+				_type: 'boolean';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
+				isTrue?: boolean;
+			}>();
 		});
 
 		it('document with a date field', async () => {
@@ -76,8 +98,22 @@ describe('document', () => {
 				],
 			});
 			const output = toOutput(sanitySchema);
-			expectTypeOf(output).toEqualTypeOf<{_type: 'date'; when?: string}>();
-			expectType<typeof output>().toStrictEqual<{_type: 'date'; when?: string}>();
+			expectTypeOf(output).toEqualTypeOf<{
+				_type: 'date';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
+				when?: string;
+			}>();
+			expectType<typeof output>().toStrictEqual<{
+				_type: 'date';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
+				when?: string;
+			}>();
 		});
 
 		it('document with a datetime field', async () => {
@@ -92,8 +128,22 @@ describe('document', () => {
 				],
 			});
 			const output = toOutput(sanitySchema);
-			expectTypeOf(output).toEqualTypeOf<{_type: 'datetime'; when?: string}>();
-			expectType<typeof output>().toStrictEqual<{_type: 'datetime'; when?: string}>();
+			expectTypeOf(output).toEqualTypeOf<{
+				_type: 'datetime';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
+				when?: string;
+			}>();
+			expectType<typeof output>().toStrictEqual<{
+				_type: 'datetime';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
+				when?: string;
+			}>();
 		});
 
 		it('document with an email field', async () => {
@@ -108,8 +158,22 @@ describe('document', () => {
 				],
 			});
 			const output = toOutput(sanitySchema);
-			expectTypeOf(output).toEqualTypeOf<{_type: 'email'; where?: string}>();
-			expectType<typeof output>().toStrictEqual<{_type: 'email'; where?: string}>();
+			expectTypeOf(output).toEqualTypeOf<{
+				_type: 'email';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
+				where?: string;
+			}>();
+			expectType<typeof output>().toStrictEqual<{
+				_type: 'email';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
+				where?: string;
+			}>();
 		});
 
 		it('document with a geopoint field', async () => {
@@ -126,6 +190,10 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'geopoint';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				where?: {
 					_type: 'geopoint';
 					lat?: number;
@@ -135,6 +203,10 @@ describe('document', () => {
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'geopoint';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				where?: {
 					_type: 'geopoint';
 					lat?: number;
@@ -165,11 +237,19 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'numbers';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				count?: number;
 				options?: 1 | 2 | 3 | 4 | 5;
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'numbers';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				count?: number;
 				options?: 1 | 2 | 3 | 4 | 5;
 			}>();
@@ -189,6 +269,10 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'reference';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				ref?: {
 					_type: 'reference';
 					_ref: string;
@@ -196,6 +280,10 @@ describe('document', () => {
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'reference';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				ref?: {
 					_type: 'reference';
 					_ref: string;
@@ -217,6 +305,10 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'gail';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				sluggySlug?: {
 					_type: 'slug';
 					current?: string;
@@ -224,6 +316,10 @@ describe('document', () => {
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'gail';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				sluggySlug?: {
 					_type: 'slug';
 					current?: string;
@@ -252,11 +348,19 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'strings';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				text?: string;
 				options?: 'test1' | 'test2';
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'strings';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				text?: string;
 				options?: 'test1' | 'test2';
 			}>();
@@ -283,11 +387,19 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'text';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				longText?: string;
 				options?: 'logTest1' | 'longTest2';
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'text';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				longText?: string;
 				options?: 'logTest1' | 'longTest2';
 			}>();
@@ -307,10 +419,18 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'url';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				uniformResourceLocator?: string;
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'url';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				uniformResourceLocator?: string;
 			}>();
 		});
@@ -339,15 +459,31 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'parent';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				child?: {
 					_type: 'child';
+					_id: string;
+					_createdAt?: string;
+					_updatedAt?: string;
+					_rev?: string;
 					text?: string;
 				};
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'parent';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				child?: {
 					_type: 'child';
+					_id: string;
+					_createdAt?: string;
+					_updatedAt?: string;
+					_rev?: string;
 					text?: string;
 				};
 			}>();
@@ -375,12 +511,20 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'parent';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				nested?: {
 					text?: string;
 				};
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'parent';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				nested?: {
 					text?: string;
 				};
@@ -523,6 +667,10 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'test';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				level1?: {
 					level2?: {
 						level3?: {
@@ -567,6 +715,10 @@ describe('document', () => {
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'test';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				level1?: {
 					level2?: {
 						level3?: {
@@ -673,10 +825,18 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'test';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				strings?: string[];
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'test';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				strings?: string[];
 			}>();
 		});
@@ -706,6 +866,10 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'test';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				objects?: {
 					_key: string;
 					text?: string;
@@ -713,6 +877,10 @@ describe('document', () => {
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'test';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				objects?: {
 					_key: string;
 					text?: string;
@@ -788,6 +956,10 @@ describe('document', () => {
 			const output = toOutput(sanitySchema);
 			expectTypeOf(output).toEqualTypeOf<{
 				_type: 'test';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				objects?: {
 					_key: string;
 					nested?: {
@@ -813,6 +985,10 @@ describe('document', () => {
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				_type: 'test';
+				_id: string;
+				_createdAt?: string;
+				_updatedAt?: string;
+				_rev?: string;
 				objects?: {
 					_key: string;
 					nested?: {

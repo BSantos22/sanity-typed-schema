@@ -3,6 +3,10 @@ import type {Reference} from '../primitives/reference';
 
 export type TyreTest = {
 	_type: 'tyre';
+	_id: string;
+	_createdAt?: string;
+	_updatedAt?: string;
+	_rev?: string;
 	brand?: Reference;
 	model?: string;
 	type?: string;

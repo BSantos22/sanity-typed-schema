@@ -14,6 +14,10 @@ import type {TyreSelectTest} from '../page-sections/tyre-select';
 
 export type PageTest = {
 	_type: 'page';
+	_id: string;
+	_createdAt?: string;
+	_updatedAt?: string;
+	_rev?: string;
 	title?: string;
 	slug?: {
 		_type: 'slug';

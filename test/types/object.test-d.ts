@@ -321,12 +321,20 @@ describe('object', () => {
 			expectTypeOf(output).toEqualTypeOf<{
 				doc?: {
 					_type: 'doc';
+					_id: string;
+					_createdAt?: string;
+					_updatedAt?: string;
+					_rev?: string;
 					text?: string;
 				};
 			}>();
 			expectType<typeof output>().toStrictEqual<{
 				doc?: {
 					_type: 'doc';
+					_id: string;
+					_createdAt?: string;
+					_updatedAt?: string;
+					_rev?: string;
 					text?: string;
 				};
 			}>();

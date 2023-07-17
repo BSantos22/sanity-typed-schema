@@ -4,6 +4,10 @@ import type {Reference} from '../primitives/reference';
 
 export type SiteSettingsTest = {
 	_type: 'siteSettings';
+	_id: string;
+	_createdAt?: string;
+	_updatedAt?: string;
+	_rev?: string;
 	title?: string;
 	frontPage?: Reference;
 	headerLinks?: Simplify<{_key: string} & Reference>[];
